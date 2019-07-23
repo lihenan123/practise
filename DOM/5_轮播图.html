@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            list-style: none;
+        }
+        li{
+            color: #ffffff;
+            font-size: 14px;
+            height: 20px;
+            width: 20px;
+            line-height: 20px;
+            float: left;
+            background: #999999;
+            margin-right: 5px;
+            text-align: center;
+            border-radius: 20%;
+        }
+        #pic{
+            width: 750px;
+            height: 291px;
+        }
+        #pic div{
+            display: none;
+        }
+        #pic .selected{
+            display: block;
+        }
+        #index{
+            width: 750px;
+            height: 291px;
+            margin: auto;
+            margin-top: 100px;
+        }
+        #btn1{
+            position: absolute;
+            right: 320px;
+            top:360px;
+        }
+        #btn2{
+            position: absolute;
+            left: 320px;
+            top:360px;
+        }
+        .active1,.active2{
+            background: #ff0000;
+        }
+    </style>
+</head>
+<body>
+    <div id="index">
+        <ul id="btn1">
+            <li class="active1">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ul>
+        <ul id="btn2">
+            <li><</li>
+            <li>></li>
+        </ul>
+         <div id="pic">
+             <div class="selected"><img src="img/1.jpg"></div>
+             <div><img src="img/2.jpg"></div>
+             <div><img src="img/3.jpg"></div>
+             <div><img src="img/4.jpg"></div>
+             <div><img src="img/5.jpg"></div>
+        </div>
+    </div>
+
+<script>
+    var oBtn1 = document.getElementById('btn1');
+    var aLi1 = oBtn1.getElementsByTagName('li');
+    var oBtn2 = document.getElementById('btn2');
+    var aLi2 = oBtn2.getElementsByTagName('li');
+    var oPic = document.getElementById('pic');
+    var aPic = oPic.getElementsByTagName('div');
+    var idx = 0;
+    for(var i=0;i<aLi1.length;i++){
+        aLi1[i].index = i;
+        aLi1[i].onclick = function () {
+            for(var i=0;i<aLi1.length;i++){
+                aLi1[i].className= "";
+                aPic[i].className="";
+            }
+            this.className = "active1";
+            aPic[this.index].className = "selected";
+            idx++;
+        };
+
+    }
+    for(var j=0;j<aLi2.length;j++){
+        // aLi2[j].index = j ;
+        aLi2[j].onclick = function () {
+            for(var j=0;j<aLi2.length;j++){
+                aLi2[j].className = "";
+            }
+            this.className = "active2";
+            // for(var l=0;l<aLi2.length;l++){
+            //     aPic[l].className = "";
+            // }
+            if(j === 0){
+                idx--;
+                aLi1[idx].onclick();
+            }
+            if(j === 1){
+                idx++;
+                aLi1[idx].onclick();
+            }
+        }
+    }
+
+
+    // for(var j=0;j<aLi2.length;j++){
+    //         aLi2[j].index = j ;
+    //         aLi2[j].onclick = function () {
+    //             for(var j=0;j<aLi2.length;j++){
+    //                 aLi2[j].className = "";
+    //             }
+    //             this.className = "active2";
+    //             for(var l=0;l<aLi2.length;l++){
+    //                 aPic[l].className = "";
+    //             }
+    //             if(j === 0){
+    //
+    //             }
+    //             if(j === 1){
+    //
+    //             }
+    //         }
+    // }
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            list-style: none;
+        }
+        #container{
+            margin: 100px;
+        }
+        #btns{
+            overflow: hidden;
+        }
+        #btns li{
+            float: left;
+            width: 50px;
+            height: 30px;
+            background: #F1F1F1;
+            border:1px solid #898989;
+            color:#666;
+            font-size: 14px;
+            line-height: 30px;
+            text-align: center;
+            margin-right:10px;
+
+        }
+        #btns li.active{
+            background: #6D84B4;
+            color:#fff;
+        }
+        #content{
+            width: 300px;
+            height: 100px;
+            border:1px solid #898989;
+        }
+        #content div{
+            display: none;
+        }
+        #content .selected{
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <ul id="btns">
+            <li class="active">事实</li>
+            <li>体育</li>
+            <li>娱乐</li>
+        </ul>
+        <div id="content">
+            <div class="selected">事实1111</div>
+            <div>体育</div>
+            <div>娱乐</div>
+        </div>
+    </div>
+    
+    <script>
+        /*  undefined
+            1定义变量 没有赋值
+            2
+
+        */
+        var oUl = document.getElementById('btns');
+        var aLi = oUl.getElementsByTagName('li');
+        var oContent = document.getElementById('content');
+        var aDiv = oContent.getElementsByTagName('div');
+        for(var i=0; i<aLi.length; i++){ //i=3
+            // 自定义属性 添加索引
+            aLi[i].index = i;
+            aLi[i].onclick = function(){
+                // console.log(i);
+                // 对当前对象的引用
+                // this.style.background = "purple";
+                // 把所有li的className 清空
+                for(var j=0; j<aLi.length ; j++){
+                    aLi[j].className = "";
+                    aDiv[j].className = "";
+                }
+                // 点击的li添加className
+                this.className = "active";
+                // this
+                aDiv[this.index].className = "selected";
+            }
+        }
+
+
+
+    
+    </script>
+
+</body>
+
+</html>
