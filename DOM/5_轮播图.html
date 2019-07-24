@@ -49,7 +49,7 @@
             left: 320px;
             top:360px;
         }
-        .active1,.active2{
+        .active{
             background: #ff0000;
         }
     </style>
@@ -57,89 +57,81 @@
 <body>
     <div id="index">
         <ul id="btn1">
-            <li class="active1">1</li>
+            <li class="active">1</li>
             <li>2</li>
             <li>3</li>
             <li>4</li>
             <li>5</li>
         </ul>
         <ul id="btn2">
-            <li><</li>
-            <li>></li>
+            <li id="pre"><</li>
+            <li id="next">></li>
         </ul>
          <div id="pic">
-             <div class="selected"><img src="img/1.jpg"></div>
-             <div><img src="img/2.jpg"></div>
-             <div><img src="img/3.jpg"></div>
-             <div><img src="img/4.jpg"></div>
-             <div><img src="img/5.jpg"></div>
+             <div class="selected"><a href="#"><img src="img/1.jpg"></a></div>
+             <div><a href="#"><img src="img/2.jpg"></a></div>
+             <div><a href="#"><img src="img/3.jpg"></a></div>
+             <div><a href="#"><img src="img/4.jpg"></a></div>
+             <div><a href="#"><img src="img/5.jpg"></a></div>
         </div>
     </div>
 
 <script>
+    var oContainer = document.getElementById('pic')
     var oBtn1 = document.getElementById('btn1');
     var aLi1 = oBtn1.getElementsByTagName('li');
-    var oBtn2 = document.getElementById('btn2');
-    var aLi2 = oBtn2.getElementsByTagName('li');
+    // var oBtn2 = document.getElementById('btn2');
+    // var aLi2 = oBtn2.getElementsByTagName('li');
     var oPic = document.getElementById('pic');
     var aPic = oPic.getElementsByTagName('div');
+    var aPre = document.getElementById("pre");
+    var aNext = document.getElementById("next");
     var idx = 0;
     for(var i=0;i<aLi1.length;i++){
         aLi1[i].index = i;
         aLi1[i].onclick = function () {
-            for(var i=0;i<aLi1.length;i++){
-                aLi1[i].className= "";
-                aPic[i].className="";
-            }
-            this.className = "active1";
-            aPic[this.index].className = "selected";
-            idx++;
+            idx = this.index;
+            change(this.index);
+            // for(var i=0;i<aLi1.length;i++){
+            //     aLi1[i].className= "";
+            //     aPic[i].className="";
+            // }
+            // this.className = "active";
+            // aPic[this.index].className = "selected";
+            
         };
 
     }
-    for(var j=0;j<aLi2.length;j++){
-        // aLi2[j].index = j ;
-        aLi2[j].onclick = function () {
-            for(var j=0;j<aLi2.length;j++){
-                aLi2[j].className = "";
-            }
-            this.className = "active2";
-            // for(var l=0;l<aLi2.length;l++){
-            //     aPic[l].className = "";
-            // }
-            if(j === 0){
-                idx--;
-                aLi1[idx].onclick();
-            }
-            if(j === 1){
-                idx++;
-                aLi1[idx].onclick();
-            }
+    aPre.onclick = function(){
+        
+        if(idx == 0)
+            idx = 5;
+        idx--;
+        change(idx);
+    }
+    aNext.onclick = function(){
+        idx++;
+        if(idx == aLi1.length)
+            idx = 0;  
+        change(idx);
+    }
+    function change(x){
+        for(var i=0;i<aLi1.length;i++){
+            aLi1[i].className = "";
+            aPic[i].className = "";
         }
+        aLi1[x].className = "active";
+        aPic[x].className = "selected";
+    }
+    var timer = setInterval(aNext.onclick,1000);
+
+    oContainer.onmouseout = function(){
+        timer = setInterval(aNext.onclick,1000);
+    }
+    oContainer.onmouseover = function(){
+        clearInterval(timer);
     }
 
-
-    // for(var j=0;j<aLi2.length;j++){
-    //         aLi2[j].index = j ;
-    //         aLi2[j].onclick = function () {
-    //             for(var j=0;j<aLi2.length;j++){
-    //                 aLi2[j].className = "";
-    //             }
-    //             this.className = "active2";
-    //             for(var l=0;l<aLi2.length;l++){
-    //                 aPic[l].className = "";
-    //             }
-    //             if(j === 0){
-    //
-    //             }
-    //             if(j === 1){
-    //
-    //             }
-    //         }
-    // }
-
-
 </script>
-
 </body>
 </html>

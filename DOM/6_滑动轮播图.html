@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+       *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            list-style: none;
+        }
+        #index{
+            width: 750px;
+            margin:100px auto;
+            position: relative;
+            overflow: hidden;
+            height: 291px;
+        }
+        #pic{
+            width: 3750px;
+            overflow: hidden;
+            position: absolute;
+            left:0px;
+            top:0px;
+            transition: left 1s linear ;
+        }
+        #pic a{
+            float: left;
+        }
+        #pic a img{
+            display: block;
+        }
+        #btn1{
+            position: absolute;
+            right:10px;
+            bottom: 10px;
+        }
+        #btn1 li,#btn2 li{
+            float: left;
+            width: 20px;
+            height: 20px;
+            background: rgba(0,0,0,0.5);
+            color:#fff;
+            margin-right:5px;
+            text-align: center;
+            line-height: 20px;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        #btn1 .active{
+            background: #ff0000;
+        }
+        #btn2{
+            position: absolute;
+            left:10px;
+            bottom: 10px;
+        }
+       
+    </style>
+</head>
+<body>
+    <div id="index">
+            <div id="pic">
+                    <div><a href="#"><img src="img/1.jpg"></a></div>
+                    <div><a href="#"><img src="img/2.jpg"></a></div>
+                    <div><a href="#"><img src="img/3.jpg"></a></div>
+                    <div><a href="#"><img src="img/4.jpg"></a></div>
+                    <div><a href="#"><img src="img/5.jpg"></a></div>
+               </div>
+        <ul id="btn1">
+            <li class="active">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ul>
+        <ul id="btn2">
+            <li id="pre"><</li>
+            <li id="next">></li>
+        </ul>
+         
+    </div>
+
+<script>
+    var oContainer = document.getElementById('index')
+    var oBtn1 = document.getElementById('btn1');
+    var aLi1 = oBtn1.getElementsByTagName('li');
+    var oPic = document.getElementById('pic');
+    var aPic = oPic.getElementsByTagName('a');
+    var aPre = document.getElementById("pre");
+    var aNext = document.getElementById("next");
+    var index = 0;
+
+    for(var i=0; i<aLi1.length; i++){
+        aLi1[i].idx = i;
+        aLi1[i].onclick = function(){
+            index = this.idx;
+            change(this.idx);
+                // 0  1     2         n
+                // 0   -750  -2*750   -n*750
+                oPic.style.left = -this.idx*750 +"px";
+            }
+        }
+    
+    aPre.onclick = function(){
+        if(index == 0)
+            index = 5;
+        index--;
+        change(index);
+        
+    }
+    aNext.onclick = function(){
+        index++;
+        if(index == aLi1.length)
+            index = 0;  
+        change(index);
+    }
+    function change(x){
+        for(var i=0;i<aLi1.length;i++){
+            aLi1[i].className = "";
+        }
+        aLi1[x].className = "active";
+        oPic.style.left = -x*750 +"px";
+    }
+</script>
+</body>
+</html>
