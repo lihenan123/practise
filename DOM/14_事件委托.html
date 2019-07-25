@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        ul{
+            background: #f00;
+        }
+        li{
+            background: #00ff00;
+        }
+    </style>
+</head>
+<body>
+    <button id="btn">click</button>
+    <ul id="ul1">    
+        <li>111</li>
+        <li>222</li>
+        <li>333</li>
+    </ul>
+    <!-- 事件委托 
+        1后生成元素的事件绑定问题  2绑定的事件少
+        将事件绑定在父元素身上，点击子元素的时候会发生事件冒泡 触发父元素的点击事件
+        通过事件源（e.target）判断是否是要绑定事件的子元素  执行相应的处理函数
+    -->
+    <script>
+        var oBtn = document.getElementById('btn');
+        var oUl = document.getElementById('ul1');
+        var aLi = oUl.getElementsByTagName('li');
+        // for(var i=0;i<aLi.length; i++){
+        //     aLi[i].onclick = function(){
+        //         console.log(this.innerHTML);
+        //     }
+        // }
+        // 点击li输出li的内容
+        oUl.onclick = function(e){
+            //获取事件源
+            // console.log(e.target);
+            // 事件源的标签名 是 li
+            if(e.target.tagName == "LI"){
+                console.log(e.target.innerHTML);
+            }
+        }
+        oBtn.onclick = function(){
+            // 创建dom元素
+            var oLi = document.createElement('li');
+            oLi.innerHTML = Math.random();
+            // 在 ul的内部的后边插入元素
+            oUl.appendChild(oLi);
+        }
+
+
+
+
+        
+
+    
+    
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            list-style: none;
+        }
+        #container{
+            width: 750px;
+            margin:100px auto;
+            position: relative;
+            overflow: hidden;
+            height: 291px;
+        }
+        #img-box{
+            width: 4500px;
+            overflow: hidden;
+            position: absolute;
+            left:0px;
+            top:0px;
+            /* transition: left 1s linear ; */
+        }
+        #img-box a{
+            float: left;
+        }
+        #img-box a img{
+            display: block;
+        }
+        #btn-box{
+            position: absolute;
+            right:10px;
+            bottom: 10px;
+        }
+        #btn-box li,#arrow-box li{
+            float: left;
+            width: 20px;
+            height: 20px;
+            background: rgba(0,0,0,0.5);
+            color:#fff;
+            margin-right:5px;
+            text-align: center;
+            line-height: 20px;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        #btn-box .active{
+            background: #ff0036;
+
+        }
+        #arrow-box{
+            position: absolute;
+            left:10px;
+            bottom: 10px;
+        }
+       
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div id="img-box">
+            <a href="#">
+                <img src="img/1.jpg" alt="">
+            </a>
+            <a href="#">
+                <img src="img/2.jpg" alt="">
+            </a>
+            <a href="#">
+                <img src="img/3.jpg" alt="">
+            </a>
+            <a href="#">
+                <img src="img/4.jpg" alt="">
+            </a>
+            <a href="#">
+                <img src="img/5.jpg" alt="">
+            </a>
+            <a href="#">
+                <img src="img/1.jpg" alt="">
+            </a>
+        </div>
+        <ul id="btn-box">
+            <li class="active">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ul>
+        <ul id="arrow-box">
+            <li id="prev">&lt;</li>
+            <li id="next">&gt;</li>
+        </ul>
+
+    </div>
+    <script src="jslib.js"></script>
+    <script>
+        var oContainer = document.getElementById('container');
+        var oBtnBox = document.getElementById('btn-box');
+        var aBtns = oBtnBox.getElementsByTagName('li');
+        var oImgBox  = document.getElementById('img-box');
+        var aImg = oImgBox.getElementsByTagName('a');
+        var oNext = document.getElementById('next');
+        var oPrev = document.getElementById('prev');
+        var iNow = 0;
+        oNext.onclick = function(){
+            iNow++;
+            if(iNow == aImg.length){
+                // 迅速切换到第一张图 
+                oImgBox.style.left = "0px";
+                // 显示索引是1的图片
+                iNow = 1;
+            }
+            change(iNow);
+        }
+        function change(index){
+            for(var i=0; i<aBtns.length; i++){
+                aBtns[i].className = "";
+            }
+           aBtns[index==5?0:index].className = "active";
+
+            // oImgBox.style.left = - index *750+"px";
+            animate(oImgBox,{
+                left:- index *750
+            });
+        }
+
+
+
+    </script>
+
+</body>
+
+</html>
