@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+        事件源 
+        事件处理函数
+        事件
+
+
+      -->
+      <script>
+        oDiv.onclick = function(e){
+            this //对当前对象的引用
+            e = e || window.event;
+            e.target //事件源
+            e.currentTarget == this //当前事件源
+            e.keycode  //键盘码
+            e.clientX //鼠标距离左
+            e.clientY //鼠标距离上
+            // 阻止事件冒泡
+            e.stopPropagation();//标准浏览器
+            e.cancelBubble = true;  //ie
+
+            // 阻止默认行为 
+            e.preventDefault();//标准浏览器
+            e.returnValue = false; //ie
+
+            console.log(e.altKey)  //  true/false
+            return false;
+        }
+
+      
+      </script>
+     
+
+
+</body>
+</html>

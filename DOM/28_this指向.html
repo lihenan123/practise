@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //1. 定时器中this -> window
+        /*
+        setInterval(function(){
+            this
+        },10)
+        */
+
+        //2. this -> oDiv 对当前对象的引用
+        /*
+        oDiv.onclick = function(){
+            this
+        }
+        */
+
+        //3. 函数中  this指向window 
+        function a(){
+            console.log(this);
+        }
+        a();
+        //4. this -> obj
+        var obj = {
+            name:'zs',
+            age:20,
+            say:function(){
+                console.log(this.name +"hah")
+            }
+        }
+        obj.say();
+
+        //5. this-> new出来的实例化对象 
+        function Person(){
+            this.name = "zs";
+        }
+        var p1 = new Person();
+
+        
+        
+     
+
+    
+    
+    
+    </script>
+
+
+</body>
+</html>

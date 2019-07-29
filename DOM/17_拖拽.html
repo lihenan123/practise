@@ -13,7 +13,7 @@
         #box{
             width: 200px;
             height: 200px;
-            background:lightblue;
+            background:lightsteelblue;
             position: absolute;
             top: 0;
             left: 0;
@@ -34,6 +34,24 @@
             document.onmousemove = function(e){
                 oBox.style.left = e.clientX - xDis + "px";
                 oBox.style.top = e.clientY - yDis + "px";
+                //左边界
+                if(oBox.offsetLeft<0){
+                    oBox.style.left = 0;
+                }
+                //上边界
+                if(oBox.offsetTop<0){
+                    oBox.style.top = 0;
+                }
+                //右边界
+                var xMax = document.documentElement.clientWidth - oBox.offsetWidth;
+                if(oBox.offsetLeft > xMax){
+                    oBox.style.left = xMax + "px";
+                }
+                //下边界
+                var yMax = document.documentElement.clientHeight - oBox.offsetHeight;
+                if(oBox.offsetTop > yMax){
+                    oBox.style.top = yMax + "px";
+                }
             }
             
         }

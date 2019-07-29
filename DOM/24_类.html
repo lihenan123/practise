@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        具有相同属性和方法的对象集合
+
+     -->
+
+
+     <script>
+        //创建类 属性写在构造函数中 方法写在原型下   
+        // 类中this指向new出来的实例化对象
+        function Person(name,age,weight){
+            this.name = name;
+            this.age = age;
+            this.weight = weight;
+            // this.eat = function(){
+            //     console.log("chichi....");
+            // }
+        }
+        // 原型 构造函数下 有一个prototype属性  指向原型对象，
+        // 写在原型对象下的属性和方法能够被所有实例化对象所共享 
+        Person.prototype.eat = function(){
+            console.log("chichi....");
+        }
+
+        // 实例化对象
+        var p1 = new Person('zs',20,98);
+        var p2 = new Person('lisi',18,130);
+        var p3 = new Person('wangwu',30,170);
+
+        console.log(p1.name);
+        p1.eat();
+
+        // console.log(p2);
+        // console.log(p3);
+
+
+
+
+
+
+        
+
+
+
+
+
+
+     
+     
+     
+     
+     </script>
+</body>
+</html>

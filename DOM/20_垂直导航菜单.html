@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #title1,#title2{
+            font-size:20px;
+            color: #ffffff;
+            background: #000000;
+            width: 200px;
+        }
+        #container{
+            border: 1px #000000 solid;
+            width: 200px;
+        }
+        #text1,#text2{
+            display: none;
+        }
+    
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="box1">
+            <div id="title1">管理区</div>
+            <div id="text1">1111<br>222<br>333</div>
+        </div>
+        <div id="box2">
+            <div id="title2">交流区</div>
+            <div id="text2">1111<br>222<br>333</div>
+        </div>
+    </div>
+    <script>
+        var oTitle1 = document.getElementById('title1');
+        var oTitle2 = document.getElementById('title2');
+        var oText1 = document.getElementById('text1');
+        var oText2 = document.getElementById('text2');
+        var idx1 = 1;
+        var idx2 = 1;
+        oTitle1.onclick = function(){
+            idx1++;
+            if(idx1%2 == 0){
+                oText1.style.display = "block";
+            }
+            else
+                oText1.style.display = "none";
+            
+            
+        }
+        oTitle2.onclick = function(){
+            
+            idx2++;
+            if(idx2%2 == 0){
+                oText2.style.display = "block";
+            }
+            else
+                oText2.style.display = "none";
+            
+        }
+    </script>
+</body>
+</html>

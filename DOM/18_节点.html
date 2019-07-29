@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="div1">111</div>
+    <!-- afafga -->
+    <ul id="ul1">
+        <li>1111</li>
+        <li>2222</li>
+        <li id="li3">333</li>
+    </ul>
+    <!-- 
+        节点遍历
+        nextSibling   nextElementSibling
+        previousSibling  previousElementSibling
+        firstChild
+        lastChild
+        children 
+         
+     -->
+    <script>
+        var oDiv = document.getElementById('div1');
+        var oLi = document.getElementById('li3');
+
+        // console.log( oDiv.nodeType);
+        // console.log(oDiv.firstChild.nodeType);
+
+        // 节点遍历
+
+        // console.log(oDiv.nextSibling); //ie下一个元素  标准浏览器返回"↵    "
+        // console.log(oDiv.nextElementSibling); //ie不支持
+
+        /*function next(elem){
+            do{
+                elem = elem.nextSibling;
+            }while(elem && elem.nodeType != 1) //如果找到下一个兄弟节点 并且下一个兄弟的不是元素节点 接着循环    null(无效值)
+            return elem;
+        }
+        console.log( next(oLi) )//下一个元素节点
+        */
+
+        var oUl = document.getElementById('ul1');
+        console.log(oUl.children);
+
+        
+
+
+
+
+
+
+        
+    
+    </script>
+
+    
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+    
+        function fn(x,y){
+            console.log(this);
+        }
+        var obj = {
+            name:'zs'
+        }
+        // fn(1,2);
+        // call 用来改变this指向 第一个参数 this指向，后边依次是参数
+        // fn.call(obj,1,2);
+        // fn.apply(obj,[1,2]);
+        // bind 只改变this指向  需要手动调用
+        // fn.bind(obj,1,2)();
+
+
+    
+    
+    </script>
+</body>
+</html>

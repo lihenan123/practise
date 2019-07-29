@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        img{
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        // 叶子 
+            属性：  大小(100-150px)  位置  图片  速度
+            方法：  初始化  下落 
+    -->
+    <script>
+        var screenWidth = document.documentElement.clientWidth || document.body.clientWidth;
+        var screenHeight = document.documentElement.clientHeight || document.body.clientHeight;
+        // 叶子类
+        function Leaf(){
+            this.width = Math.random()*50+100;  //100-150
+            this.pos = {
+                left:Math.random()*(screenWidth-this.width), //0 - (screenWidth-this.width)    
+                top:0     
+            }
+            this.speed = 5;
+            var oImg = new Image();//创建图片 
+            // 图片添加src属性
+            oImg.src = "img/"+( Math.floor(Math.random()*4)+1 )+".png";    //1-4
+            oImg.style.width = this.width +"px";
+            oImg.style.left = this.pos.left +"px";
+            oImg.style.top = this.pos.top +"px";
+            this.img = oImg;
+        }
+        Leaf.prototype.init = function(){ //插入到页面中 
+            document.body.appendChild(this.img);
+        }
+        Leaf.prototype.fall = function(){
+            var that = this;  //因为 定时器中this指向window 所以先将this存在that中，用来在定时器中使用
+            setTimeout(function(){ //延迟不同时间下落
+                this.timer = setInterval(function(){ //定时器中this指向Window
+                    if(that.img.offsetTop >= screenHeight-that.img.offsetHeight){ //判断是都到达底部
+                        clearInterval(that.timer);
+                    }else{
+                        that.img.style.top = that.img.offsetTop + that.speed +"px";
+                    }
+                },10);
+            },Math.random()*500);
+        }
+
+        var arr = [];
+        for(var i=0; i<5; i++){
+            var leaf = new Leaf();
+            arr.push(leaf);
+            leaf.init();
+        }
+
+        document.onclick = function(){
+            for(var j=0; j<arr.length; j++){
+                arr[j].fall();
+            }
+        }
+       
+
+       
+
+       
+  
+        
+    
+    
+    </script>
+    
+
+</body>
+</html>
