@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #div1{
+            height: 500px;
+            background: #eeeeee;
+            position: relative;
+        }
+        #div2{
+            width:200px;
+            height: 200px;
+            background: #ff0000;
+            position: absolute;
+            left:50%;
+            top:50%;
+            /* margin-left:-100px;
+            margin-top:-100px; */
+            /* 相对于自己的宽 高 */
+            transform: translate(-50%,-50%);
+        }
+       
+    </style>
+</head>
+<body>
+    <div id="div1">
+        <div id="div2"></div>
+    </div>
+</body>
+</html>
