@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            /* font-size:50px; */
+        }
+        /* 雪碧图  css精灵 */
+        .div1{
+            /* background: red; */
+            /* 背景颜色 */
+            background-color: red;
+            /* 背景图片  通过url()引入图片地址 */
+            background-image: url(../images/bbb.jpg);
+            /* 背景图片重复  repeat 和 no-repeat两个值   */
+            background-repeat: no-repeat;
+             /* 背景图片位置 第一个值水平方向（正值右移）  第二个值垂直方向（正值下移）   */
+            background-position: -150px -100px; 
+            /* 合并写法  */
+            background: red url(../images/bbb.jpg) no-repeat -150px -100px;
+            background-color: green;
+            height:500px;
+        }
+        .div2{
+            /* 宽  高  */
+            width: 150px;
+            height: 150px;
+            background-image: url(../images/bbb.jpg);
+            background-repeat: no-repeat;
+            background-position:-225px -225px;
+        }
+        .div3{
+            background: #00f;
+            color:#fff;
+            /* 首行缩进  */
+            text-indent: 20px;
+            /* 文本水平对齐方式 left center right */
+            text-align: center;
+            height:100px;
+            /* 单行文本垂直居中的方式  line-height = height */
+            line-height: 100px;
+        }
+        a{
+            /* 文本装饰  
+                none 去掉下划线 
+                underline  下划线
+                overline   上划线
+                line-through   贯穿线
+            */
+            text-decoration: none;
+            
+        }
+        a:link {color:#FF0000;}		/* 未被访问的链接 */
+        a:visited {color:#00FF00;}	/* 已被访问的链接 */
+        a:hover {color:#FF00FF;}	/* 鼠标指针移动到链接上 */
+        a:active {color:#0000FF;}	/* 正在被点击的链接 */
+        .txt{
+            /* 字体大小 */
+            font-size:20px;
+            /* 字体 */
+            /* font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+            font-family: Times, TimesNR, 'New Century Schoolbook',
+     Georgia, 'New York', serif;
+            /* bold=700  */
+            /* 字体粗细 */
+            font-weight: 900;
+            /* 字体样式  italic 斜体 */
+            font-style: italic;
+            /* font: */
+        }
+        ul{
+            /* 去掉列表. */
+            list-style: none;
+        }
+        li{
+            /* 鼠标滑过手状 */
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body style="height:2000px;">
+    <div class="div1" id="a">
+        哈哈哈哈哈哈哈哈111111111哈哈哈哈哈哈哈哈111111111哈哈哈哈哈哈哈哈111111111哈哈哈哈哈哈哈哈111111111哈哈哈哈哈哈哈哈111111111哈哈哈哈哈哈哈哈111111111哈哈哈哈哈哈哈哈111111111哈哈哈哈哈哈哈哈111111111哈哈哈哈哈哈哈哈111111111哈哈哈哈哈哈哈哈111111111哈哈哈哈哈哈哈哈111111111哈哈哈哈哈哈哈哈111111111哈哈哈哈哈哈哈哈111111111哈哈哈哈哈哈哈哈111111111哈哈哈哈哈哈哈哈111111111哈哈哈哈哈哈哈哈111111111
+    </div>
+    <div class="div2"></div>
+    <div class="div3">
+        我是div
+    </div>
+    <a href="#">aaaaa</a>
+    <div class="txt">
+        哈哈哈哈哈哈哈哈
+    </div>
+    <ul>
+        <li>111</li>
+        <li>222</li>
+    </ul>
+</body>
+</html>

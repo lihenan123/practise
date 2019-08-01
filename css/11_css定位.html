@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            margin:0;
+        }
+        #div0{
+            width: 500px;
+            height: 500px;
+            background: #eeeeee;
+            /* margin-left:200px; */
+            position: relative;
+            left:200px;
+        }
+        #div1{
+            width: 150px;
+            height: 100px;
+            background: #ff0000;
+            float: left;
+        }
+        #div2{
+            width: 150px;
+            height: 100px;
+            background: #00ff00;
+            float: left;
+            /*  
+                relative相对定位
+                1 相对于自己初始位置 
+                2 定位以后空间不释放
+
+                absolute绝对定位 
+                1 相对于最近已定位的祖先元素  如果没有最近已定位的祖先元素  相对于body
+                2 定位后空间释放 
+            
+                fixed  固定定位 
+                1 相对于浏览器的可视区
+                2 定位后空间释放
+
+                static 静态的 默认值
+                sticky 粘性定位  吸顶效果
+
+                3 定位后宽度 内容撑的
+
+            */
+            /* position: relative;
+            left:300px;
+            top:300px; */
+
+            /* position: absolute;
+            left:50px;
+            top:30px;
+            right:0px;
+            bottom:0px; */
+            position: fixed;
+            right:0px;
+            bottom:0px;
+        }
+        #div3{
+            width: 150px;
+            height: 100px;
+            background: #00f;
+            float: left;
+        }
+
+        #div4{
+            position: fixed;
+            left:0px;
+            top:0px;
+            background: #ff0000;
+        }
+    </style>
+</head>
+<body>
+    <div id="div0">
+        <div id="div1"></div>
+        <div id="div2"></div>
+        <div id="div3"></div>
+    </div>
+
+    <div id="div4">
+        hahahha
+    </div>
+
+
+    
+</body>
+</html>

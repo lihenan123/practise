@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width: 200px;
+            height: 100px;
+            background: #ff0000;
+            margin:100px;
+            /* 过度  属性 过度时间 运动方式 */
+            /* transition: transform 2s linear ; */
+            transition: width 1s linear;
+        }
+        div:hover{
+            /* 变形  
+                rotate 旋转 正值顺时针
+                translateX X轴  translateY Y轴   位移
+                scale 缩放 
+            */
+            transform: rotate(30deg);
+            /* transform: scale(0.5); */
+            /* transform: translateX(100px); */
+            width:800px;
+        }
+    </style>
+</head>
+<body>
+    <div>1111</div>
+
+</body>
+</html>

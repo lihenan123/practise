@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #div1{
+            width: 200px;
+            height: 200px;
+            background: #ff0000;
+        }
+        #div2{
+            width: 200px;
+            height: 200px;
+            background: #0f0;
+        }
+        #div3{
+            width: 200px;
+            height: 200px;
+            background: #00f;
+        }
+        .parent{
+            /* 溢出 隐藏  */
+            /* overflow: hidden; */
+            /* height:200px; */
+        }
+        .parent div{
+            float: left;
+        }
+        h2{
+            height: 220px;
+            background: #eeeeee;
+            /* clear: both; */
+        }
+        /* 浮动的元素 会脱离文档流 空间释放 */
+
+        /* 
+            塌陷：子元素浮动 会导致父元素 没有高度
+            1. 父元素 overflow:hidden;   
+            2. 父元素添加高度 
+        */
+        /* .clearfix{
+            clear: both;
+        } */
+        .parent::after{
+            content:'';
+            /* 讲after设置成块级元素  */
+            display: block;
+            /* 清除浮动  left（左浮动） right（右浮动） both（左右都可以 ） */
+            clear:both;
+        }
+    </style>
+</head>
+<body>
+    <div class="parent">
+        <div id="div1"></div>
+        <div id="div2"></div>
+        <div id="div3"></div>
+         <!-- <p class="clearfix"></p>  -->
+    </div>
+    <h2></h2>
+
+</body>
+</html>

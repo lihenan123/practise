@@ -1,0 +1,76 @@
+/* div{
+    width: 200px;
+    height: 200px;
+    background: #000;
+} */
+
+#div1{
+    width: 500px;
+    height: 500px;
+    background-color:#f00   ;
+    /* background-image: url(../bbb.jpg);
+    background-repeat: no-repeat;
+    background-position:-200px -200px;
+     */
+     /* text-indent: 30px; */
+     text-align: right;
+
+     /* 单行文本垂直居中 */
+     line-height: 500px;
+     text-decoration: line-through;
+
+     font-size:50px;
+     font-weight: bold;
+     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+     font-style: italic;
+
+}
+ul{
+    list-style: none;
+}
+li{
+    cursor: pointer;
+}
+#div5{
+    width: 200px;
+    height: 200px;
+    background: #ff0000;
+    /* padding: */
+    padding:20px 30px 40px 50px;
+    border:10px solid #000;
+    margin:50px;
+    box-sizing: border-box;
+}
+#div6{
+    width: 500px;
+    background: #eeeeee;
+    /* height:202px; */
+    /* 溢出隐藏 */
+    /* overflow: hidden; */
+}
+#div7,#div8{
+    width: 200px;
+    height: 200px;
+    border:1px solid #000;
+    background: #ff0000;
+    float: left;
+}
+h1{
+    height: 50px;
+    background: #0000ff;
+}
+#div9{
+    width: 100px;
+    height: 20px;
+    background: #eeeeee;
+    overflow: hidden;
+}
+.clearfix::after{
+    content:"";
+    display: block;
+    clear: both;
+}
+
+
+
+

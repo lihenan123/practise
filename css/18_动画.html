@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    #div0{
+        background: #eeeeee;
+    }
+    #div0 div{
+        width: 200px;
+        height: 100px;
+        background: #ff0000;
+        border:1px solid #000;
+    }
+    #div1{
+        transition: width 2s linear ;
+    }
+    #div2{
+        transition: width 2s ease ;
+    }
+    #div3{
+        transition: width 2s ease-in ;
+    }
+    #div4{
+        transition: width 2s ease-in-out ;
+    }
+    #div5{
+        transition: width 2s ease-out ;
+    }
+    #div0:hover div{
+        width:600px;
+    }
+   
+    </style>
+</head>
+<body>
+    <!-- 
+        linear：线性过渡。
+        ease：平滑过渡。
+        ease-in：由慢到快。等同于贝塞尔曲线(0.42, 0, 1.0, 1.0)
+        ease-out：由快到慢。等同于贝塞尔曲线(0, 0, 0.58, 1.0)
+        ease-in-out：由慢到快再到慢。等同于贝塞尔曲线(0.42, 0, 0.58, 1.0)
+     -->
+     <div id="div0">
+        <div id="div1">111</div>
+        <div id="div2">111</div>
+        <div id="div3">111</div>
+        <div id="div4">111</div>
+        <div id="div5">111</div>
+     </div>
+
+    
+</body>
+</html>

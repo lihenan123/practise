@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        /* div{
+            width: 300px !important;
+            height: 300px;
+            background: #ff0000;
+        }
+        a:hover{
+            color:green;
+        }
+        #div1::after{
+            content:"hahah";
+            background:red;
+        } */
+    </style>
+    <link rel="stylesheet" href="style.css">
+    <!-- 
+        id选择器 #div1 （唯一的）
+        类选择器  伪类选择器 .aa{}
+        标签(元素)选择器   li{}
+        伪元素选择器 ::after{}
+        后代选择器 #ul1 li{}
+        子代选择器 #ul1 > li{}
+        相邻的兄弟 #title1 + ul{}
+        分组选择器#ul1,.aa{
+            color:#f00;
+        }
+        选择器的优先级 
+        !important
+        内联 1000
+        id  100
+        类选择器 为类选择器  10
+        元素 伪元素选择器 1
+     -->
+     
+</head>
+<body style="height:2000px;">
+    <div></div>
+    <div id="div1">dhfjgkulilkjh</div>
+    <ul id="ul1">
+        <li class="aa">
+            <h2 id="title1">标题</h2>
+            <ul>
+                <li>aaaaa</li>
+                <li>bbbbb</li>
+            </ul>
+        </li>
+        <li>
+            <h2>标题22</h2>
+            <ul>
+                <li>aaaaa</li>
+                <li>bbbbb</li>
+            </ul>
+        </li>
+        <li class="aa">333</li>
+    </ul>
+    <a href="#">哈哈哈</a>
+    <div id="div5">哈哈哈哈</div>
+    <!-- 浮动的元素 会脱离文档流  空间释放
+        浮动塌陷
+        解决塌陷问题
+            父元素设置高
+            父元素加overflow:hidden;
+            clearfix::after
+            .clearfix::after{
+                content:"";
+                display: block;
+                clear: both;
+            }
+    -->
+    <div id="div6" class="clearfix">
+        <div id="div7">1</div>
+        <div id="div8">2</div>
+        <!-- <div style="clear: both;"></div> -->
+    </div>
+    <h1></h1>
+    <div class="clearfix">
+        <div>fg</div>
+        <div>hj</div>
+    </div>
+    <div id="div9">哈哈哈哈哈哈哈啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</div>
+</body>
+</html>
