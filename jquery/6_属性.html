@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="div1" class="aa" name="aa"></div>
+    <input type="text" value="haha">
+
+    <script src="jquery-1.12.4.js"></script>
+    <script>
+        // $('#div1').attr('name','bb');
+        // $('#div1').removeAttr('name');
+        // $('input').val();
+        
+    //    console.log( $('#div1').attr('class'))
+        // console.log()
+        // focus 获取焦点 blur失去焦点
+        $('input').on('blur',function(){
+            // console.log(1111)
+            // 输出input的value
+            console.log( $(this).val()   );
+        })
+
+    
+    </script>
+</body>
+</html>

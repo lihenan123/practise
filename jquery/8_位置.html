@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #div1{
+            width: 200px;
+            height: 200px;
+            background: #ff0000;
+            position: relative;
+            margin:100px auto;
+        }
+        #div2{
+            position: absolute;
+            left:100px;
+            top:100px;
+            width: 100px;height: 100px;
+            background: #0000ff;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="div1">
+            <div class="aa">hahha</div>
+
+        <div id="div2" class="aa"></div>
+    </div>
+    <script src="jquery-1.12.4.js"></script>
+    <script> 
+        // 返回第一个yi
+          console.log(  $('.aa').offset()  );
+        //获取匹配元素中第一个元素的当前坐标，相对于offset parent的坐标。( 译者注：offset parent指离该元素最近的而且被定位过的祖先元素 )
+        //console.log(  $('.aa').position()  );
+
+        
+    </script>
+    
+</body>
+</html>

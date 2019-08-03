@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!-- <form method="post" action=""> -->
+        你爱好的运动是？
+        <br />
+        <input type="checkbox" name="items" value="足球" />足球
+        <input type="checkbox" name="items" value="篮球" />篮球
+        <input type="checkbox" name="items" value="羽毛球" />羽毛球
+        <input type="checkbox" name="items" value="乒乓球" />乒乓球
+        <br />
+        <button id="CheckedAll">全　选</button>
+        <button id="CheckedNo">全不选</button>
+        <button id="CheckedRev">反　选</button>
+
+        <!-- <input type="button" id="send" value="提　交" /> -->
+    <!-- </form> -->
+
+
+    <script src="jquery-1.12.4.js"></script>
+    <script>
+        // prop 特性
+        // attr 属性
+        $('#CheckedAll').on('click',function(){
+            // 将所有的复选框勾上
+            $(':checkbox').prop('checked',true);
+        })
+        $('#CheckedNo').on('click',function(){
+            $(':checkbox').prop('checked',false);
+        })
+        $('#CheckedRev').on('click',function(){
+            // 参数是 索引和原生dom对象
+            $(':checkbox').each(function(index,elem){
+                // console.log(index,elem);
+                // $(elem).prop('checked',!$(elem).prop('checked'));
+                elem.checked = !elem.checked;
+            })
+        })
+
+
+
+    
+    
+    
+    </script>
+</body>
+
+</html>
