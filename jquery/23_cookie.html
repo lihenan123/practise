@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 本地存储  -->
+    <script>
+        // var date = new Date();
+        // date.setDate(10);
+        // document.cookie = "name=zs;"
+        // document.cookie = "age=22;expires="+date;
+        // console.log(document.cookie);
+        // 属性  值  过期时间  14(不传 不设置)
+        function setCookie(attr,value,day){
+            var str = "";
+            str += attr+"="+value+";";  //"age=22;"
+            if(day){ //传day   "age=22;expires="+date;
+                var date = new Date();
+                var today = date.getDate();
+                date.setDate(today+day);
+                str += "expires="+date;
+            }
+            document.cookie = str;
+        }
+        setCookie('name','zs',7);
+        setCookie('nameAA','lisi',7);
+        setCookie('haha','1111',30);
+
+        // 
+        function getCookie(key){
+            var str = document.cookie; //"name=zs; haha=1111; nameAA=lisi"
+            var arr = str.split('; '); //["name=zs","haha=1111","nameAA=lisi"]
+            for(var i=0; i<arr.length; i++){
+                var arr1 = arr[i].split('=');   //["name","zs"]
+                if(arr1[0] == key){
+                    return arr1[1];
+                }
+            }
+            return "";
+        }
+
+       console.log( getCookie('nameAA') );
+
+
+
+
+
+
+    </script>
+
+
+    
+</body>
+</html>

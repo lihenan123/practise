@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #div1{
+            width: 200px;
+            height: 200px;
+            background:orange;
+        }
+    </style>
+</head>
+<body>
+    <button id="hide">hide</button>
+    <button id="show">show</button>
+    <button id="toggle">show</button>
+    <button id="animate">animate</button>
+    <button id="stop">stop</button>
+    <button id="fadeIn">fadeIn</button>
+    <button id="fadeOut">fadeOut</button>
+    <button id="slideDown">slideDown</button>
+    <button id="slideUp">slideUp</button>
+
+    <div id="div1">haha</div>
+    <script src="jquery-1.12.4.js"></script>
+    <script>
+        $('#hide').on('click',function(){
+            $('#div1').hide(2000);
+        })
+        $('#show').on('click',function(){
+            $('#div1').show(800);
+        });
+        $('#toggle').on('click',function(){
+            $('#div1').toggle();
+        })
+        $('#animate').on('click',function(){
+            $('#div1').animate({
+                width:800
+            },1000);
+            $('#div1').animate({
+                opacity:0.5,
+                height:100
+            },1000);
+        })
+        // 一个布尔值，指示是否取消以列队动画。默认 false.
+        // 一个布尔值指示是否当前动画立即完成 默认 false.
+        $('#stop').on('click',function(){
+            $('#div1').stop(false,true);
+        })
+        $('#fadeIn').on('click',function(){
+            $('#div1').fadeIn(1000);
+        })
+        $('#fadeOut').on('click',function(){
+            $('#div1').fadeOut(1000);
+        })
+        $('#slideDown').on('click',function(){
+            $('#div1').slideDown(1000);
+        })
+        $('#slideUp').on('click',function(){
+            $('#div1').slideUp(1000);
+        })
+
+// $('.aa').size()
+// $('.aa').length 
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #div1{
+            width: 200px;
+            height: 200px;
+            background: #ff0000;
+        }
+        #div2{
+            width: 100px;
+            height: 100px;
+            background: #0000ff;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1">
+        <div id="div2"></div>
+    </div>
+
+
+    <script src="jquery-1.12.4.js"></script>
+    <script>
+        // $('#div1').on('mouseover',function(){
+        //     console.log('div1 over');
+        // })
+        // $('#div2').on('mouseover',function(){
+        //     console.log('div2 over');
+        // })
+        //  mouseenter不支持事件冒泡
+
+        $('#div1').on('mouseover',function(e){
+            console.log('div1 over');
+            // 事件源
+            console.log(e.target);
+            // 事件类型  "mouseenter"
+            console.log(e.type);
+            // 阻止默认行为
+            e.preventDefault();
+            // 阻止事件冒泡
+            e.stopPropagation();
+            //  鼠标相对于文档的左边缘的位置
+            console.log(e.pageX);
+            console.log(e.pageY);
+            // 
+
+        })
+        // $('#div2').on('mouseenter',function(){
+        //     console.log('div2 over');
+        // })
+        $(document).on('keyup',function(e){
+            // 获取键盘码
+            console.log(e.which);
+        })
+
+
+
+    
+    </script>
+    
+</body>
+</html>
