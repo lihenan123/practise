@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    #div1{
+        width: 200px;
+        height: 200px;
+        background: #ff0000;
+    }
+    </style>
+</head>
+<body>
+    <div id="div1">aaa</div>
+    <input type="text">
+    <button>click</button>
+    <script src="jquery-1.12.4.js"></script>
+    <script>
+    
+        // $('#div1').one('click',function(){
+        //     console.log('haha')
+        // })
+        
+        $('input').on('focus',function(){
+            console.log('hahah')
+        })
+        $('button').on('click',function(){
+            // $('input').trigger('focus');
+            $('input').triggerHandler('focus');
+        })
+
+        $('#div1').hover(function(){
+            // 鼠标划入
+            console.log('111111');
+            $(this).css('background','green');
+        },function(){
+            // 鼠标划出
+            console.log('2222222');
+            $(this).css('background','red');
+
+        })
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+            .title1{
+                font-size:20px;
+                color: #ffffff;
+                background: #000000;
+                width: 200px;
+            }
+            #container{
+                border: 1px #000000 solid;
+                width: 200px;
+            }
+            /* .text1,.text2{
+                display: none;
+            } */
+            #text1,#text2{
+                display: none;
+            }
+            #container .haha{
+                display: block;
+            }
+        
+        </style>
+</head>
+<body>
+    <div id="container">
+        <div id="box1">
+            <div class="title1">管理区</div>
+            <div id="text1">1111<br>222<br>333</div>
+        </div>
+        <div id="box2">
+            <div class="title1">交流区</div>
+            <div id="text2">1111<br>222<br>333</div>
+        </div>
+    </div>
+    <script src="jquery-1.12.4.js"></script>
+    <script>
+        $('#container').find('.title1').on('click',function(){
+            $(this).siblings().toggleClass('haha').css({
+                border: '1px #000000 solid',
+                width:'200px' 
+            });
+        })
+    </script>
+</body>
+</html>
