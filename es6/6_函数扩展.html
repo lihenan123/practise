@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+   
+<body>
+        <ul>
+            <li>111</li>
+            <li>222</li>
+            <li>333</li>
+        </ul>
+    <script>
+        //点击延时的实现
+        //之前改变this指向需要在延时函数中加bind(this)
+        // var aLi = document.getElementsByTagName('li');
+        // for(var i=0; i<aLi.length; i++){
+        //     aLi[i].onclick = function(){
+        //         // console.log();
+        //         setTimeout(function(){
+        //             console.log(this); //不加bind时this指向window
+        //         }.bind(this),1000);    //加bind后改变this指向
+        //     }
+        // }
+        //现在只需将延时函数改成箭头函数
+        //this指向声明时的this(父作用域的this)  普通函数中this调用时的this
+        // var aLi = document.getElementsByTagName('li');
+        // for(var i=0; i<aLi.length; i++){
+        //     aLi[i].onclick = function(){
+        //         setTimeout(()=>{
+        //             console.log(this);
+        //         },1000);
+        //     }
+        // }
+
+
+        // var obj = {
+        //     name:'zs',
+        //     say:()=>{
+        //         setTimeout(()=>{
+        //             console.log(this);
+        //         },1000)
+        //     }
+        // }
+
+        // obj.say();//window
+
+        // 2 箭头函数中不能使用arguments   可以使用...rest
+        let fn = (...rest) => {
+            console.log(rest);
+        }
+
+        fn(1,2,3,4);
+
+        // 3箭头函数不能使用new 即不可用于构造函数 
+
+
+
+
+
+
+
+
+
+    </script>
+
+
+
+</body>
+
+</html>

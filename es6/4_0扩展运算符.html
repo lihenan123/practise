@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // // 复制数组
+        // let arr = [1,2,3];
+        // let arr1 = [...arr];
+
+        // arr[0] = 88;
+        // console.log(arr1); //输出1 2 3
+        // let arr2 = [3,4,5,...arr];
+        // console.log(arr2); //输出 [3, 4, 5, 88, 2, 3]
+
+        // let arr4 = [1,2,3];
+        // let arr5 = [4,5,6];
+        // let arr6 = [...arr4,...arr5];
+        // console.log(arr6); //输出[1, 2, 3, 4, 5, 6]
+
+        // let obj1= {
+        //     name:'zs'
+        // }
+        // let obj2 = {
+        //     name:'lisi',
+        //     school:'weichuang'
+        // }
+        // let obj3 = {...obj1,...obj2};
+
+        // console.log( obj3); //输出{name: "lisi", school: "weichuang"}
+
+
+        function fn(arg){
+            let obj = {
+                name:'zs',
+                age:'20',
+                school:'qq'
+            }
+            
+            obj = {...obj,...arg};
+            console.log(obj); //输出{name: "zs", age: 30, school: "qq"}
+        }
+        fn({age:30});
+
+        
+
+
+
+
+
+    </script>
+
+
+</body>
+</html>

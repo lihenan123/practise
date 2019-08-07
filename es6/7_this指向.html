@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        window.val = 1;
+        var obj = {
+            val: 2,
+            dbl: function () {
+                this.val *= 2;
+                val *= 2;
+                console.log(val);
+                console.log(this.val);
+            }
+        };
+        //求输出
+        obj.dbl();  //  obj.val = 4;  val = 2;   2 4
+        var func = obj.dbl;
+        func(); 
+
+        //1.求obj.dbl()；
+        // 调用了Obj里的dbl()方法；
+        //此时this指向的是obj，this.val即obj.val = 2 ,this.val *=2 值为4；
+        //val为windo下的val 值为1 val*=2值为2；
+        //则输出val和this.val 为2 4
+        
+        //2.求var func = obj.dbl;  func();
+        // 没有调用dbl()方法，而是将obj里的dbl的内容var为func()的内容
+        //理解为：
+        // var func = function () {
+        //     this.val *= 2;//执行完第一问后val=2 此时this指向window.val = 4;
+        //     val *= 2;    // 8
+        //     console.log(val);   //8     两个val指的都是window.val
+        //     console.log(this.val); //8  所以值都为8
+        // }
+       
+
+    </script>
+</body>
+
+</html>
