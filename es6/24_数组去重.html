@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 实现数组去重 
+        // function fn(arr){
+        //     return [...new Set(arr)]
+        // }    
+
+        // function fn(arr){
+        //     let result = []
+        //     arr.forEach(function(val,index){
+        //         if(!result.includes(val)){
+        //             result.push(val);
+        //         }
+        //     });
+        //     return  result;
+        // }    
+        // 键值对 
+
+        function fn(arr){
+            var obj = {
+            }
+            var result = [];
+            arr.forEach(function(val){
+                if(val in obj){ //如果obj这个对象有val属性  
+                    obj[val] += 1;
+                }else{ //如果obj对象没有这个属性  obj[val]属性 = 1  reuslt数组中添加
+                    obj[val] = 1;
+                    result.push(val);
+                }
+            });
+            console.log(obj);
+            return result;
+        }
+
+        console.log( fn([1,2,3,4,5,7,3,4,2,1]) ); 
+
+
+
+
+
+        
+        
+        
+        
+    </script>
+
+
+    
+</body>
+</html>

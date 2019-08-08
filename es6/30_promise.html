@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // setTimeout(function () {
+        //     var data = 1;
+        //     console.log(data)
+        // }, 1000);
+
+        // setTimeout(function () {
+        //     var data = 2;
+        //     console.log(data)
+        // }, 500);
+
+        // setTimeout(function () {
+        //     var data = 3;
+        //     console.log(data)
+        // }, 2000);
+
+        //  三个请求都完成  进行下一步 
+        let p1 = new Promise(function (resolve,reject) {
+            setTimeout(function () {
+                var data = 1;
+                console.log(data)
+                resolve();
+            }, 1000);
+        });
+        let p2 = new Promise(function (resolve,reject) {
+            setTimeout(function () {
+                var data = 2;
+                console.log(data);
+                reject();
+            }, 500);
+        });
+        let p3 = new Promise(function (resolve,reject) {
+            setTimeout(function () {
+                var data = 3;
+                console.log(data)
+                reject();
+            }, 200);
+        });
+        //all 等待所有请求都完成 接着向下执行 所有都成功then  有一个失败走到catch
+        // Promise.all([p1,p2,p3]).then(function(){
+        //     console.log('ok');
+        // }).catch(function(){
+        //     console.log('失败');
+        // });
+        // race   
+        // 最快 的成功 then  最快 的失败 catch 
+        Promise.race([p1,p2,p3]).then(function(){
+            console.log('ok');
+        }).catch(function(){
+            console.log('失败');
+        })
+
+
+
+        // 接口文档 
+
+        
+
+
+    </script>
+
+</body>
+
+</html>

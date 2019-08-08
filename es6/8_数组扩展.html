@@ -14,48 +14,82 @@
         <li></li>
     </ul>
     <script>
-        var aLi = document.getElementsByTagName('li');
-        // 类数组 转成数组方法1
-        // var arr = [...aLi];
-        // 类数组 转成数组方法2
-        // var arr1 = Array.from(aLi);
-        // console.log(arr1);
+        // var aLi = document.getElementsByTagName('li');
+        // // 类数组 转成数组方法1
+        // // var arr = [...aLi];
+        // // 类数组 转成数组方法2
+        // // var arr1 = Array.from(aLi);
+        // // console.log(arr1);
 
-        var arr3 = [1, 2, 3, 4, 5];
-        // 找到第一个符合条件的成员
-        var x = arr3.find(function (val, key, arr) {
-            // console.log(val,key,arr);
-            return val > 1;
+        // var arr3 = [1, 2, 3, 4, 5];
+        // // 找到第一个符合条件的成员
+        // var x = arr3.find(function (val, key, arr) {
+        //     // console.log(val,key,arr);
+        //     return val > 1;
+        // })
+        // console.log(x);
+
+
+        // var arr4 = [{
+        //     name: 'zs',
+        //     age: 20
+        // }, {
+        //     name: 'lisi',
+        //     age: 18
+        // }, {
+        //     name: 'wangnwu',
+        //     age: 30
+        // },
+        // {
+        //     name: 'xxx',
+        //     age: 18
+        // }];
+
+        // var obj1 = arr4.find(function(obj,index,arr){
+        //     return obj.age == 18;
+        // })
+        // console.log(obj1);
+        // // 过滤出所有符合条件的成员
+        // var arr5 = arr4.filter(function(obj){
+        //     return obj.age == 18;
+        // })
+        // console.log(arr5);
+
+        //映射map()
+        var arr6 = [1,2,3,4,5];  //=>[2,4,6,8,10]
+        // 映射出新数组 返回新数组
+        var arr7 = arr6.map(function(val,index){
+            return val*2;
+        });
+        console.log(arr7); //输出2 4 6 8 10
+       
+        //循环 forEach()
+        arr6.forEach(function(val,index){
+            console.log(val,index); 
         })
-        console.log(x);
+
+       console.log( arr6.includes(1)) //输出true
 
 
-        var arr4 = [{
-            name: 'zs',
-            age: 20
-        }, {
-            name: 'lisi',
-            age: 18
-        }, {
-            name: 'wangnwu',
-            age: 30
-        },
-        {
-            name: 'xxx',
-            age: 18
-        }];
-
-        var obj1 = arr4.find(function(obj,index,arr){
-            return obj.age == 18;
-        })
-        console.log(obj1);
-        // 过滤出所有符合条件的成员
-        var arr5 = arr4.filter(function(obj){
-            return obj.age == 18;
-        })
-        console.log(arr5);
-
-
+       //for of 循环
+        //原生遍历用普通for循环
+        // for(var i=0; i<aLi.length; i++){
+        //     aLi[i]
+        // }
+        //for of 循环
+        var arr8 = ['a','b','c','d','e'];
+        for(val of arr8){  //循环数组中的元素
+            console.log(val); //输出a b c d e
+        }
+        for(index of arr8.keys()){ //循环索引
+            console.log(index); //输出0 1 2 3 4
+        }
+        for([index,val] of arr8.entries()){ //循环索引 数组中的元素
+            // console.log(arr); //[0,'a'] 
+            // var a = arr[0]
+            // var b = arr[1]
+            console.log(index,val);
+        }
 
 
 

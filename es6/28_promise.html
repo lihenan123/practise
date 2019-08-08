@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+
+        // setTimeout(function(){
+        //     console.log('1')
+        // },1000);
+        // 第一个请求成  通过请求回来的data  发送第二个请求 { id:111}
+        // 返回电影id
+        // 取到id接着请求 详情
+        // 回调地狱
+        // var id;
+        // $.get('url1',function(data){
+        //     id = data.id;
+        //     // 查询电影详情 
+        //     $.get('url2?id='+id,function(){
+        //         // $.get()
+                
+        //     })
+        // });
+
+  
+        // 管理异步请求  将异步请求以 同步的方式表现出来
+        // resolve
+        new Promise(function(resolve,reject){
+            $.get('url1',function(data){
+                // 成功调用resolve
+                if(data){
+                    resolve(data.id)
+                }else{
+                    reject();
+                }
+            });
+        }).then(function(){
+            $.get('url2',function(){
+
+            })
+        }).catch(function(){
+            console.log('shibai');
+        })
+
+
+     
+
+
+
+
+
+
+        
+        
+    </script>
+
+
+
+    
+</body>
+</html>

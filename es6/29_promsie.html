@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+        new Promise(function(resolve,reject){
+            // 1请求
+            setTimeout(() => {
+                var data = 0; //第一个请求返回的数据data
+                if(data){
+                    resolve() //pending   -> fulfilled
+                }else{
+                    reject(); //pending -> rejected
+                }
+            }, 1000);
+        }).then(function(){
+            console.log('请求成功');
+        }).catch(function(){
+            console.log('请求失败')
+        });
+
+
+
+        
+
+        
+        
+    </script>
+
+    
+</body>
+</html>
