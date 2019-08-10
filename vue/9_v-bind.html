@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .a{
+            background: red;
+        }
+        .b{
+            color: green;
+        }
+    
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- 绑定属性   -->
+        <!-- :class={class名:boolean} -->
+        <!-- :class = [classA,classB] -->
+        <div v-bind:class="{a:isA,b:isB}">dfghjklk;'</div>
+        <div v-bind:class="[classA,classB]">e67890uyrgfhgjhkjlkkjhfg;'</div>
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                isA:false,
+                isB:true,
+                classA:'a',
+                classB:'b'
+            }
+        })
+    
+    
+    </script>
+</body>
+</html>

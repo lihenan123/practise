@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .a{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="name">
+        <button v-on:click="add()">add</button>
+        <ul>
+            <li v-for="obj in list" v-bind:class="{a:obj.isA}"
+             v-on:click="click(obj)" v-show="obj.flag">
+                {{obj.name}}
+            <button v-on:click="del(obj)">del</button></li>
+        </ul>
+    </div>
+    
+    <script src="vue.js"></script>
+    <script>
+        let vm = new Vue({
+            el:"#app",
+            data:{
+                list:[
+                    {
+                        name:'aaa',
+                        isA:false,
+                        flag:true
+                    },
+                    {
+                        name:'bbb',
+                        isA:false,
+                        flag:true
+                    }
+                ],
+                name:'',
+                //flag:true
+            },
+            methods:{
+                add(){
+                    this.list.push({name:this.name,isA:false,flag:true}); //获取value
+                    this.name ='';  //添加后将input的value置空
+                },
+                click(obj){
+                    obj.isA = !obj.isA;
+                },
+                del(obj){
+                   obj.flag = false;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

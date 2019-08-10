@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- h2的内容会随着文本框内容改变 -->
+        <input type="text" v-model="msg">
+        <h2>{{msg}}</h2>
+        <!-- 选择内容会改变vue v-model data里对应属性的值 -->
+        <input type="checkbox" v-model="hobby" value="唱歌">唱歌
+        <input type="checkbox" v-model="hobby" value="跳舞">跳舞
+        <input type="checkbox" v-model="hobby" value="运动">运动
+
+        <input type="radio" v-model="sex" value="男">男
+        <input type="radio" v-model="sex" value="女">女
+
+        <select>
+            <option v-model="school">黑大</option>
+            <option v-model="school">理工</option>
+            <option v-model="school">师大</option>
+        </select>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        let vm = new Vue({
+            el:"#app",
+            data:{
+                msg:'haha',
+                hobby:[],
+                sex:"",
+                school:""
+            }
+        })
+    
+    </script>
+</body>
+</html>
