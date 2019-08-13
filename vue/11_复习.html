@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #div1{
+            background: #ff0000;
+            height: 200px;
+        }
+        #div2{
+            background: #0000ff;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div id="app">
+        {{msg}}
+        <ul>
+            <li v-for="value in arr">{{value}}</li>
+        </ul>
+        <ul>
+            <li v-for="obj in student">{{obj.name}}-- {{obj.age}} -- {{obj.school}}</li>
+        </ul>
+        <span v-text="msg"></span>
+        <span v-html="msg"></span>
+
+        <button @click="fn('jdhjgsdd')">click</button>
+
+        <input type="text" @keyup.enter="fn1()">
+        <a href="#" @click.prevent="fn2()"></a>
+
+
+        <div id="div1" @click="fn4()">
+            haha
+            <div id="div2" @click.stop="fn3()">hehe</div>
+        </div>
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+
+        new Vue({
+            el: '#app',
+            data: {
+                msg: '<h2>haha</h2>',
+                arr: [1, 2, 3],
+                student: [
+                    {
+                        name: 'zs',
+                        age:10,
+                        school:'heida'
+                    },
+                    {
+                        name: 'lisi',
+                        age:11,
+                        school:'heida'
+                    },
+                    {
+                        name: 'wangwu',
+                        age:12,
+                        school:'heida'
+                    }
+                ]
+            },
+            methods:{
+                fn(a){
+                    console.log('haha',a)
+                },
+                fn1(){
+                    // console.log(event.keyCode)
+                    console.log('回车');
+                },
+                fn3(){
+                    console.log(
+                        'div2'
+                    )
+                },
+                fn4(){
+                    console.log(
+                        'div1'
+                    )
+                }
+            }
+
+
+        })
+
+      
+
+
+    </script>
+
+
+
+
+
+
+
+</body>
+
+</html>

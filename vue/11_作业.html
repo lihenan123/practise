@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #world{
+            width: 400px;
+            height: 400px;
+            background: #eeeeee;
+            margin: 50px auto;
+        }
+        .grey{
+            color: #777777;
+        }
+       
+        ul li{
+            list-style: none;
+            background: #cccccc;
+            height: 50px;
+            width: 390px;
+            line-height: 50px;
+            padding-left: 10px;
+            float: left;
+            margin-bottom: 10px;
+            
+        }
+        #app2{
+            display: inline-block;
+            height: 50px;
+            line-height: 50px;
+            float: right;
+            padding-right: 10px;
+        }
+        .selected{
+            background: lightblue;
+        }
+    </style>
+</head>
+<body>
+    <div id="world">
+        <h1>todolist</h1>
+        <hr>
+        名称：
+        <input type="text" value="请输入产品名" class="grey">
+        <br>价格：
+        <input type="text" value="请输入产品价格" class="grey">
+        <button>添加</button><br> 
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        <input type="text" value="请输入搜索内容" class="grey"> 
+        <button>搜索</button>
+
+        <ul>
+            <li v-for="obj in goods" v-bind:class="{selected:obj.isSelected}"
+             v-on:click="change(obj)">
+                <input type="checkbox" v-model="check"> {{obj.name}}
+                <span id="app2" >{{obj.value}}  &nbsp
+                <span style="color: red">[X]</span></span>
+            </li>
+        </ul>
+        <button>删除选中</button> 总价 
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+        let vm = new Vue({
+            el:"#world",
+            data:{
+                sum:[],
+                goods:[
+                    {
+                    name:'裤子',
+                    value:  11,
+                    isSelected:false,
+                    check:false
+                },
+                {
+                    name:'衣服',
+                    value:22,
+                    isSelected:false
+                },
+                {
+                    name:'电脑',
+                    value:3333,
+                    isSelected:false
+                },
+                {
+                    name:'iphoneX',
+                    value:8888,
+                    isSelected:false
+                }
+                ]
+            },
+            methods:{
+                change(obj){
+                    if(obj.isSelected){
+                    }
+                    else{
+                        obj.check = !obj.check;
+                    }
+                     obj.isSelected = !obj.isSelected;
+                }
+            }
+        })
+    
+    </script>
+
+</body>
+</html>

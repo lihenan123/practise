@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #app {
+            width: 400px;
+            margin: 0 auto;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        li {
+            height: 50px;
+            line-height: 50px;
+            background: #ccc;
+            margin-bottom: 10px;
+            padding: 0 10px;
+        }
+        .right{
+            float:right;
+        }
+        .pink{
+            background: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h2>todolist</h2>
+        <hr>
+        <div>
+            <label for="proName">名称</label>
+            <input type="text" id="proName" placeholder="请输入商品名称" v-model="name">
+            <label for="proPrice">价格</label>
+            <input type="text" id="proPrice" placeholder="请输入商品加个" v-model=price>
+            <button @click="add()">添加</button>
+        </div>
+        <div>
+            <input type="text" placeholder="请输入搜索内容" v-model="searchValue">
+            <button @click="search()">搜索</button>
+        </div>
+        <ul>
+            <li v-for="(product,index) in proList" @click="change(product)" :class="{pink:product.isChecked}" v-show="product.isShow">
+                <input type="checkbox" v-model="product.isChecked">
+                <span>{{product.proName}}</span>
+                <div class="right">
+                    <span class="price">{{product.price}}</span>
+                    <span class="close" @click.stop="del(index)">[X]</span>
+                </div>
+            </li>
+        </ul>
+        <div>
+            <button @click="delAll()">删除选中</button>
+            <span>总价 {{total()}}</span>
+        </div>
+
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                proList: [
+                    {
+                        proName: '苹果',
+                        price: 13,
+                        isChecked: false,
+                        isShow:true
+                    },
+                    {
+                        proName: 'iphone X',
+                        price: 9999,
+                        isChecked: false,
+                        isShow:true
+                    }
+                ],
+                name:'',
+                price:'',
+                searchValue:''
+            },
+            methods:{
+                add(){
+                    // 
+                    if(this.name && this.price){
+                        this.proList.push({proName:this.name,price:this.price*1,isChecked:false,isShow:true})
+                        this.name = "";
+                        this.price = "";
+                    }
+                },
+                change(product){
+                    // ！isChecked 
+                    console.log(this); //vm new Vue的实例化对象
+                    product.isChecked = !product.isChecked;
+                },
+                total(){
+                    let sum = 0;
+                    this.proList.forEach(function(obj){
+                        if(obj.isChecked){
+                            sum += obj.price;
+                        }
+                    })
+                    return sum;
+                },
+                del(index){
+                    console.log(index);
+                    this.proList.splice(index,1);
+                },
+                delAll(){
+                    // 返回 所有没被勾选的数组
+                    let arr = this.proList.filter(function(obj){
+                        return !obj.isChecked;
+                    })
+                    this.proList = [...arr];
+                },
+                search(){
+                    // forEach回调函数中 this指向window 需使用箭头函数将this指向父作用域
+                    this.proList.forEach((obj) => {
+                        if(obj.proName.includes(this.searchValue)){
+                            obj.isShow = true;
+                        }else{
+                            obj.isShow = false;
+                        }
+                    })
+                }
+            }
+        })
+
+
+    </script>
+
+</body>
+
+</html>
