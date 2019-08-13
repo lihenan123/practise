@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <button @click="add()">click</button>
+        <button @click="del()">destory</button>
+        <h2>{{count}}</h2>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data:{
+                count:0,
+            },
+            methods:{
+                add(){
+                    this.count++;
+                },
+                del(){
+                    // 销毁vm vue实例
+                    vm.$destroy();
+                }
+            },
+            beforeCreate(){ 
+                // console.log('haha')
+                console.log('beforeCreate',this.$el,this.$data);
+            },
+            created(){
+                // this.add();
+                this.studentList = 
+                console.log("created",this.$el,this.$data,this.add);
+            },
+            beforeMount(){
+                console.log("beforeMount",this.$el,this.$data);
+            },
+            mounted(){
+                console.log("mounted",this.$el,this.$data);
+            },
+            beforeUpdate(){//
+                var app = document.getElementById('app');
+                console.log(app.innerHTML);
+                console.log("beforeUpdate",this.$el,this.$data);
+            },
+            updated(){
+                var app = document.getElementById('app');
+                console.log(app.innerHTML);
+                console.log("updated",this.$el,this.$data);
+            },
+            beforeDestroy(){
+                console.log("beforeDestroy");
+            },
+            destroyed(){
+                console.log("destroyed");
+            }
+        })
+
+    </script>
+
+
+
+
+
+
+</body>
+
+</html>
