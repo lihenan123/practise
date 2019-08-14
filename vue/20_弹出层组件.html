@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .dialog {
+            width: 400px;
+            height: 300px;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+
+        .dialog-title {
+            border-bottom: 1px solid #ccc;
+        }
+
+        .dialog-close {
+            float: right;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <button @click="loginShow = true">登陆</button>
+        <button @click="regShow = true">注册</button>
+        <my-dialog title="登陆" v-show="loginShow">
+            用户名<input type="text">
+            </br>
+            密码：<input type="password">
+            </br>
+            <button>登陆</button>
+        </my-dialog>
+        <my-dialog title="注册" v-show="regShow" @close="fn">
+            用户名<input type="text">
+            </br>
+            密码：<input type="password">
+            </br>
+
+            确认密码<input type="password">
+            </br>
+            <button>注册</button>
+        </my-dialog>
+    </div>
+    <template id="temp">
+        <div class="dialog" v-show="isShow">
+            <div class="dialog-title"><span>{{title}}</span><span class="dialog-close" @click="$emit('close','reg')">X</span></div>
+            <div class="dialog-content">
+                <slot></slot>
+            </div>
+        </div>
+    </template>
+    <!-- 
+        父组件向子组件传值  props
+        子组件向父组件传值  $emit(父组件中自定义事件，向父组件传参)
+     -->
+    <script src="vue.js"></script>
+    <script>
+        new Vue({
+            el: "#app",
+            data:{
+                loginShow:false,
+                regShow:false
+            },
+            methods:{
+                fn(msg){
+                    // console.log(msg)
+                    if(msg == "reg"){
+                        this.regShow = false;
+                    }
+                }
+            },
+            components: {
+                "myDialog": {
+                    template: "#temp",
+                    props: ["title"],
+                    data(){
+                        return {
+                            isShow:true
+                        }
+                    },
+                    methods:{
+                        dialogClose(){
+                            this.isShow = false;
+                        }
+                    }
+                }
+            }
+        })
+
+
+    </script>
+</body>
+
+</html>

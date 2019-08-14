@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #container{
+            width: 300px;
+            height: 400px;
+            border: 1px #000000 solid;
+        }
+        #top{
+            height: 30px;
+            font-size: 20px;
+            border-bottom: 1px #000000 solid;
+        }
+        #close{
+            float: right;
+        }
+        #bottom{
+            margin-top: 5px;
+            font-size: 20px;
+        }
+        #bottom input{
+            font-size: 16px;
+            color: #bbbbbb;
+        }
+        .aa{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <button @click="block">登录</button>
+        <button @click="block">注册</button>
+        <my-component title="登录"></my-component>
+        <my-component title="注册"></my-component>
+    
+    </div>
+    <template id="temp">
+        <div id="container" class="aa">
+            <div id="top">
+                <!-- <button>{{title}}</button> -->
+                <b>{{title}}</b>
+                <span id="close" @click="none">[X]</span>
+            </div>
+            <div id="bottom">
+                <b>用户名</b><input type="text" value="请输入用户名"> <br>
+                <b>密码</b><input type="text" value="请输入密码"><br>
+                <button>{{title}}</button>
+            </div>
+        </div>
+
+    </template>
+    <script src="vue.js"></script>
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                
+            },
+            methods:{
+                block(){
+                    this.style 
+                }
+            },
+            components:{
+                "myComponent":{
+                    template:"#temp",
+                    props:['title'],
+                    methods:{
+                        none(){
+
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>
