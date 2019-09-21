@@ -1,6 +1,6 @@
 <template>
     <div>
-
+        Test test
     </div>
 </template>
 
@@ -11,5 +11,7 @@
 </script>
 
 <style lang="scss" scoped>
-
+    div{
+        color:aqua;
+    }
 </style>
