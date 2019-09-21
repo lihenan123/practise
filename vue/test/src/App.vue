@@ -1,3 +1,4 @@
+//总组件
 <template>
   <div id="app">
     <div id="nav">
