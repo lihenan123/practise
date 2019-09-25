@@ -1,8 +1,6 @@
 <template>
     <div>
-        {{$route.params.id}}
-        {{$route.params.name}}
-        <h1>test test</h1>
+        <h2>子路由2</h2>
     </div>
 </template>
 
@@ -13,5 +11,5 @@
 </script>
 
 <style lang="scss" scoped>
-   
+
 </style>
