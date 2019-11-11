@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .aa{
+            width: 200px;
+            margin:0 auto;
+        }
+        .bb{
+            height: 32px;
+        }
+        li{
+            list-style: none;
+            height: 30px;
+            width: 40px;
+            border-top:2px solid #ee7ccc;
+            border-left:2px solid #ee7ccc;
+            border-right:2px solid #ee7ccc;
+            position:relative;
+            float:left;
+            margin-right:10px;
+
+        }
+        #ccc div{
+            height: 100px;
+            width: 200px;
+            border:2px solid #ee7ccc;
+            float:left;
+            display: none;
+        }
+        #ccc .selected{
+            display: block;
+        }
+        .bb .active{
+            background: #cf1313;
+            color:#ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="aa">
+        <div class="bb">
+            <li class="active">时事</li>
+            <li>体育</li>
+            <li>娱乐</li>
+        </div>
+        <div id="ccc">
+            <div class="selected">时事</div>
+            <div>体育</div>
+            <div>娱乐</div>
+        </div>
+        
+    </div>
+    <script>
+        var aLi = document.getElementsByTagName('li');
+        var oDiv = document.getElementById('ccc');
+        var aDiv = oDiv.getElementsByTagName('div');
+        for(var i=0;i<aLi.length;i++){
+            aLi[i].index = i;
+            aLi[i].onclick = function(){
+                for(var j=0;j<aLi.length;j++){
+                    aLi[j].className = "";
+                    aDiv[j].className = "";
+                }
+                this.className = "active";
+                aDiv[this.index].className = "selected";
+            }
+        } 
+    </script>
+</body>
+</html>
