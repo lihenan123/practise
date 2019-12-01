@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            padding: 0;
+            margin: 0;
+        }
+        #left{
+            height: 400px;
+            width: 400px;
+            float: left;
+            background: url('images/1.jpg') no-repeat;
+        }
+        #right{
+            height: 400px;
+            width: 400px;
+            float: left;
+            overflow: hidden;
+            display: none;
+        }
+        .active{
+            height: 200px;
+            width: 200px;
+            background: rgba(255, 255, 255, 0.5);
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="left">
+        <div class="active"></div>
+    </div>
+    <div id="right"><img src="images/2.jpg"></div>
+    <script>
+        oDiv1 = document.getElementById('left');
+        oDiv2 = document.getElementById('right');
+
+        oDiv1.onmouseover = function(){
+            oDiv2.style.display = 'block';
+        }
+        oDiv1.onmouseout = function(){
+            oDiv2.style.display = 'none';
+        }
+    
+    </script>
+</body>
+</html>
