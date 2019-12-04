@@ -22,10 +22,10 @@
     <script src="jquery-1.12.4.js"></script>
     <script>
         
-        // var oDiv = document.getElementById('div1');
-        // oDiv.className = "aa bb cc";
+        var oDiv = document.getElementById('div1');
+        oDiv.className = "aa bb cc"; //原生DOM添加cc class 必须要一起写
 
-        // $('#div1').addClass('cc');
+        $('#div1').addClass('cc'); //jQuery有addClass方法
 
         // css("background",'red');
         // css({
@@ -34,7 +34,7 @@
         // });
         // 切换aa
         $('#btn').on('click',function(){
-            $('#div2').toggleClass('aa');
+            $('#div2').toggleClass('aa'); //切换class
 
             $('#div2').height(500);
             console.log(   $('#div2').height() );
