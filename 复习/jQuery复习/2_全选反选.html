@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="aa">
+       你爱好的运动是？
+        <div id="bb">
+            <input type="checkbox">足球
+        <input type="checkbox">篮球
+        <input type="checkbox">排球
+        <input type="checkbox">乒乓球
+        </div>
+        <button id="all">全选</button>
+        <button id="no">全不选</button>
+        <button id="rev">反选</button>
+    </div>
+    <script src="jquery-1.12.4.js"></script>
+    <script>
+        $('#all').on('click',function(){
+            // prop 特性
+            // attr 属性
+            // $(':checkbox').attr('checked',true); //attr只能用一次
+            $(':checkbox').prop('checked',true);
+
+        })
+        $('#no').on('click',function(){
+            $(':checkbox').prop('checked',false);
+        })
+        $('#rev').on('click',function(){
+             // each function参数是 索引和原生dom对象
+            $(':checkbox').each(function(index,elem){
+                elem.checked = ! elem.checked;
+            })
+        })
+    </script>
+</body>
+</html>
