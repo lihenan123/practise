@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id="root"></div>
+
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="browser.min.js"></script>
+
+    <script type="text/babel">
+        // 1个根元素  标签闭合  
+
+        //函数定义组件  无状态组件
+        // const Welcome = (props)=>{
+        //     return (
+        //         <div>
+        //             <h1>{props.title}</h1>
+        //             <button>click</button>
+        //         </div>
+        //     )
+        // }
+
+        // class定义组件   有状态组件
+        /* 修改state
+            setState({
+                msg:'111'
+            })
+        */
+
+        class Welcome extends React.Component{
+            constructor(){
+                super();
+                this.state = {
+                    msg:'haha',
+                    num:10
+                }
+                this.change = this.change.bind(this);
+            }
+            change(e){
+                this.setState({
+                    msg:'hehe'
+                })
+
+                console.log(e.target.innerHTML);
+                // console.log(this.refs.hh);
+                console.log(this.ele);
+
+            }
+            render(){
+                return (
+                    <div>
+                        <h2>{this.state.msg} --- {this.state.num}</h2>
+                        <h1 ref={ele=>this.ele = ele}>{this.props.title}</h1>
+                        <button onClick={this.change}>click</button>
+                    </div>
+                )
+            }
+        }
+
+        // props 父到子组件传值   state状态  ref
+
+
+        ReactDOM.render(
+            <Welcome title="标题1" ></Welcome>
+            ,
+            document.getElementById('root')
+        )
+
+
+
+    
+    
+    </script>
+
+
+    
+</body>
+</html>

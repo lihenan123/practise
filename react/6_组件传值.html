@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="browser.min.js"></script>
+    <!-- jsx -->
+    <script type="text/babel" >
+        // 父组件
+        class Main extends React.Component{
+            constructor(){
+                super();
+                this.state = {
+                    msg:"hehe呵呵"
+                }
+                this.changeMsg = this.changeMsg.bind(this);
+            }
+            changeMsg(val){
+                this.setState({
+                    msg:val
+                })
+            }
+            render(){
+                return (
+                    <div>
+                        <h2>{this.state.msg}</h2>
+                        <Children msg={this.state.msg} changeMsg={this.changeMsg}></Children>
+                    </div>
+                )
+            }
+        }
+        // 子组件
+        class Children extends React.Component{
+            render(){
+                return (
+                    <div>
+                        <p>{this.props.msg}</p>
+                        <button 
+                        onClick={()=>{
+                            this.props.changeMsg("哈哈哈哈哈哈哈哈");
+                        }}>click</button>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(
+            <Main></Main>,
+            document.getElementById('root')
+        )
+
+    </script>
+
+</body>
+</html>

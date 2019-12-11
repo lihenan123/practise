@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="browser.min.js"></script>
+    <!-- jsx -->
+    <script type="text/babel">
+    /*  定义组件 
+        1 组件开头大写
+        2 只能有一个根元素
+        3 元素要闭合
+        props不能修改 
+        函数定义组件无状态组件
+    */
+        const Welcome = (props) =>{
+            return (
+                <div>
+                    <h2>欢迎！{props.name}</h2>
+                    <p>{props.content}</p>
+                    {props.children}
+                </div>
+            )
+        }
+        ReactDOM.render(
+            <Welcome name="张三" content="你好啊 啊啊哈哈哈">fgufrtyhfstfdts</Welcome>,
+            document.getElementById('root')
+        );
+
+
+
+
+    </script>
+
+
+
+</body>
+</html>

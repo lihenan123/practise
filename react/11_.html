@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="browser.min.js"></script>
+    <script type="text/babel" >
+
+        class Main extends React.Component{
+            constructor(){
+                super();
+                this.fn = this.fn.bind(this);
+            }
+            fn(e){
+                console.log(e.target.value);
+            }
+            render(){
+                return(
+                    <div>   
+                        <input type="text" onChange={this.fn}/>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(
+            <Main></Main>
+            ,document.getElementById('root')
+        )
+
+
+    </script>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="browser.min.js"></script>
+    <script type="text/babel" >
+
+        class Main extends React.Component{
+            constructor(){
+                super();
+                this.state = {
+                    list:["吃饭","睡觉","敲代码"]
+                    list:[
+                        {
+                            id:1,
+                            task:"吃饭"
+                        },{
+                            id:2,
+                            task:"吃饭"
+                        },
+                        {
+                            id:3,
+                            task:"吃饭"
+                        }
+                    ]
+                }
+                this.addList = this.addList.bind(this);
+            }
+            addList(val){
+                let arr = this.state.list;
+                arr.push(val)
+                this.setState({
+                    list:arr
+                });
+            }
+            render(){
+                return(
+                    <div>   
+                        <h2>简单的todo</h2>
+                        <Add addList={this.addList}></Add>
+                        <ShowList list={this.state.list}></ShowList>
+                    </div>
+                )
+            }
+        }
+        class Add extends React.Component{
+            render(){
+                return(
+                    <div>   
+                        <input type="text" ref={input=>this.myInput = input}/>
+                        <button onClick={()=>{
+                            this.props.addList(this.myInput.value)
+                        }}>add</button>
+                    </div>
+                )
+            }
+        }
+        class ShowList extends React.Component{
+            render(){
+                return(
+                    <div>   
+                        <ul>
+                            {
+                                this.props.list.map((val,index)=>{
+                                    return <li key={index}>{val}</li>
+                                })
+                            }
+                        </ul>
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(
+            <Main></Main>
+            ,document.getElementById('root')
+        )
+
+
+    </script>
+
+</body>
+</html>

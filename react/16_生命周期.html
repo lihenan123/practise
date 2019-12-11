@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="browser.min.js"></script>
+    <script type="text/babel">
+        class Main extends React.Component{
+            constructor(){
+                super();
+                this.state = {
+                    msg:"Hehehheeh"
+                }
+                console.log("main constructor");
+            }
+            // componentWillMount(){
+            //     console.log("main componentWillMount");
+            // }
+            static getDerivedStateFromProps(){
+                console.log("main getDerivedStateFromProps");
+                return null;
+            }
+            componentDidMount(){
+                console.log("main componentDidMount");
+            }
+            render(){
+                console.log("main render")
+                return (
+                    <div>
+                        <h2>哈哈</h2>
+                        <button onClick={()=>{
+                            this.setState({
+                                msg:'hahaheihei'
+                            })
+                        }}>change</button>
+                        <Children title={this.state.msg}></Children>
+                    </div>
+                )
+            }
+        }
+        class Children extends React.Component{
+            constructor(){
+                super();
+                this.state = {
+                    val:111,
+                    timer:null
+                }
+                console.log("children constructor");
+            }
+            // componentWillMount(){
+            //     console.log("children componentWillMount");
+            // }
+            static getDerivedStateFromProps(){
+                console.log("children getDerivedStateFromProps");
+                return null;
+
+            }
+            componentDidMount(){
+                console.log("children componentDidMount");
+
+                // this.state.timer = setInterval(() => {
+                //     console.log(Math.random());
+                // }, 1000);
+            }
+            // 父组件修改props
+            // componentWillReceiveProps(){ 
+            //     console.log("children componentWillReceiveProps");
+            // }
+            getSnapshotBeforeUpdate(){
+                console.log("chilren getSnapshotBeforeUpdate");
+                return null;
+            }
+            shouldComponentUpdate(nextProps,nextState){ //性能优化 
+                console.log(nextProps,nextState);
+                if(this.state.val == nextState.val){
+                    return false;
+                }
+                return true;
+            }
+            // componentWillUpdate(){
+            //     console.log("children componentWillUpdate");
+            // }
+            componentDidUpdate(){
+                console.log("children componentDidUpdate");
+            }
+            componentWillUnmount(){
+                console.log("children componentWillUnmount");
+                clearInterval(this.state.timer)
+            }
+            render(){
+                console.log("children render");
+                return (
+                    <div>
+                    我是children {this.props.title}
+
+                    <h1>{this.state.val}</h1>
+                    <button onClick={()=>{
+                        this.setState({
+                            val:222
+                        })
+                    }}>click</button>
+                    <button onClick={()=>{
+                        // 卸载
+                        ReactDOM.unmountComponentAtNode(document.getElementById('root'));
+                    }}>unmount</button>
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(
+            <Main></Main>,
+            document.getElementById('root')
+        )
+
+
+    </script>
+
+</body>
+</html>

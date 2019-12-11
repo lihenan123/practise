@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id="root"></div>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="browser.min.js"></script>
+    <!-- jsx -->
+    <script type="text/babel" >
+        // state 状态 可变
+        class Count extends React.Component{
+            constructor(){
+                super();
+                // 初始化state
+                this.state = {
+                    num:100
+                }
+                // 修改自定义方法中的this指向
+                this.add = this.add.bind(this);
+            }
+            add(){
+                // 修改state  setState方法
+                this.setState({
+                    num:this.state.num+2
+                })
+            }
+            // 获取state
+            render(){
+                return (
+                    <div>
+                        <h2>{this.state.num}</h2>
+                        <button onClick={this.add}>add</button>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(
+            <Count></Count>,
+            document.getElementById('root')
+        )
+    </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="ul1">
+        <li>11</li>
+        <li class="aa">12221</li>
+        <li class="aa">3333</li>
+        <li>
+            44444
+            <ul>
+                <li>1111-1111</li>
+                <li>1111-222</li>
+                <li class="xx">1111-3333</li>
+            </ul>
+        </li>
+
+    </ul>
+
+
+    <script src="jquery-1.12.4.js"></script>
+    <script>
+    
+        // $("li").eq(2).css('background','red');
+        // $("li").first().css('background','red');
+        // $("li").last().css('background','red');
+    
+        // $('li').on('click',function(){
+        //     if($(this).is('.aa')){
+        //         console.log('haha')
+        //     }
+        // })
+
+        // $('li').filter('.aa').css('background','red');
+
+
+        // $('ul').css('background','red');
+
+        // $('ul').children().eq(0).css('border','1px solid #000').height(300).end().end().css('background','yellow');
+        // 
+
+        // $('ul').children().css('background','red');
+        
+        $('#ul1').find('.xx').css('background','yellow');
+        // $('#ul1').children('.xx').css('background','yellow');
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="browser.min.js"></script>
+    <!-- jsx -->
+    <script type="text/babel">
+        // 用类 class的方式定义组件
+        // props.children 获取开始和闭合标签中间的内容
+        // class生命的组件有状态组件
+        class Welcome extends React.Component{
+            render(){
+                return (
+                    <div>
+                        <h2>欢迎！{this.props.name}</h2>
+                        <p>{this.props.content}</p>
+                        {this.props.children}
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(
+            <Welcome name="zhangsan" content="hehe 哈哈">
+                <h4>11111111111111</h4>
+            </Welcome>,
+            document.getElementById('root')
+        )
+
+
+
+
+    </script>
+
+
+
+</body>
+</html>
