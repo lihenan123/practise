@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .circle{
+            height: 200px;
+            width: 200px;
+            position: absolute;
+        }
+        .circle::after{
+            content:"";
+            height: 200px;
+            width: 200px;
+            border: 10px solid pink;
+            display: block;
+            border-radius: 50%;
+            position: absolute;
+            left:-10px;
+            top:-10px;
+            z-index: 1;
+        }
+        .a1{
+            border:10px solid blue;
+            border-radius: 50%;
+            float: left;
+            position: absolute;
+            left:0px;
+        }
+        .a1::after{    
+            border-color: blue;   
+        }
+        .a2{
+            border:10px solid black;
+            border-radius: 50%;
+            float: left;
+            position: absolute;
+            left:230px;
+        }
+        .a2::after{    
+            border-color: black;   
+            border-left-color: transparent;
+        }
+        .a3{
+            border:10px solid red;
+            border-radius: 50%;
+            float: left;
+            position: absolute;
+            left:460px;
+        }
+        .a3::after{    
+            border-color: red;
+            border-left-color: transparent;   
+        }
+        .a4{
+            border:10px solid yellow;
+            border-radius: 50%;
+            position: absolute;
+            top:130px;
+            left:110px;
+        }
+        .a4::after{    
+            border-color: yellow;  
+            border-top-color: transparent; 
+            border-right-color: transparent;
+        }
+        .a5{
+            border:10px solid green;
+            border-radius: 50%;
+            position: absolute;
+            top:130px;
+            left:350px;
+        }
+        .a5::after{    
+            border-color: green;   
+            border-top-color: transparent; 
+            border-right-color: transparent;
+        }
+    </style>
+</head>
+<body>
+    <div class="circle a1"></div>
+    <div class="circle a2"></div>
+    <div class="circle a3"></div>
+    <div class="circle a4"></div>
+    <div class="circle a5"></div>
+</body>
+</html>
