@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            padding: 0;
+            margin: 0;
+            background-color: #000000;
+            perspective: 800px;
+        }
+        #big{
+            width: 200px;
+            height: 200px;
+            margin: 200px auto;
+            transform-style: preserve-3d;
+            position: relative;
+            animation: run 20s linear infinite ;
+        }
+        @keyframes run {
+            100%{
+                transform: rotateY(360deg);
+            }
+        }
+        #big div{
+            width: 200px;
+            height: 200px;
+            background-color: rgba(255, 255, 255, 0.8);
+            font-size: 40px;
+            text-align: center;
+            line-height: 200px;
+            border-radius:20px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            
+        }
+        .a6{
+            transform: translateZ(100px);
+        }
+        .a5{
+            transform: rotateY(180deg) translateZ(100px);
+        }
+        .a1{
+           transform: rotateY(-90deg) translateZ(100px); 
+        }
+        .a2{
+           transform: rotateY(90deg) translateZ(100px); 
+        }
+        .a3{
+           transform: rotateX(90deg) translateZ(100px); 
+        }
+        .a4{
+           transform: rotateX(-90deg) translateZ(100px); 
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="big">
+        <div class="a1">1</div>
+        <div class="a2">2</div>
+        <div class="a3">3</div>
+        <div class="a4">4</div>
+        <div class="a5">5</div>
+        <div class="a6">6</div>
+    </div>
+</body>
+</html>
