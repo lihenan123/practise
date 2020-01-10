@@ -8,21 +8,17 @@
 </head>
 <body>
 
-    <div id="div1">hahahah</div>
+    <div class="div1">hahahah</div>
+    <div class="div1">hahahah</div>
     <script src="jquery-1.12.4.js"></script>
     <script>
-        //原生DOM取元素
-        var oDiv = document.getElementById('div1');
-        console.log(oDiv.innerHTML);
-        //jQuery取元素
-        console.log( $('#div1'));
-
-
+        // var oDiv = document.getElementById('div1');
+        // console.log(oDiv.innerHTML);
+        // console.log( $('#div1'));
         // 原生对象转成jq对象  $(dom)
-        console.log( $(oDiv) )
+        // console.log( $(oDiv) )
         // jq对象转成原生对象  jq.get(0) ||  jq[0]
-        console.log( $('#div1').get(0));
-        console.log( $('#div1')[0]);
+        console.log( $('.div1').get());
         
 
     </script>

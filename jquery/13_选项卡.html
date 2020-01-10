@@ -1,55 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-    *{
-        margin: 0;
-        padding: 0;
-    }
-    ul{
-        list-style: none;
-    }
-    #container{
-        margin: 100px;
-    }
-    #btns{
-        overflow: hidden;
-    }
-    #btns li{
-        float: left;
-        width: 50px;
-        height: 30px;
-        background: #F1F1F1;
-        border:1px solid #898989;
-        color:#666;
-        font-size: 14px;
-        line-height: 30px;
-        text-align: center;
-        margin-right:10px;
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            list-style: none;
+        }
+        #container{
+            margin: 100px;
+        }
+        #btns{
+            overflow: hidden;
+        }
+        #btns li{
+            float: left;
+            width: 50px;
+            height: 30px;
+            background: #F1F1F1;
+            border:1px solid #898989;
+            color:#666;
+            font-size: 14px;
+            line-height: 30px;
+            text-align: center;
+            margin-right:10px;
 
-    }
-    #btns li.active{
-        background: #6D84B4;
-        color:#fff;
-    }
-    #content{
-        width: 300px;
-        height: 100px;
-        border:1px solid #898989;
-    }
-    #content div{
-        display: none;
-    }
-    #content .selected{
-        display: block;
-    }
+        }
+        #btns li.active{
+            background: #6D84B4;
+            color:#fff;
+        }
+        #content{
+            width: 300px;
+            height: 100px;
+            border:1px solid #898989;
+        }
+        #content div{
+            display: none;
+        }
+        #content .selected{
+            display: block;
+        }
     </style>
-    
 </head>
+
 <body>
     <div id="container">
         <ul id="btns">
@@ -61,16 +62,29 @@
             <div class="selected">事实1111</div>
             <div>体育</div>
             <div>娱乐</div>
+        </div>
     </div>
     <script src="jquery-1.12.4.js"></script>
     <script>
-        $('#btns li').on('click',function(){
-            //1.自己添加样式，兄弟元素移除样式
+        /*  
+            1 百度 jq获取索引的方法
+        */
+       $('#btns li').on('click',function(){
+            //  1自己添加样式 兄弟元素移除样式
             $(this).addClass('active').siblings().removeClass('active');
-            //2.div中 找到索引对应的元素显示 其他隐藏
-            //var index = $(this).index();
+            // 2 div中 找到索引对应的元素显示  其他隐藏
             $('#content div').eq($(this).index()).addClass('selected').siblings().removeClass('selected');
-        })
+       })
+       
+
+
+
+        
+
+
+    
     </script>
+
 </body>
+
 </html>
