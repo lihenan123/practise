@@ -22,19 +22,14 @@
     <script src="jquery-1.12.4.js"></script>
     <script>
         $('#all').on('click',function(){
-            // prop 特性
-            // attr 属性
-            // $(':checkbox').attr('checked',true); //attr只能用一次
             $(':checkbox').prop('checked',true);
-
         })
         $('#no').on('click',function(){
             $(':checkbox').prop('checked',false);
         })
         $('#rev').on('click',function(){
-             // each function参数是 索引和原生dom对象
             $(':checkbox').each(function(index,elem){
-                elem.checked = ! elem.checked;
+                elem.checked = !elem.checked;
             })
         })
     </script>
