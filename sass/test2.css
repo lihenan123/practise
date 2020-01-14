@@ -1,0 +1,7 @@
+body {
+  background: red;
+}
+
+#app {
+  width: add(100px, 200px);
+}

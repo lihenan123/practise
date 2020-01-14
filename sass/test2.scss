@@ -1,0 +1,13 @@
+$color:red;
+body{
+    background: $color;
+
+}
+@mixin a ($w,$h) {
+    height: $w;
+    width: $h;
+}
+
+#app{
+    width:add(100px,200px);
+}
