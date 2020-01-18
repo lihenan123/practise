@@ -1,72 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+
 <body>
     <!-- 从数组和对象中提取值，对变量进行赋值，这被称为解构 -->
     <script>
 
-        // let  arr = [1,2];
+
+        // let arr = [1, 2];
         // var a = arr[0];
-        // var b = arr[1];    
-        // console.log(a,b); //输出1 2
+        // var b = arr[1];
+        // console.log(a, b); //输出1 2
 
-        // let  arr = [1,2];
-        // let [a,b] = arr;   
-        // console.log(a,b); //输出1 2
-        
-        
+        // let arr = [1, 2];
+        // let [a, b] = arr;
+        // console.log(a, b); //输出1 2
 
-        // let arr1 = [1,2,[3,4],888];
 
-        // let [c,d,[e,f],g=10] = arr1;
+        // let arr1 = [1, 2, [3, 4], 888];
 
-        // console.log(c,d,e,f,g); //输出1 2 3 4 888
+        // let [c, d, [e, f], g = 10] = arr1;
 
-        // // 解构设置默认值
-        // function fn([x,y,z=100]){
-        //     console.log(x,y,z); //输出1 2 3
+        // console.log(c, d, e, f, g); //输出1 2 3 4 888
+
+        // 解构设置默认值
+        // function fn([x, y, z = 100]) {
+        //     console.log(x, y, z); //输出1 2 3
         // }
-        // fn([1,2,3]);
-        // let obj = {
-        //     name:'zs',
-        //     age:20,
-        //     x:'aaa',
-        //     y:'bb'
-        // }
-        // let {x,y} = obj;//undefined undefined
-        // let {name,age} = obj;//zs 20
-        // console.log(x,y); //输出aaa bb
-        // console.log(name,age); // 输出zs 20
+        // fn([1, 2, 3]);
+        let obj = {
+            name: 'zs',
+            age: 20
+        }
+        // let { x, y } = obj;//undefined undefined
+        let { name, age } = obj;//zs 20
+        // console.log(x, y); //输出aaa bb
+        console.log(name, age); // 输出zs 20
 
-        // let {name:n,age:a} = obj;
-        // console.log(n,a); 
-        
-        //练习 实现变量互换
-        let a = 5;
-        let b = 6;
-        
-        //1
-        let c = a;
-        a = b;
-        b = c;
+        //起别名
+        let { name: x, age: y } = obj;
+        console.log(x, y);
 
-        //2
-        [a,b] = [b,a];
+        // //练习 实现变量互换
+        // let a = 5;
+        // let b = 6;
 
-        //3
-        a = a+b; //11
-        b = a-b; //5
-        a = a-b; //6
+        // //1
+        // let c = a;
+        // a = b;
+        // b = c;
 
-        //4
-        a = [b,b=a][0];
+        // //2
+        // [a, b] = [b, a];
+
+        // //3
+        // a = a + b; //11
+        // b = a - b; //5
+        // a = a - b; //6
+
+        // //4
+        // a = [b, b = a][0];
 
     </script>
-    
+
 </body>
+
 </html>

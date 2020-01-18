@@ -34,17 +34,17 @@
         // console.log( obj3); //输出{name: "lisi", school: "weichuang"}
 
 
-        function fn(arg){
+        function fn(obj){
             let obj = {
                 name:'zs',
                 age:'20',
                 school:'qq'
             }
             
-            obj = {...obj,...arg};
+            // obj = {...obj,...arg};
             console.log(obj); //输出{name: "zs", age: 30, school: "qq"}
         }
-        fn({age:30});
+        fn({name:'lisi'});
 
         
 

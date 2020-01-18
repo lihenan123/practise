@@ -11,9 +11,9 @@
     <script>
         function fn(a,b,...rest){
             // console.log(a,b,c,d);
-            // console.log(arguments);
+            console.log(arguments); //[1, 2, 3, 4]
             // console.log(arguments.callee);
-            console.log(rest);//[1, 2, 3, 4]
+            console.log(rest);//[3, 4]
         }    
 
         fn(1,2,3,4);

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <div>{{msg}}</div>
+</head>
+<body>
+    <script>
+        var obj = {
+            name:'zs',
+            age:20
+        }    
+        // obj.name = 'lisi';
+        let p1 = new Proxy(obj,{
+            get(target,key,val){
+                console.log('拦截获取');
+                return target[key];
+            },
+            set(target,key,val){
+                // console.log('aaa')
+                console.log('拦截set'+key);
+                target[key] = val;
+            }
+        });
+        // p1.name = 'lisi';
+        // p1.age = 20;
+        console.log(p1.name);
+
+        // data:{
+        //     msg:'haha'
+        // }
+
+
+        // msg = 'ahah'
+
+
+// Object.defineProperty()
+// proxy()
+        
+        
+    </script>
+
+
+    
+</body>
+</html>

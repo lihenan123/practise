@@ -17,16 +17,16 @@
         引用数据类型 地址不能修改（地址中存的内容是可以修改的）
      -->    
     <script>
-        // const a = 10;
-        // a = 20; //报错
+        const a = 10;
+        a = 20; //报错
 
-        // const arr = [1,2,3,4];
-        // arr = ['a','b']; 
-        // console.log(arr);//报错
+        const arr = [1,2,3,4];
+        arr = ['a','b']; 
+        console.log(arr);//报错
 
-        // const arr = [1,2,3,4];
-        // arr[0] = 666;
-        // console.log(arr); //输出 [666, 2, 3, 4]
+        const arr = [1,2,3,4];
+        arr[0] = 666;
+        console.log(arr); //输出 [666, 2, 3, 4]
 
         const obj = {
             name:'zs'
