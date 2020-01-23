@@ -15,8 +15,8 @@
             <li>333</li>
         </ul>
     <script>
-        //点击延时的实现
-        //之前改变this指向需要在延时函数中加bind(this)
+        // //点击延时的实现
+        // //之前改变this指向需要在延时函数中加bind(this)
         // var aLi = document.getElementsByTagName('li');
         // for(var i=0; i<aLi.length; i++){
         //     aLi[i].onclick = function(){
@@ -26,8 +26,8 @@
         //         }.bind(this),1000);    //加bind后改变this指向
         //     }
         // }
-        //现在只需将延时函数改成箭头函数
-        //this指向声明时的this(父作用域的this)  普通函数中this调用时的this
+        // //现在只需将延时函数改成箭头函数
+        // //this指向声明时的this(父作用域的this)  普通函数中this调用时的this
         // var aLi = document.getElementsByTagName('li');
         // for(var i=0; i<aLi.length; i++){
         //     aLi[i].onclick = function(){
