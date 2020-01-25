@@ -8,20 +8,20 @@
 </head>
 <body>
     <script>
-        // setTimeout(function () {
-        //     var data = 1;
-        //     console.log(data)
-        // }, 1000);
+        setTimeout(function () {
+            var data = 1;
+            console.log(data)
+        }, 1000);
 
-        // setTimeout(function () {
-        //     var data = 2;
-        //     console.log(data)
-        // }, 500);
+        setTimeout(function () {
+            var data = 2;
+            console.log(data)
+        }, 500);
 
-        // setTimeout(function () {
-        //     var data = 3;
-        //     console.log(data)
-        // }, 2000);
+        setTimeout(function () {
+            var data = 3;
+            console.log(data)
+        }, 2000);
 
         //  三个请求都完成  进行下一步 
         let p1 = new Promise(function (resolve,reject) {
@@ -46,13 +46,13 @@
             }, 200);
         });
         //all 等待所有请求都完成 接着向下执行 所有都成功then  有一个失败走到catch
-        // Promise.all([p1,p2,p3]).then(function(){
-        //     console.log('ok');
-        // }).catch(function(){
-        //     console.log('失败');
-        // });
+        Promise.all([p1,p2,p3]).then(function(){
+            console.log('ok');
+        }).catch(function(){
+            console.log('失败');
+        });
         // race   
-        // 最快 的成功 then  最快 的失败 catch 
+        // race 最快成功的请求直接走 then  最快失败的请求走 catch 
         Promise.race([p1,p2,p3]).then(function(){
             console.log('ok');
         }).catch(function(){

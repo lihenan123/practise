@@ -17,18 +17,18 @@
         // 返回电影id
         // 取到id接着请求 详情
         // 回调地狱
-        // var id;
-        // $.get('url1',function(data){
-        //     id = data.id;
-        //     // 查询电影详情 
-        //     $.get('url2?id='+id,function(){
-        //         // $.get()
+        var id;
+        $.get('url1',function(data){
+            id = data.id;
+            // 查询电影详情 
+            $.get('url2?id='+id,function(){
+                // $.get()
                 
-        //     })
-        // });
+            })
+        });
 
   
-        // 管理异步请求  将异步请求以 同步的方式表现出来
+        // promise管理异步请求  将异步请求以 同步的方式表现出来
         // resolve
         new Promise(function(resolve,reject){
             $.get('url1',function(data){
