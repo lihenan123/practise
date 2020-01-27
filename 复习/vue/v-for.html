@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <li v-for = "obj in students">
+            {{obj.name}} | {{obj.age}}
+        </li>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        let vm = new Vue({
+            el:'#app',
+            data:{
+                students:[
+                    {
+                        name:'zs',
+                        age:14
+                    },
+                    {
+                        name:'ls',
+                        age:15
+                    },
+                    {
+                        name:'we',
+                        age:16
+                    }
+                ]
+            }
+        });
+    </script>
+</body>
+</html>
