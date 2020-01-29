@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #app {
+            width: 400px;
+            border: 1px solid purple;
+            padding-bottom: 20px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            border-bottom: 1px solid #aaaaaa;
+        }
+
+        li {
+            list-style: none;
+            background: #cccccc;
+            width: 395px;
+            height: 50px;
+            margin: 10px 0;
+            line-height: 50px;
+            padding-left: 5px;
+        }
+
+        #right{
+            float: right;
+        }
+
+        .a{
+            background: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h2>To Do List</h2>
+        名称<input type="text" Placeholder="请输入商品名称" v-model="name"> <br>
+        价格<input type="text" Placeholder="请输入商品价格" v-model="value"> <br>
+        <Button @click="add()">添加</Button> <br>
+        <input type="text" Placeholder="请输入商品内容" v-model="SearchValue">
+        <button @click="filterFn()">搜索</button>
+
+        <li v-for="(obj,index) in list" v-bind:class="{a:obj.isPink}" 
+        @click="change(obj)" v-show="obj.isShow">
+            <input type="checkbox" v-model="obj.isChange">{{obj.name}}
+            <span id="right">
+                {{obj.value}}
+                <span @click.stop="del(index)">[X]</span>
+            </span>
+            
+        </li>
+        <br>
+        <button @click="delAll()">删除选中</button> 总价{{total()}}
+
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        let vm = new Vue({
+            el:'#app',
+            data:{
+                list:[
+                    {
+                        name:"苹果手机",
+                        value:3,
+                        isPink:false,
+                        isChange:false,
+                        isShow:true
+                    },
+                    {
+                        name:"华为手机",
+                        value:5,
+                        isPink:false,
+                        isChange:false,
+                        isShow:true
+                    }
+                ],
+                name:'',
+                value:'',
+                SearchValue:''
+            },
+            methods:{
+                add(){
+                    this.list.push({name:this.name,value:this.value*1,isPink:false,isChange:false,isShow:true});
+                    this.name="",
+                    this.value=""
+                },
+                change(obj){
+                    obj.isPink = !obj.isPink;
+                    obj.isChange = !obj.isChange;
+                },
+                total(){
+                    let sum = 0;
+                    this.list.forEach(function(obj,index){
+                        if(obj.isChange == true){
+                            sum += obj.value;
+                        }
+                    })
+                    return sum;
+                },
+                del(index){
+                    this.list.splice(index,1);
+                    
+                },
+                delAll(){
+                    let arr = this.list.filter(function(obj){
+                        return !obj.isChange;
+                    })
+                    this.list = [...arr];
+                    
+                },
+                filterFn(){
+                    this.list.forEach((obj)=>{
+                        if(obj.name.includes(this.SearchValue)){
+                            obj.isShow = true;
+                        }else{
+                            obj.isShow = false;
+                        }
+                    })
+                    this.SearchValue='';
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

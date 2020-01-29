@@ -53,7 +53,8 @@
             <button @click="search()">搜索</button>
         </div>
         <ul>
-            <li v-for="(product,index) in proList" @click="change(product)" :class="{pink:product.isChecked}" v-show="product.isShow">
+            <li v-for="(product,index) in proList" @click="change(product)"
+             :class="{pink:product.isChecked}" v-show="product.isShow">
                 <input type="checkbox" v-model="product.isChecked">
                 <span>{{product.proName}}</span>
                 <div class="right">
