@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .a{
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="name" @keyup="filterFn()">
+        <button v-on:click="add()">add</button>
+        <li v-for="(obj,index) in list" v-bind:class="{a:obj.isA}"
+        v-on:click="click(obj)" v-show="obj.flag">
+        {{obj.name}}
+        <button v-on:click.stop="del(index)">del</button>
+        </li>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                list:[
+                    {
+                        name:'111',
+                        isA:false,
+                        flag:true
+                    },
+                    {
+                        name:'222',
+                        isA:false,
+                        flag:true
+                    }
+                ],
+                name:''
+            },
+            methods: {
+                add() {
+                    this.list.push({name:this.name,isA:false,flag:true});
+                    this.name = '';
+                    this.filterFn();
+                },
+                del(index) {
+                    // index.flag=false;
+                    this.list.splice(index,1);
+                },
+                click(obj){
+                    obj.isA = !obj.isA;
+                },
+                filterFn(){
+                    let value = this.name;
+                    this.list.forEach(function(obj,index){
+                        if(obj.name.includes(value)){
+                            obj.flag = true;
+                        }
+                        else{
+                            obj.flag = false;
+                        }
+                    })
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

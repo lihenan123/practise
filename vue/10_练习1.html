@@ -17,7 +17,8 @@
         <button @click="add()">add</button>
         <ul>
             <!-- <li v-for="(obj,index) in list" @click="change(index)" :class="{red:obj.isRed}">{{obj.name}}<button>del</button></li> -->
-            <li v-for="(obj,index) in list" @click="change(obj)" :class="{red:obj.isRed}" v-show="obj.isShow">
+            <li v-for="(obj,index) in list" @click="change(obj)" 
+            :class="{red:obj.isRed}" v-show="obj.isShow">
                 {{obj.name}}
                 <button @click.stop="del(index)">del</button>
             </li>

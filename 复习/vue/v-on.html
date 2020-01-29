@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        {{msg}}
+        <!-- <button v-on:click="change()">click</button> -->
+        <!-- v-on:click或者使用@click -->
+        <button @click="change()">click</button>
+
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        let vm = new Vue({
+            el:'#app',
+            data:{
+                msg:'haha'
+            },
+            methods:{
+                change(){
+                    this.msg = "hehe";
+                }
+            }
+        });
+    </script>
+</body>
+</html>
