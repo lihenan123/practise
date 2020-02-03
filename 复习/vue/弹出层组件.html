@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #aa{
+            height: 150px;
+            width: 400px;
+            border: 1px solid #aaaaaa;
+            padding:10px;
+        }
+        #content{
+            border-top:1px solid #cccccc;
+        }
+        #title span{
+            float: right;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <button @click="changeDL()">登录</button>
+        <button @click="changeZC()">注册</button>
+
+        <my-component title="登录" v-show="dlShow"> 
+            用户名<input type="text">
+            </br>
+            密码：<input type="password">
+            </br>
+            <button>登陆</button>
+        </my-component>
+
+        <my-component title="注册" v-show="zcShow" @close="fn">
+            用户名<input type="text">
+            </br>
+            密码：<input type="password">
+            </br>
+
+            确认密码<input type="password">
+            </br>
+            <button>注册</button>
+        </my-component>
+
+    </div>
+    <template id="temp">
+        <div id="aa">
+            <div id="title">{{title}}<span @click="$emit('close','reg')">X</span></div>
+            <div id="content">
+                <slot></slot>
+            </div>
+            
+        </div>
+    </template>
+    <script src="vue.js"></script>
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                dlShow:false,
+                zcShow:false
+            },
+            methods:{
+                changeDL(){
+                    this.dlShow = !this.dlShow;
+                    if(this.zcShow == true)
+                    {
+                        this.zcShow = false;
+                    }
+                },
+                changeZC(){
+                    this.zcShow = !this.zcShow;
+                    if(this.dlShow == true)
+                    {
+                        this.dlShow = false;
+                    }
+
+                },
+                fn(msg){
+                    if(msg=='reg'){
+                        this.zcShow = false;
+                    }
+                    else if(msg=='log'){
+                        this.dlShow = false;
+                    }
+                console.log(msg);
+
+                }
+            },
+            components:{
+                "myComponent":{
+                    template:'#temp',
+                    props:['title'],
+                    
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -9,7 +9,7 @@
     <style>
         .dialog {
             width: 400px;
-            height: 300px;
+            height: 300cpx;
             border: 1px solid #ccc;
             padding: 10px;
         }
@@ -48,7 +48,8 @@
     </div>
     <template id="temp">
         <div class="dialog" v-show="isShow">
-            <div class="dialog-title"><span>{{title}}</span><span class="dialog-close" @click="$emit('close','reg')">X</span></div>
+            <div class="dialog-title"><span>{{title}}</span>
+                <span class="dialog-close" @click="$emit('close','reg')">X</span></div>
             <div class="dialog-content">
                 <slot></slot>
             </div>
