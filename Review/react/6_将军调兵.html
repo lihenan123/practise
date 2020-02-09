@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="browser.min.js"></script>
+    <script type="text/babel">
+        class Man extends React.Component{
+            constructor(){
+                super();
+                this.state = {
+                    rest:120,
+                    numA:100,
+                    numB:80
+                }
+                this.change = this.change.bind(this);
+            }
+            change(name,val){
+                if(this.state.rest<val){
+                    alert('士兵数量不足！');
+                }
+                this.setState({
+                    rest:this.state.rest-val*1,
+                    ["num"+name]:this.state["num"+name]+val*1
+                })
+            }
+            render(){
+                return(
+                    <div>
+                        <h1>剩余士兵数量:{this.state.rest}</h1>    
+                        <Children name="A" change={this.change} num={this.state.numA}></Children>
+                        <Children name="B" change={this.change} num={this.state.numB}></Children>
+                    </div>
+                )
+            }
+        }
+        class Children extends React.Component{
+            render(){
+                return(
+                    <div>
+                        <p>将军{this.props.name}有士兵：{this.props.num}</p>
+                        <input type="number" ref="people" />   
+                        <button onClick={
+                            ()=>{
+                                this.props.change(this.props.name,this.refs.people.value)
+                            }}>调兵</button> 
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(
+            <Man></Man>,
+            document.getElementById('root')
+        )
+    </script>
+</body>
+</html>

@@ -11,39 +11,25 @@
     <script src="react.development.js"></script>
     <script src="react-dom.development.js"></script>
     <script src="browser.min.js"></script>
-    <!-- jsx -->
-    <script type="text/babel" >
-    // this.state.num 获取state中的值 
-    // 修改state中的值
+    <script type="text/babel">
         class Welcome extends React.Component{
-            constructor(){
-                super();
-                this.state = {
-                    num:100
-                }
-            }
-            addHandle(){
-                // console.log('hahahah');
-                console.log(this);//undefined
-                // this.state.num = 101;
-            }
             render(){
                 return (
                     <div>
-                        <h1>{this.state.num}</h1>
-                        <button 
-                        onClick={this.add.bind(this)}>add</button>    
+                        <h2>{this.props.name}</h2>
+                        <p>{this.props.content}</p>
+                        {this.props.children}
                     </div>
                 )
             }
         }
 
         ReactDOM.render(
-            <Welcome></Welcome>,
+            <Welcome name="张三" content="hahaha">
+                <h3>22222</h3>    
+            </Welcome>,
             document.getElementById('root')
         )
-
- 
     </script>
 </body>
 </html>
