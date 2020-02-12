@@ -7,7 +7,7 @@ export default new Vuex.Store({
   state: {
     title:'电影',
     color:"pink"
-  },
+  }, 
   mutations: {
     change(state,arg){
       state.title = arg.title;

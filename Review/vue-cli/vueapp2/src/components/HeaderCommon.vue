@@ -1,6 +1,6 @@
 <template>
-    <div id="nav">
-        this is head
+    <div class="header" :style="{background:$store.state.color}">
+        {{$store.state.title}}
     </div>
 </template>
 
@@ -11,11 +11,12 @@
 </script>
 
 <style lang="scss" scoped>
-    #nav{
-        
-        position: fixed;
-        top:0;
+    .header{
+        background: pink;
         height: 1rem;
         width: 100%;
+        position: fixed;
+        top:0;
+        line-height: 1rem;
     }
 </style>

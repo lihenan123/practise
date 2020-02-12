@@ -1,13 +1,17 @@
 <template>
-  <div id="nav">
-    <router-link v-for="(obj,index) in menu" :key="index" :to="obj.path">
-        {{obj.title}}
-    </router-link>
-    
-  </div>
+    <div class="header" :style="{background:$store.state.color}">
+        
+        <router-link v-for="(obj,index) in menu" :key="index" @click.native="change({title:obj.title,color:obj.color})" :to="obj.path">
+            {{obj.title}}
+        </router-link> 
+        
+
+
+    </div>
 </template>
 
 <script>
+import {mapMutations} from 'vuex';
 export default {
     data(){
         return {
@@ -20,26 +24,34 @@ export default {
                 {
                     title:'音乐',
                     path:'/music',
-                    color:'pink'
+                    color:'orange'
                 },
                 {
                     title:'书籍',
                     path:'/book',
-                    color:'pink'
+                    color:'gray'
                 },
                 {
                     title:'图片',
                     path:'/picture',
-                    color:'pink'
+                    color:'lightblue'
                 }
             ]
         }
-    }
+    },
+    methods:mapMutations(['change']),
+    created(){
+            this.menu.forEach((obj)=>{
+                if(obj.title == this.$route.path){
+                    this.change({title:obj.title,color:obj.color});
+                }
+            });
+        }
 };
 </script>
 
 <style lang="scss" scoped>
-#nav {
+.header {
     position: fixed;
     bottom:0;
     width: 100%;
@@ -47,6 +59,10 @@ export default {
     display: flex;
     a{
         flex:1;
+        line-height: 1rem;
+        &.router-link-exact-active{
+            color:#fff;
+        }
     }
 }
 </style>
