@@ -4,6 +4,7 @@ console.log("start");
 
 for(var i=0;i<5;i++){
 	setTimeout(function(){
+		var i=0;
 		console.log(i);
 	},0);
 }
