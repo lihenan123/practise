@@ -17,9 +17,9 @@ function Demo(){
 	//console.log(b);
 }
 
-Demo.prototype.write=function(){
-	console.log(789);
-}
+// Demo.prototype.write=function(){
+// 	console.log(789);
+// }
 
 
 var demo=new Demo();
