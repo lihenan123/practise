@@ -2,8 +2,8 @@
 //commonJS  ---require exports module.exports
 //node写后端代码 把文件加载成模块 
 
-//JS如何完成继承的 ES6 extends  ES5 原型链 
-//JS如何完成封装的 private public protected
+// JS如何完成继承的 ES6 extends  ES5 原型链 
+// JS如何完成封装的 private public protected
 
 function Demo(){
 	//var b=456;
@@ -21,11 +21,11 @@ Demo.prototype.write=function(){
 	console.log(789);
 }
 
-/*
+
 var demo=new Demo();
 demo.write();
 console.log(demo);
-console.log(Demo.prototype==demo.__proto__);*/
+console.log(Demo.prototype==demo.__proto__);
 
 // module.exports=Demo;
 
