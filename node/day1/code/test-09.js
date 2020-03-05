@@ -15,16 +15,17 @@ console.log("server start port 3000");
 //执行前端页面  file:///   Vue npm run dev http://localhost:8080  tinyserver
 //webpack  启动server  热更新  watch child_process
 
-//从chrome向server发送的请求 request  req
-//从server向chrome发送的请求 respone  res
+// 从chrome向server发送的请求 request  req
+// 从server向chrome发送的请求 respone  res
 
-//数据包（请求行 包头 空格 包体） status code  2 3 4 5
-//200 301 302 304 307 404 500 501 502 503 
+// 数据包（请求行 包头 空格 包体） status code  2 3 4 5
+// 200 301 302 304 307 404 500 501 502 503 
 
 //npm install -g supervisor  开发环境 supervisor nodemon 生产环境 pm2
 
 //select * from user where name=? and pass= or 1%3c2 
 
-//三码一致  文件编码 ANSI Unicode UTF-8
+// 三码一致  
+// 文件编码 ANSI Unicode UTF-8
 // 浏览器解码  GBK/GB18030/GB2312  UTF-8
 // 数据库编码 UTF-8
