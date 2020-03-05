@@ -1,4 +1,4 @@
-//callback就一定是异步  
+//callback不一定是异步  
 function waitFive(name,function_name){
 	var pus=0;
 	var currentDate=new Date();
@@ -10,7 +10,7 @@ function waitFive(name,function_name){
 	function_name(name);
 }
 
-waitFive("laoshan",echo);
+waitFive("aaa",echo);
 console.log("is over");
 
 function echo(name){
