@@ -9,9 +9,9 @@ http.createServer(function(req,res){
 	//console.log(newpath);
 	if(newpath=="/"){
 		var indexurl=__dirname+'/static/'+url.parse("index.html").pathname;
-		//将文件读入到内存
+		//1.将文件读入到内存
 		var indexPage=fs.readFileSync(indexurl,'utf-8');
-		//将文件打成数据包
+		//2.将文件打成数据包
 		res.writeHead(200,{"Content-type":"text/html"});
 		res.end(indexPage);
 	}else if(newpath=="/parse"){
