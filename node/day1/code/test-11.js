@@ -1,5 +1,7 @@
-//dns解析  递归 迭代 ip  ipv4 ipv6 hosts
-/*
+//举例异步
+//dns解析  递归 迭代 
+//ip  ipv4 ipv6 hosts
+
 var dns=require("dns");
 var http=require("http");
 urls=['http://www.qq.com','http://www.baidu.com','http://www.sohu.com']
@@ -15,7 +17,7 @@ function fetchPage(url){
 
 for(var i=0;i<urls.length;i++){
 	fetchPage(urls[i]);
-}*/
+}
 
 
 var dns=require("dns");
