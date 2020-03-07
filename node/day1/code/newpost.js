@@ -31,10 +31,12 @@ function goPost(req,res){
 	var postData="";
 	req.setEncoding('utf8');
 
+	//1、什么时候也开始传
 	req.addListener('data',function(postChunkData){
 		postData+=postChunkData;
 	});
 
+	//2、什么时候传递结束
 	req.addListener("end",function(){
 		//console.log(postData);
 		var Params=querystring.parse(postData);
