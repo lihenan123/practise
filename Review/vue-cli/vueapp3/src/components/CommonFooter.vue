@@ -1,7 +1,6 @@
 <template>
     <div id="footer" :style="{background:$store.state.color}">
-        <!-- 唯一的标识  -->
-        <!-- 组件 native  -->
+        
         <!-- $store.commit('change',{}) -->
         <router-link v-for="(obj,index) in menu" :key="index" @click.native="change({title:obj.title,color:obj.color})" :to="obj.path">{{obj.title}}</router-link>
     </div>
