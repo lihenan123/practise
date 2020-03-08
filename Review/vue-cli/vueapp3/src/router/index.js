@@ -1,22 +1,51 @@
 import Vue from 'vue'
+// import Router from 'vue-router';
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Movie from '../views/Movie.vue'
+import Music from '../views/Music.vue'
+import Book from '../views/Book.vue'
+import Photo from '../views/Photo.vue'
+import MovieDetail from '../views/MovieDetail.vue'
+import PhotoDetail from '../views/PhotoDetail.vue'
+import MusicDetail from '../views/MusicDetail.vue'
+
+
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'movie',
+    component: Movie
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    path: '/movie/moviedetail',
+    name: 'moviedetail',
+    component: MovieDetail,
+  },
+  {
+    path:'/music',
+    name:'music',
+    component:Music
+  },
+  {
+    path:'/music/music-detail',
+    name:'music-detail',
+    component:MusicDetail
+  },
+  {
+    path:'/book',
+    name:'book',
+    component:Book
+  },
+  {
+    path:'/photo',
+    name:'photo',
+    component:Photo,
+  },{
+    path:'/photo/photo-detail',
+    component:PhotoDetail
   }
 ]
 
