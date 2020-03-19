@@ -1,0 +1,477 @@
+<html>
+<body>
+
+HTML5新特性:
+	1. 新的语义化标签，比如header、footer、nav、article等(标签有更清晰的语义,便于开发者阅读,浏览器读取方便,利于搜索引擎优化.)
+		不支持新标签怎么办document.creatElenent(header);动态创建
+	2. 新增表单控件: input type="email/number/range。。。"
+	3. 新的选择器：querySelector('#aa')和querySelectorAll('.aa')
+	4. JSON.parse()和JSON.stringify()方法
+	5. 历史管理：history.pushState()和window.onpopstate事件
+	6. 本地存储：localStorage和sessionStorage（可能会问和cookie）
+	7. Canvas画布：
+		var cvs = docuement.getElementById('canvas1');
+		var cxt = cvs.getContext('2d');
+
+*HTML5表单:
+	<form action="" autocomplete="on" id="user_form"><!-- input自动提示 -->
+		<input type="" name="" autocomplete="off" autofocus='autofocus'>自动获取焦点
+	</form>
+	一般input写在form里面，但是html5提供写在外面
+	<input type="text" name="" form="user_form">写一个form的id，指向form。能关联上。（不太常用）
+	*表单属性required="required"必填项placeholder pattern="//"匹配正则表达式
+
+*HTML5音频和视频：
+	<video src="5.mp4" height="500px" width="600px" autoplay（在准备就绪后马上播放）controls（显示视频控件）></video>视频格式要求严格
+	<audio src=""></audio>音频
+
+
+*HTML5选择器：
+	var oDiv = document.querySelector('#div1 .aa');
+	var oDiv = document.querySelector('.div1');//只能获取一个（第一个）
+	var oDiv = document.querySelector('div');//只能获取一个（第一个）
+	var arr = document.querySelectorAll('div');获取全部
+	var arr= document.getElementByClassName('aa'); 返回的是节点列表node list，不是真正的数组
+	console.log(oDiv.classList);取到该标记的所有class名称
+	console.log(oDiv.classList[0]);第一个
+	oDiv.classList.add('bb');再给该标记增加一个叫bb的classname//jq也有一个addclass方法也是添加
+	oDiv.className='cc';覆盖掉了其他classname
+	oDiv.classList.remove('bb');移除bb class名
+	oDiv.classList.toggle('bb');原来没有就加上bb 有就移除bb
+
+
+*web存储:类似于数据库
+
+*json(Javascript object notation//js对象标记)
+		用于前台和后台数据传输 
+		var obj1={同源
+			name:'zhangsan',
+			age:18
+		};
+		var obj2= JSON.stringify(obj1);将对象转化为字符串
+		var str2='{"name":"lisi","age":"20"}'（属性必须加''）//字符串
+		var obj2 = JSON.parse(str2);将字符串转化为对象
+
+	*eval
+		var str='alert(11)';
+		eval(str);//解析运行字符串
+		JSON.parse(str);//出错
+
+	*JSON和eval的区别
+		eval是js自带的语法，用来解析字符串的（无论什么字符串都能解析）
+		JSON专业用来解析对象 
+		eval不安全。JSON是安全的
+
+	*如何使JSON兼容
+		从官网http://www.json.org/去下载json2.js以达到兼容
+
+
+*如何复制一个对象里的所有属性(对象的深层拷贝)
+	var obj1={
+			name:'zhangsan',
+			age:18
+			father:{
+				name：'zhangXX',
+				age:50
+			}
+		};
+		// var obj2 = obj1；
+		// obj1.name='lisi';
+		// console.log(obj2.name);//输出李四，因为obj1，obj2指向同一地址。obj1属性改变obj2也得改变
+	解决办法：封装成一个函数，用for in 的方法把所有属性都复制到newObj里
+	father是复杂类型一层拷贝不过去用递归的方法进行深层遍历
+	1、	var obj2 = obj1；
+		obj1.name='lisi'; 
+		console.log(obj2.name);//输出张三
+		obj1.father = 'zhangYY';
+		console.log(obj2.father.name);//输出zhangXX
+
+		function clone(obj) {
+			var newObj = new Object();
+			for(var p in obj) {
+				if(typeof obj[p]=='object'){
+					newObj[p]= clone(obj[p]);
+				}else{
+					newObj[p] = obj[p];
+				}
+			}
+			return newObj;
+		}
+
+	2、JSON方法 只支持ie8以上浏览器
+		var str = JSON.stringify(obj1);
+		var obj2 = JSON.parse(str);
+		obj1.father = 'zhangYY';
+		console.log(obj2.father.name);//zahngXX
+
+
+
+*历史管理(history.go/.forword/.back)
+	loaction.hash = '123';地址栏里多出了#123，可以退回
+	*按按钮产生随机数，按前后按钮能退回查看
+		原生
+			var obj={};//对象
+			var arr=[];//数组
+			location.hash=Math.random();
+			obj[location.hash] =arr;
+			window.onhashchange=function(){
+				oResult.innerHTML=obj[location.hash];
+			};
+
+		HTML5方法（地址栏不变）	
+			var arr=[];//数组
+			oResult.innerHTML=arr;
+			history.pushState=(arr,'');三个属性 （数据、标题<必须传>、地址）后两个还没实现
+			window.onpopstate=function(e){
+				oResult.innerHTML=e.state;  取到arr 
+			};
+
+
+		*单页面定位
+			1、矛点（直接跳到div1的位置，地址栏多出#div1，不能设置动画效果）
+				//<a href="#div1"> </a>
+			2、js方法
+				<a href="#div1">link1<a>
+				<div id="div1">div1<div>
+				click{
+				var href = $(this).attr('href');//其实取到的是链接所对应的div
+				$(document.body).animate({
+					scrollTop:$(href).offset().top
+				},500);
+				history.pushState($(href).offset().top,'');
+				return false;//取消矛点的作用
+				};
+
+				window.onpopstate=function(e){
+					$(document.body).animate({
+						scrollTop:e.state; 
+					},500);
+				};
+				****兼容性问题火狐不好用，把document.body改成document.documentElement(取到的是html)
+				 $(document.documentElement||document.body)
+
+*跨域
+
+	因为js的同源策略，前端js不允许跨域访问，后端可以。(所谓同源是指，域名，协议，端口相同。)
+	<img>的src,<link>的href<script>的src不符合同源策略
+
+ jsonp（json padding<填充>）：原理是利用script标签的src属性可以跨域加载别的域中的文件来实现的：(回调函数和数据)
+   你知道jsonp这个词是怎么来的吗
+	为了便于客户端使用数据，逐渐形成了一种非正式传输协议，人们把它称作JSONP，
+
+	创建一个回调函数，然后在远程服务上调用这个函数并且将JSON 数据形式作为参数传递，完成回调。
+	将JSON数据填充进回调函数
+
+		定义callback函数，
+		动态创建script标签，
+		将script标签的属性值指定为一个跨域的url
+		将该script标签加入到body内
+		判断有没有加载完成 src.onload src.onerror
+		请求完成后在jsonp响应加载到页面中之后，就会立即执行这段函数代码
+
+		注意事项：约定好函数名
+
+
+	1、JSONP实现跨域访问www.a.com，www.b.com两个虚拟域名 
+		<script src='http://www.b.com/text1.php?name="zhangsan"&age=18 '>
+		b直接调用a里面的一个方法也是可以的、且可以传参（对象也可以），先声明，后调用
+
+		————规范写法：
+			<script src='http://www.b.com/text1.php?name="zhangsan"&callback=aa'>//a.com->b.com//aa是a.com里面的一个方法
+			
+			<?php
+				$callback = $_GET['callback'];
+				echo $callback.'('.$name.')';
+			?>//b.com里面调用，callback其实就是aa
+
+
+	2、*iframe
+	   同一域下可以在index1.html中引入index2.html	//<iframe src="index2.html"></iframe>
+	 	index2中调用index1中方法，要写parent.aa();才能调用
+	 	如果又在index2中引入 index3.html，index3中要调用index1中方法要写parent.parent.aa();或者top.aa();
+	 	
+	   不同域下a.com中引入b.com中的text1.php文件  //<iframe src='http://www.b.com/text1.php\'></iframe>
+	   <? php	echo 'aa()';/echo aa(); 	?>//不好用报错aa未定义
+	   用get方法传值
+	   
+	   解决办法：
+		  a.com，index1.html中引入b.com中的text1.php文件
+		  <iframe src='http://www.b.com/text1.php\'></iframe>\
+		  \
+		  b.com中的text1.php文件中引入a.com中的index2.html\
+		  <iframe src='http://www.a.com/index2.html\'></iframe>
+
+		  在 index2.html中调用index1中的方法写top.aa();
+
+		  定义php文件是因为要接收数据，
+		在a.com中创建一个a.html,b.com中创建一个b.php，再在a.com中创建c.php，a.html引入b.php，再在b.php中调用c.php，最后在c.php中top.function，就可以访问a里面的方法
+	
+	5\ajax跨域简单访问
+		a.com/b.com，a.com中a.html发送一个ajax请求，请求b.com中b.php的数据，在b.php中写
+		header（"Access-Control-Allow-orgin:*"）
+			(					 -Methed:Get.Post)
+	8、CORS跨域（IE10）
+		它允许浏览器向跨源服务器，发出XMLHttpRequest请求，从而克服了AJAX只能同源使用的限制。
+		实现CORS通信的关键是服务器。只要服务器实现了CORS接口，就可以跨源通信。
+
+		1\对于简单请求，浏览器直接发出CORS请求。具体来说，就是在头信息之中，增加一个Origin字段。
+		Origin字段用来说明，本次请求来自哪个源（协议 + 域名 + 端口）。服务器根据这个值，决定是否同意这次请求。
+		2\非简单请求是那种对服务器有特殊要求的请求，比如请求方法是PUT或DELETE，或者Content-Type字段的类型是application/json。
+		非简单请求的CORS请求，会在正式通信之前，增加一次HTTP查询请求，称为"预检"请求（preflight）。
+		浏览器先询问服务器，当前网页所在的域名是否在服务器的许可名单之中，以及可以使用哪些HTTP动词和头信息字段。只有得到肯定答复，浏览器才会发出正式的XMLHttpRequest请求，否则就报错。
+
+	3、通过服务器的方式进行跨域通过后端代码进行跨域。
+	4、服务器端填上向响应头；
+	5、Window.POSTMessage(message,targetoringin)
+	6、 图像Ping(所有带有src属性的标签都是可以跨域的) 
+	7、COMET(这是一种高级AJAX技术 经常也有人称为“服务器推送”技术)
+	
+CORS与JSONP的使用目的相同，但是比JSONP更强大。
+JSONP只支持GET请求，CORS支持所有类型的HTTP请求。JSONP的优势在于支持老式浏览器，以及可以向不支持CORS的网站请求数据。
+
+
+
+*本地存储
+	cookie和session区别
+		1、存储大小:cookie——4k，session——5M
+		2、存储位置:cookie——客户端，session——服务端
+		3、cookie——跟着前端请求发送到后台，session——不会跟着前端请求发送到后台
+		4、用户验证这种场合一般会用 session，记录用户名用cookie
+		5、session 的运行依赖 session id，而 session id 是存在 cookie 中的，也就是说，如果浏览器禁用了 cookie ，同时
+		   session 也会失效（但是可以通过其它方式实现，比如在 url 中传递 session_id）
+
+	sessionStorage和localStorage区别（5M）
+		1、数据有效期不同：sessionStorage——当前浏览器窗口关闭前有效。
+						   localStorage——始终有效，窗口或浏览器关闭也一直保存
+						   cookie——只在设置的cookie过期时间之前一直有效，即使窗口或浏览器关闭。	
+		2、作用域不同,sessionStorage不在不同的浏览器窗口中共享，即使是同一个页面；
+					  localStorage在所有同源窗口中都是共享的；cookie也是在所有同源窗口中都是共享的。
+
+		sessionStorage.name/sessionStorage.getItem('age');remove掉，sessionStorage.removeItem('age');
+		localStorage.setItem('age',30);localStorage.clear();才能删掉
+			
+		cookie在浏览器和服务器间来回传递。而sessionStorage和localStorage不会自动把数据发给服务器，仅在本地保存。
+
+	session cookie local区别:
+		1\cookie数据始终在同源的http请求中携带（即使不需要），即cookie在浏览器和服务器间来回传递。而sessionStorage和localStorage不会自动把数据发给服务器，仅在本地保存。cookie数据还有路径（path）的概念，可以限制cookie只属于某个路径下。
+			
+		2\存储大小限制也不同，cookie数据不能超过4k，同时因为每次http请求都会携带cookie，所以cookie只适合保存很小的数据，如会话标识。sessionStorage和localStorage 虽然也有存储大小的限制，但比cookie大得多，可以达到5M或更大。
+			
+		3\数据有效期不同，sessionStorage：仅在当前浏览器窗口关闭前有效，自然也就不可能持久保持；localStorage：始终有效，窗口或浏览器关闭也一直保存，因此用作持久数据；cookie只在设置的cookie过期时间之前一直有效，即使窗口或浏览器关闭。
+		4\作用域不同，sessionStorage不在不同的浏览器窗口中共享，即使是同一个页面；localStorage 在所有同源窗口中都是共享的；cookie也是在所有同源窗口中都是共享的。
+
+Session实现原理
+	1、创建Session的时候，服务器将生成一个唯一的sessionid然后用它生成一个关闭浏览器就会失效的cookie。
+	2、然后再将一个与这个sessionid关联的数据项加入散列表。
+	    例如这样一段代码:Session["UserName"]=23;
+	    假设sessionid为123那么散列表中会追加一行
+	     sessionid          username
+	     123                  23
+	3、当浏览器端提交到服务器时，会通过sessionid=123去散列表中寻找属于该用户的Session信息。
+
+
+cookie,session一般存什么?
+	 Cookie用于保存客户浏览器请求服务器页面的请求信息,程序员也可以用它存放非敏感性的用户信息
+	 Session用于保存每个用户的专用信息
+
+cookie的参数
+	name 名称。
+	value	值。
+	expire	有效期。
+	path	服务器路径。(可选)
+	domain	域名。(可选)
+	secure	规定是否通过安全的 HTTPS 连接来传输 cookie。(可选)
+	HttpOnly	加以限制，使 Cookie 不能被 Javascript 脚本访问
+
+
+Set-Cookie 字段的属性：(服务器管理状态使用到的字段，用于响应首部)
+	属性	说明
+	NAME=VALUE	赋予 Cookie 的名称和其值（必须项）
+	expires=DATE	Cookie 的有效期（若不明确指定则默认为浏览器关闭前为止）
+	path=PATH	将服务器上的文件目录作为 Cookie 的适用对象（若不指定则默认为文档所在的目录）
+	domain=域名	作为 Cookie 适用对象的域名（若不指定则默认为创建 Cookie 的服务器的域名）
+	Secure	  告诉浏览器只有在HTTPS连接时才发送cookie
+	HttpOnly	加以限制，使 Cookie 不能被 Javascript 脚本访问;用来防止跨站脚本攻击
+
+
+利用 Cookie 管理 Session
+
+	Session 管理及 Cookie 状态管理
+	步骤 1：客户端把用户 ID 和密码等登录信息放入报文的实体部分，通常是以 POST 方法把请求发送给服务器。
+	步骤 2：服务器会发放用以识别用户的 Session ID。通过验证从客户端发送过来的登录信息进行身份验证，然后把用户的认证状态与 Session ID 绑定后记录在服务器端。向客户端返回响应时，会在首部字段 Set-Cookie 内写入 Session ID。
+	步骤 3：客户端接收到从服务器端发来的 Session ID 后，会将其作为 Cookie 保存在本地。下次向服务器发送请求时，浏览器会自动发送 Cookie，所以 Session ID 也随之发送到服务器。服务器端可通过验证接收到的 Session ID 识别用户和其认证状态。
+
+
+	indexdb,离线缓存，本地数据库
+
+
+*自定义属性
+	原生
+		对象.//在dom元素中看不见
+		setattribute//在dom元素中能看见
+		/*<div id= "div1" data-aa-xx="bb" data-dd="cc"> </div>*/ 
+		var oDiv = document.querySelector('#div1');
+		console.log(oDiv.dataset);//输出DOMStringMap{aaXx:"bb" dd:"cc" }//获取所有以data-开头的属性
+		console.log(oDiv.dataset.aaXx);//输出bb
+	jq 
+		.attr('')//在dom元素中能看见
+		prop//在dom元素中看不见checked只能用prop
+		data//data-开头的自定义属性//在dom元素中能看见
+
+		/*<div id= "div1" data-aa="bb"> </div>*/ //推荐自定义属性都以data-开头
+		引入jq文件
+		$(function(){
+			console.log($('#div1').attr('data-aa'));//输出bb
+			console.log($('#div1').data('aa'));//输出bb
+			console.log($('#div1').data('aa-xx'));//或者data('aaXx')都能取到
+		});
+
+
+*动态加载js
+	var oBtn = document.getElementById('btn');
+	oBtn.addEventListener('click',function(){
+		var oScript=document.createElement('script');
+		oScript.onload = function(){
+			alert('end');//加载完会弹出//只有带src的才有onload方法
+		}
+		oScript.src='zepo.min.js';
+		document.body.appendChild(oScript);
+	});
+
+
+
+css3动画：
+	1.变形transform（只有变形没有动画）（-webkit-transform:;）：
+		 旋转rotate(围绕x、y、z三个方向)、
+		 缩放scale（水平，垂直）、
+		 位移translate(比 position 效率高，translateX translateY translateZ,逗号分隔)、
+		 扭曲skew（水平，垂直，单位是度数deg）
+		 矩阵matrix
+		 scale3d
+		 -webkit-transform-origin: 100 100; 定位圆心相对于左上角  默认为center（50%，50%）
+		  -webkit-transform:rotate(30deg);围绕中心顺时针旋转30 
+		  -webkit-transform:translate(50px,50px);位移（相当于相对定位）
+		  -webkit-transform:scale(0.5,2); 水平 0.5倍 竖直2倍，放大缩小 
+	      // -webkit-transform:scale(-1.5);旋转180
+	      -webkit-transform:skew(45deg,30deg)扭曲 切变
+	 
+	2.过渡transition （给一个初值，初值一改变就执行动画）
+		做动画的属性，动画执行时间，动画形式，延迟时间
+		-webkit-transition-property: all;
+		-webkit-transition-duration: 2s;
+		-webkit-transition-timing-function: ease;
+		-webkit-transition-delay:1s;
+		-webkit-
+		-moz-
+		-ms-
+		-o-(){
+
+	3.动画animation（调用了就动）：动画名称animation-name、执行时间animation-duration、动画函数animation-timing-function、延迟animation-delay、执行次数animation-iteration-count(infinite无限次  n次)、方向animation-direction(normal正常  alternate轮流反向) 、保持最终状态forwards (@keyframes)
+{}
+ 3D 
+	-webkit-perspective:800px;给父元素设置   视角 值越大越往后
+	-webkit-perspective-origin:50% 95%;视角原点给父元素设置 角在左在下正 全局是舞台 50%是正常 （x，y）
+
+	-webkit-transform:perspective(800px);给子元素设置 视角 以单个元素为视角
+
+	 -webkit-transform:rotateX(30deg);   X单杠 Y钢管  Z
+	 -webkit-transform:rotate3d(1,1,1，30deg);
+	 -webkit-transform:translateX(30px); 位移 
+	 三层子元素都要保持3D变换 给第二层元素加 
+	 -webkit-transform-style:preserve-3d;保持3D效果
+
+
+
+
+
+
+
+
+
+*canvas:
+
+	画线
+		var c=document.getElementById("mycanvas");
+		var ctx=c.getContext("2d");
+		ctx.moveTo(10,10);
+		ctx.lineTo(200,100);
+		ctx.stroke();
+
+	画圆
+		context.arc(1 / 2 * width, 1 / 2 * height, R, 0, 2 * Math.PI);
+		context.fill();//画实心圆
+	矩形
+		ctx.rect(20,20,150,100);//画矩形，前两个参数决定开始位置，后两个分别是矩形的宽和高
+
+
+
+	Canvas      
+		1、依赖分辨率(标量)
+		2、不支持事件处理器 (canvas输出的是一整幅画布;不能被引擎抓取，如我们要让canvas里面的一个图片跟随鼠标事件：canvas.onmouseover=function(){})
+		3、弱文本渲染能力    
+		4、可以保存最终图片为PNG或者JPG    
+		5、最适合许多 对象频繁重画的图形游戏    
+	SVG    
+		1、独立于分辨率  (矢量)
+		2、支持事件处理器   (svg绘制出来的每一个图形的元素都是独立的DOM节点，能够方便的绑定事件或用来修改。)
+		3、最适合具有大渲染面积的应用（谷歌地图）    
+		4、复杂图像，重画变慢（任何使用DOM很多的情况都会变慢） 
+		5、不适合游戏应用  
+	面试官想知道你在什么时候选用哪种方式?
+		使用canvas；
+			 1、逻辑复杂； 
+			 2、内容不固定； 
+			 3、其他。 相对来说，用canvas的居多，很少有用svg的，用到的，也就是一个固定的svg文件，代替图片来使用。 国外有解析svg的js引擎(忘记叫什么了)，也有用svg开发大项目的，比如draw2d touch.
+
+		使用svg:
+			 1、图像内容固定，需要大范围缩放； 
+			 2、实现形状渐变动画，或者那种表现画图过程的动画；
+
+
+
+	HTML5使用Canvas绘制矩形的代码
+		var c=document.getElementById("mycanvas");
+		var ctx=c.getContext("2d");//获取画布区域的代码
+		ctx.rect(20,20,150,100);
+		ctx.stroke();//stroke方法结束
+
+	HTML5使用SVG绘制矩形的代码
+	XHTML
+		<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+		<rect style="fill: rgb(0, 0, 255); stroke-width: 1px; stroke: rgb(0, 0, 0);" height="[object SVGAnimatedLength]" width="[object SVGAnimatedLength]">
+		</rect>
+		</>
+
+
+
+
+*Websocket：基于TCP/IP协议的，双向的、全双工的数据连接
+           双向的：客户端、服务器端
+           全双工：数据的发送与接收，两者同步进行
+
+	<首先Websocket是ws协议,但是是基于HTTP协议的，借用了HTTP的协议来完成一部分握手。这段类似HTTP协议的握手请求中，多了几个东西。
+	这个就是Websocket的核心了，告诉 Apache 、 Nginx 等服务器：注意啦，我发起的是Websocket协议，快点帮我找到对应的助理处理~不是那个老土的HTTP。
+
+	至此，HTTP已经完成它所有工作了，接下来就是完全按照Websocket协议进行了。
+
+	但是Websocket只需要一次HTTP握手，所以说整个通讯过程是建立在一次连接/状态中，也就避免了HTTP的非状态性，服务端会一直知道你的信息，直到你关闭请求，这样就解决了接线员要反复解析HTTP协议，还要查看identity info的信息。
+
+	服务端就可以主动推送信息给客户端啦!>
+
+	在传统的方式上，要不断的建立，关闭HTTP协议，由于HTTP是非状态性的，每次都要重新传输 identity info （鉴别信息），来告诉服务端你是谁。
+
+
+	
+	long poll：
+	 客户端发起连接后，如果没消息，就一直不返回Response给客户端。直到有消息才返回，返回完之后，客户端再次建立连接，周而复始。
+
+	其实原理跟 ajax轮询 差不多，都是采用轮询的方式，不过采取的是阻塞模型（一直打电话，没收到就不挂电话）
+	ajax轮询 需要服务器有很快的处理速度和资源。(速度）long poll 需要有很高的并发
+
+	哦对了，忘记说了HTTP还是一个状态协议。
+	通俗的说就是，服务器因为每天要接待太多客户了，是个健忘鬼，你一挂电话，他就把你的东西全忘光了，把你的东西全丢掉了。你第二次还得再告诉服务器一遍。
+
+</script>
+</body>
+</html>
+

@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+　 DOCTYPE声明位于文档中的最前面的位置，处于 <html> 标签之前。此标签可告知浏览器文档使用哪种 HTML 或 XHTML 规范。
+　 该标签可声明三种 DTD 类型，分别表示严格版本、过渡版本以及基于框架的 HTML 文档。
+　　以下面这个 <!DOCTYPE> 标签为例：
+　　<!DOCTYPE html
+　　PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+　　"TR/xhtml1/DTD/xhtml1-strict.dtd">
+　　在上面的声明中，声明了文档的根元素是 html，它在公共标识符被定义为 "-//W3C//DTD XHTML 1.0 Strict//EN" 的 DTD 
+	中进行了定义。浏览器将明白如何寻找匹配此公共标识符的 DTD。如果找不到，浏览器将使用公共标识符后面的 URL 作为寻找 DTD 的位置。
+
+ 	作用： 1.声明文档的解析类型(document.compatMode)，避免浏览器的怪异模式。
+		   2.1 使用也很简单，就是在你的html页面的第一行添加"<!DOCTYPE html>"一行代码就可以了
+
+
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>面试</title>
+</head>
+<body>
+0\	行级元素主要有：<span>、<a>、<b>、<img>、<br>、<button>、<strong>、<textarea>、<select>
+	块级元素主要有：<div>、<ul>、<li>、<p>、<fieldset>、<form>、<h1>、<h2>、<h3>、<hr>、<iframe>、<ol>、<pre>、<table>、<tr>、<td>
+
+1\ajax(客户端与服务器端异步的通信的技术)原理:
+	
+	相当于在用户和服务器之间加了—个中间层(AJAX引擎),
+	通过创建一个XmlHttpRequest对象来向服务器发异步请求,通过回调在回调函数里进行dom操作.
+
+	代码原理：
+	第一步：创建XMLHttpRequest 对象
+		   xmlhttp=new XMLHttpRequest();（它有兼容性问题，在ie中用的是new ActiveXObject）
+	第二步：向服务器发送请求
+			xmlhttp.open("GET/POST",url,true);
+			//xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");//POST时要加这句话
+			xmlhttp.send();
+	第三步：执行回调，在回调函数中进行相应的dom操作
+		xmlhttp.onreadystatechange=function()
+		  {
+		  if (xmlhttp.readyState==4 && xmlhttp.status==200)//判断状态码
+		    {
+		    //就可以执行相应的dom操作
+		    document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+		    }
+		  }
+
+		readyState有5种值：
+			0: 请求未初始化
+			1: 服务器连接已建立
+			2: 请求已接收
+			3: 请求处理中
+			4: 请求已完成，且响应已就绪
+
+		staus状态码常见的有：
+			200 服务器成功返回
+			301 永久重定向
+			302 临时重定向
+			304 缓存(服务器告诉客户，原来缓冲的文档还可以继续使用)
+			401 被请求的页面需要用户名和密码
+			403 服务器拒绝访问
+			404 资源找不到
+			500 服务器错误
+			502 请求未完成。服务器从上游服务器收到一个无效的响应
+			503 请求未完成。服务器临时过载或当机
+
+
+ajax的优点:
+	<1>.无刷新更新数据。
+	<2>.异步与服务器通信。
+	<3>.前端和后端负载平衡。(减轻服务器的负担，AJAX的原则是“按需取数据”，可以最大程度的减少冗余请求和响应对服务器造成的负担)
+	<4>.基于标准被广泛支持。
+	<5>.界面与应用分离。
+
+AJAX的缺点:
+	<1>.AJAX干掉了Back和History功能，即对浏览器机制的破坏。
+	<2>.AJAX的安全问题。
+	<3>.违背URL和资源定位的初衷。
+	<4>.客户端过肥，太多客户端代码造成开发上的成本。
+
+
+4\组件注意事项(开发规范)
+	防止变量污染:使用闭包(函数立即调用/函数立即调用/类的思想)
+	命名:尽量不使用ID,Class加_
+	公共的方法给window(window.xx=xx)
+	回调:arguments.callee指向原函数
+	依赖关系复杂:  require.js(模拟包)
+
+4.5组件的思想
+	1\组合性
+		组件之前应该是可以组合的。我们知道前端页面的展示都是一些HTML DOM的组合，而组件在最终形态上也可以理解为一个个的HTML片段。那么组成一个完整的界面展示，肯定是要依赖不同组件之间的组合，嵌套以及通信。
+	2\重用性
+		任何一个组件应该都是一个可以独立的个体，可以使其应用在不同的场景中。
+	3\可维护性
+		任何一个组件应该都具有一套自己的完整的稳定的功能，仅包含自身的，与其它组件无关的逻辑，使其更加的容易理解，使其更加的容易理解，同时大大减少发生bug的几率。
+
+54\js里的作用域是什么样子的？
+	大多数语言里边都是块作作用域，以{}进行限定，js里边不是．js里边叫函数作用域，就是一个变量在全函数里有效．比如有个变量p1在函数最后一行定义，第一行也有效，但是值是undefined.
+
+	JS中作用域只有两种：
+		- window全局作用域、
+		- 函数执行形成的私有作用域；
+
+
+70\预解释:
+	- 1、var和function关键字的在预解释的时候操作还是不一样的
+		- var -> 在预解释的时候只是提前的声明了这个变量,只有当代码执行的时候才会完成赋值操作
+		- function -> 在预解释的时候会提前的把声明加定义都完成了(在代码执行的时候遇到定义的代码直接的跳过)
+	- 2、预解释只发生在当前的作用域下,例如:开始只对window下的进行预解释,只有函数执行的时候才会对函数中的进行预解释；
+
+	> **[重要]刚开始只对window下的进行预解释,fn函数中目前存储的都是字符串,所以var total没啥实际的意义,所以不进行预解释 -> "预解释是发生在当前作用域下的"**
+
+5\闭包(解决作用域的问题)(闭包的实质是一个函数，是一个用于返回局部变量值的函数)
+	内部函数引用了外部函数的局部变量(包括外部函数的形参)，这使得外部函数调完毕后，该局部变量将不会被释放 所以，在本质上，闭包就是将函数内部和函数外部连接起来的一座桥梁。 
+
+	作用： 1.希望一个变量长期驻扎在内存中  3.私有成员的存在
+
+  	(ul里面有很多li,点击li显示自己索引),循环会马上执行完.不能保存变量,
+  	for(var i = 0;i<5;i++){
+		(function(idx){
+			XX.onclick = function(){
+				alter(idx);
+			}
+		})(i);>
+  	}
+  	原因就在于f1是f2的父函数，而f2被赋给了一个全局变量，这导致f2始终在内存中，而f2的存在依赖于f1，因此f1也始终在内存中不会在调用结束后，被垃圾回收机制
+
+  	# 在什么场合下用
+	- 1、保护变量；用自运行的匿名函数来实现；
+	- 2、协调异步代码；自运行的匿名函数来实现，并且传参进去（异步代码需要用到原来的变量，通过作为函数的参数传进去；）；
+	- 3.避免全局变量的污染
+	- 4.私有成员的存在
+
+
+5.1\闭包问题:
+	由于闭包会使得函数中的变量都被保存在内存中，内存消耗很大，所以不能滥用闭包，否则会造成网页的性能问题，在IE中可能导致内存泄露。解决办法是，在退出函数之前，将不使用的局部变量全部删除。 IE中在使用完闭包后，将导致引用常驻内存中而不被释放，需要 将其手动释放
+
+
+
+6\前端优化
+	1.减少HTTP请求 :精灵,懒加载
+	2.压缩图片和使用图片Spirit技术
+	3.请减少对DOM的操作,使用require、vue框架,，减少重排
+	4.尽可能重绘（通过设置style属性改变结点样式的话，每设置一次都会导致一次reflow，）
+	5.CDN（最近的节点上）(内容分发网络)（就是将一些常用的文件，比如jq类库放在速度更快的服务器上，比如百度的cdn，提高加载速度）
+	6.css3(开启GPU加速)requestAnimationFrame,加快动画速度,
+	8.合理使用标签、选择器（减少）
+	9.控制Cookie大小和污染(设置合理的过期时间)
+	10. 压缩合并js和css（减少文件体积和文件数量，减少http请求）
+	11. 使用icon-font来替换一些图标，减少图片的数量
+	12. 减少dom操作
+
+22\css优化,提高性能
+	加载性能:不要使用import;
+	选择器:
+	CSS3:GPU加速;
+	可维护性:结构层次,命名
+
+
+
+
+7\repaint（重绘）和 reflow（重排）
+	1.Repaint就是在一个元素的外观被改变，但没有改变布局（宽高）的情况下发生，如改变visibility、outline、背景色等等。
+	2.Reflow就是DOM的变化影响到了元素的几何属性（宽和高），浏览器会重新计算元素的几何属性,如：改变窗囗大小、改变文字大小、内容的改变、浏览器窗口变化，style属性的改变等等。
+
+
+
+7\require.js
+	AMD,模块化开发,解决依赖的问题.
+	原理：<data-main属性加载入口文件，在底层动态创建script标签，用正则表达式匹配加载的入口文件名，动态的创建标签，动态的加载。>
+		1.在入口函数main.js里面定义的require方法或者define方法，requireJS会把这些  依赖和回调方法  都用一个数据结构保存起来。
+		2.当页面加载时，requireJS会根据这些依赖预先把需要的js通过document.createElement的方法引入到dom中，这样，被引入dom中的script便会运行。
+		3.当js里需要用到依赖所返回的结果时,requireJS便会把之前那个保存回调方法的数据结构里面的方法拿出来并且运行，然后把结果给需要依赖的方法。
+	seajs 底层怎么实现的，先判断依赖关系，先把函数变成一个字符串，只需要正则表达式来匹配require关键词后面的引用关系即可。当前模块在加载所依赖的模块的是，所依赖的模块同样也需要进行这一过程，直到所有的依赖都加载执行完毕，当前模块才开始执行
+
+8\AMD，CMD区别
+	AMD 是 RequireJS 在推广过程中对模块定义的规范化产出。(依赖前置)
+	CMD 是 SeaJS 在推广过程中对模块定义的规范化产出。(依赖就近)
+	区别：
+	1. 对于依赖的模块，AMD 是提前执行，CMD 是延迟执行。不过 RequireJS 从 2.0 开始，也改成可以延迟执行。CMD 推崇 as lazy as possible.
+	2. CMD 推崇依赖就近，AMD 推崇依赖前置。看代码：
+	// CMD
+	define(function(require, exports, module) {
+	var a = require('./a')
+	a.doSomething()
+	// AMD
+	define(['./a', './b'], function(a, b) { // 依赖必须一开始就写好
+	a.doSomething()
+	}) 
+
+8\水平居中：
+	(一) 块级元素：
+		1. 直接margin: 0 auto;
+		2. 定位：position: absolute; left: 50%; margin-left: 负的宽度一半，这种方式适合于知道宽度的情况；
+		3. css3 transform: translateX(-50%);
+		4. css3弹性盒模型：justify-content: center
+		
+	(二) 行级元素
+		1. 直接  text-align: center;
+		2. 和上面的块级元素一样
+
+	重直居中：
+	(一) 块级元素：
+		1. 定位：position: absolute; top: 50%; margin-top: 负的高度一半，这种方式适合于知道高度的情况；
+		2. css3 transform: traslateY(-50%);
+		3. css3弹性盒模型：align-items: center
+		5.display:table vertical-aglin:middle;
+	(二) 行级元素
+		1.line-height = height;
+		2.和上面的块级元素一样
+
+
+
+9\弹性盒模型
+	display：-webkit-flex;
+		flex：1;????
+		flex：2;
+		flex：3;
+
+	#div1{
+		display:-webkit-box;
+		-webkitbox-orient:vertical;//垂直
+		-webkitbox-pack:justify;
+	} 
+	#div1 div:nth-child(1){
+		-webkit-box-flex:1;
+	}
+
+两列布局
+	左边宽度固定,右边自适应
+	1、左边浮动,右边marginleft
+	2、弹性盒模型;
+	3、定位;
+
+一般如何布局;
+div+css布局,浮动,定位,弹性盒模型.rem
+固定布局,流式布局
+
+
+
+
+
+13\事件冒泡用处
+	1、子元素太多
+	2、后插入元素的事件绑定问题
+		不是所有的事件都能冒泡，例如：blur、focus、load、unload\mouseleave,mouseEnter
+
+
+13.1\事件代理/委托：利用事件冒泡。把子元素的事件绑定给父元素。
+               $companyList.on('click', 'li', function() {
+			});
+
+13.2\事件委托的局限性：有些事件没有冒泡行为，focus，blur没有
+
+13.3\为什先捕获后冒泡;
+	历史问题,网景公司提出捕获,ie提出冒泡;
+
+14\addEventListener兼容性问题
+	FF和Chrome只支持addEventListener,
+		addEventListener(click,fn,false);(true是捕获/false事件冒泡)|移除:removeEventListener
+	而	ie只支持attachEvent	
+		attachEvent(onclick,fn);/移除:detachEvent
+
+	问题:attachEvent的this指向是window(用call),IE后绑定的事件先调用,顺序有问题
+
+  函数封装:
+	function addEvent(obj,ev,fn)    //obj为要绑定事件的元素，ev为要绑定的事件，fn为绑定事件的函数
+            {
+                if(obj.addEventListener){
+                    obj.addEventListener(ev,fn,false);
+                }else if(obj.attachEvent){
+                	obj[ev+fn] = function(){
+                		fn.call(obj);
+                	}
+                    obj.attachEvent("on" + ev,obj[ev+fn]);
+                }else {
+                     obj['on'+type]=fn;
+                 }
+            }
+      function removeEvent(obj,ev,fn)
+            {
+                if(obj.removeEventListener){
+                    obj.removeEventListener(ev,fn);
+                }else if(obj.detachEvent){
+                    obj.detachEvent("on" + ev, obj[ev+fn]);
+                }
+                }else {
+                     obj['on'+type]=null;
+                 }
+            }
+
+
+
+14.2\事件三要素,事件源,事件处理函数,事件对象(e)
+		oDiv.onclick= function(){
+			var e = e||window.event;
+			var target= e.target||e.srcElement
+		}
+
+14.3\target:
+	e.target(标准浏览器)||e.srcElement(IE)
+	e.target获得真正触发的目标元素。current target返回给谁绑定的事件就返回谁。（在有事件冒泡的情况下）
+
+14\取消事件冒泡(事件传播)
+	标准浏览器：e.stopPropagation;
+	IE:window.event.cancelBubble=true;（为了做兼容，如果在前面写明e=e||window.event;IE里面就是e.cancelBubble=true;）
+	
+15\阻止事件默认行为：e.preventDefault(); IE:e.returnValue = false ;
+
+
+15\阻止鼠标右键的默认行为
+	.oncontextmenu{
+		return false;阻止默认行为的
+		preventDefault()
+	}
+
+
+16\	标准盒模型 的宽度就是：width
+	怪异模式下的盒模型的宽度就是：width+border+padding
+	ie6  7 8   把<doctype>删掉
+	两种盒模型如何转化:
+		转化：box-sizing=border-box
+
+
+
+
+17\伪类：link，visited，hover，active，focus，first-child
+   伪对象(伪元素)：before，after，first-line，first-letter
+
+18\ #div1 p:nth-child(1){这里面样式操作的就是div下面的第一个元素，当元素是p的时候才会被选中}；
+	#div1 p:nth-of-type(1){这里面样式操作的就是选中类型是p标签中的第一个}
+
+
+18\getpost区别：
+	他是http请求方式的两种，
+	get请求？post提交
+	get(ie2-4k)，，post很大
+	get请求头，放在地址栏不安全，post包体，相对安全
+
+
+19\文档就即函数与window.onload的区别
+	文档就即函数等dom结构渲染完（页面解析完毕）就加载
+	window.onload等所有资源都完事再加载
+
+
+22\模块化和组件区别:
+	都是解决代码重用，组件是单独的，没有关联，模块化是有关联的。
+
+
+
+23\CSS兼容性
+	1. 透明度问题，标准浏览器(0-1)opacity:0.2，IE (0-100);filter:  alpha(opacity=20);
+	2、IE6不支持display：inline－block
+	3、IE6之间的浏览器不支持min-height，解决：加一s个_height:200px;
+	4、 IE6只支持 a标签的：hover，不支持其他标签的：hovers
+	5、图片浮动会有间距；display：inline-block;
+
+23\取CSS:
+	oDiv.style//内联读不到
+	oDiv.currentStyle.width//IE
+	window.getComputedStyle(oDiv,null).width//标准
+
+23.1\让图片不显示的三种办法：
+	display:none;不占位置，事件能绑定
+	opacity:0;占位，事件能绑上
+	visibility:hidden;占位，事件绑定不上
+
+23.2\列表
+	<dl>//定义列表
+		<dt>标题</dt>
+		<dd>内容1</dd>
+		<dd>内容2</dd>
+	</dl>
+
+24\浮动高度塌陷：
+	1、如果父元素的高度是固定的，那就把高度写死
+	2、overflow:hidden
+	3、可以在dom元素里加一个<div style="clear:both"></div>
+	4、父级div定义 伪类:after 和 zoom  
+		.clearfloat:after{ display:block;    clear:both;    content:"";   visibility:hidden;   height:0;   } 
+		.clearfloat{zoom:1} （IE8以上和非IE浏览器才支持:after)
+	5、父元素也浮动
+
+25\两块级元素，给子元素加上外边距，加不上，会因为上外边距合并，父子元素一起掉下来。
+	1、overflow:hidden
+	2、给子元素float 
+	3、给父元素加上内边距
+
+27\浏览器是怎么把html文档解析成DOM结构的
+ 	渲染引擎会解析ＨＴＭＬ文档并把标签转换成内容树中的ＤＯＭ节点。它会解析style元素和外部文件中的样式数据。样式数据和ＨＴＭＬ中的显示控制将共同用来创建另一棵树——渲染树。然后再布局，webkit叫渲染树/Geko叫帧树
+28\选择器中~是什么意思?
+		p~ul   选择前面有 <p> 元素的每个 <ul> 元素。
+		为所有相同的父元素中位于 p 元素之后的所有 ul 元素设置背景;
+
+31\字符串方法:(indexOf/lastIndexOf/charAt, split/match/test, slice/substring/substr, toLowerCase/toUpperCase)
+	String字符串中的方法：
+				原字符串 不变	
+	1.str.charAt(1)     返回在指定下标位置的字符。
+	2.str.indexOf(value,fromindex)
+	      返回某个指定的字符串值在字符串中首次出现的位置,          
+	      如省略第二个参数，则将从字符串的首字符开始检索。
+	      对大小写敏感，如果要检索的字,符串值没有出现，则该方法返回 -1
+	  str.lastIndexOf(value,fromindex)
+	      返回一个指定的字符串值最后出现的位置，
+	      在一个字符串中的指定位置从后向前搜索，
+		  如省略第二个参数，则将从字符串的最后一个字符处开始检索。
+		  对大小写敏感，如果要检索的字,符串值没有出现，则该方法返回 -1
+
+	3.concat()     连接两个或多个字符串。使用 " + " 运算符来进行字符串的连接会更简便一些
+	4.slice(start,end)
+	    slice()比substring()要灵活一些，因为它允许使用负数作为参数，-1 指字符串的最后一个字符，-2 指倒数第二个字符，以此类推。
+	5.substr(start,length)	从起始索引号提取字符串中指定数目的字符，不建议使用了
+	6.substring(start,end)	 提取字符串中两个指定的索引号之间的字符。
+	7.toLowerCase()	把字符串转换为小写。
+	8.toUpperCase()	把字符串转换为大写。
+	9. str.split(a,b)：把 字符串 分割成 数组 ,返回数组,与join正好是相反的操作。
+	10.match()	找到一个或多个正则表达式的1`匹配。
+	      该方法类似indexOf()和lastIndexOf()，但是它返回指定的值，而不是字符串的位置。
+	11.replace()	替换与正则表达式匹配的子串。
+	12.search()	检索与正则表达式相匹配的值,返回字符串中的第一个匹配的位置
+
+	支持正则表达式的 String 对象的方法
+	search，match，replace，split
+
+
+32\数组 (push/pop, shift/unshift, split/join, slice/splice/concat, sort/reverse, map/reduce, forEach, filter)
+	var list = new Array() list[0] = 0; list[1] = 1; list[2] = 2; 
+	或者这样声明：var list = [0,1,2] 
+
+	1 shift()t:删除数组的第一个元素,返回删除的值。这里是0 
+	2 unshift(3,4):把参数加在数组的前面，返回数组的长度。现在list:中是3,4,0,1,2 
+	3 pop():删除数组的最后一个元素，返回删除的值。这里是2. 
+	4 push(3):将参数加载到数组的最后，返回数组的长度，现在List中时：0,1,2,3 
+	5 concat(3,4):把两个数组拼接起来。 返回新数组
+	6 splice(start,deleteCount,val1,val2,...)：从start位置开始删除deleteCount项，并从该位置起插入val1,val2,... 
+	reverse：将数组反序		var b = a.reverse(); 
+	sort(orderfunction)：按指定的参数对数组进行排序 
+	slice(start,end)：返回从原数组中指定开始下标到结束下标之间的项组成的新数组 
+		var a = [1,2,3,4,5]; 	var b = a.slice(2,5); //a：[1,2,3,4,5] b：[3,4,5] 
+	join(separator)：将数组的元素组起一个字符串，以separator为分隔符，省略的话则用默认用逗号为分隔符 
+	var a = [1,2,3,4,5]; var b = a.join("|"); //a：[1,2,3,4,5] b："1|2|3|4|5"
+
+	ES5中新方法
+	 1\forEach
+		var arr = [1,5,8,4];
+		arr.forEach(function(v,i,a){//三个参数,1\每个元素的值;2\每个元素的索引;3\数组本身
+		   console.log(v+','+i+','+a);
+		})
+	 2\map映射(根据函数里的规则换算,返回一个新数组)
+		a = [1,5,8];
+		b=a.map(function(x){
+		    return x*x;
+		});
+		1,25,64
+	 3\filter(返回符合规则的数,形成新数组)
+		arr = [1,5,8];
+		var arr3 = arr.filter(function(x){
+		    return x%2 == 0;
+		});
+	 4\every(测试是否每一个数都符合规则)
+		a = [1,5,8];
+		a.every(function(){
+		   return x< 10
+		});
+	 5\some(测试数组中是否有数符合规则)
+	 6\indexOf(返回某一个元素,在数组中首次出现的位置,从0开始数);lastIndexOf(从后往前)
+
+32.1\有一串乱序的数组，排序
+	exports.sortNumber = function(arr){
+		return arr.sort(function(a,b){
+			return a-b;
+	});
+	
+32.2\有一串按顺序排列的数组，打乱顺序
+	exports.sortNumber = function(arr){
+		return arr.sort(function(a,b){
+			return 0.5 – Math.random();
+		});
+
+
+35\jq原理
+	jq最核心的是$,他是一个函数.函数中返回一个自定义的jq对象,她是一个类,在这个类的原形下有许多jq自定义的方法.每次调用$返回一个新的jq对象,同时在$函数中根据传入参数的类型,函数或者字符串.
+	把选中的元素存在数组中,遍历这个数组,取出每个元素进行dom操作.
+	在每一个方法中,return this,this就是在$函数中返回的jq对象..
+
+36\jq常见优化方案
+	1. 缓存jq对象，如：var $div1 = $('#div1');
+	2. 在原生的js没有什么兼容性的情况下，可以尽量使用原生的js，因为jq的效率比较低
+	3. 在使用$选择器的时候应该指定上下文，提高搜索速度
+	4. 合理的使用事件委托
+
+36.1\jq插件
+	$.fn.extend({
+		dialog:function(参数){
+			在这个函数中实现open和close的操作
+		}
+	});
+37\jq中的事件绑定
+	1. on()这个是现在标准和推荐的方法
+	// on函数的第二个参数用来指定一个选择器，当使用这个选择器的时候，就可以实现事件委托
+	2. 以前还有直接: 
+		click(function(){});
+	3. live：专门是用来给后生成的元素绑定的（用js动态生成的元素）
+	4. one 只执行一次
+	5. delegate 事件代理
+	6. bind：就是通用的事件的绑定方法
+
+
+38\jq优点:
+2.JQuery的特点
+	(1).强大的DOM选择器(CSS1-3 + XPath)
+	(2).解决兼容性问题
+	(3).有现成的组件
+	(4).可扩展性强。(自己封装jq插件)
+	(5).事件、样式、动画支持。
+	(6).Ajax操作支持。
+	(7).跨浏览器兼容。
+
+39你常用JQ方法有哪些，给我简单介绍一下
+	一、选择器、:eq(),:has(),p:nth-child(2)(是p元素,且是父元素的第二个子元素)p:nth-of-type(2)(父元素的第二个p元素)
+    nth-child（）（1开始），其余都是0开始
+	二、属性CSS、
+	   1） .prop与.attr区别:
+			对于HTML元素本身就带有的固有属性，在处理时，使用prop方法。
+			对于HTML元素我们自己自定义的DOM属性，在处理时，使用attr方法。
+	   2）.innerHeight/innerWeight(包括padding不包括border) 
+	          outerHeight()outerHeight(true)(包括border,如果true的话加margin)
+	   3）.offset相对于文档.position相对于最近已定位的父元素
+
+	三、dom操作、
+	.remove() 将元素移出DOM。 当我们想将元素自身移除时我们用 .remove()，同时也会移除元素内部的一切，包括绑定的事件及与该元素相关的jQuery数据。要删除的元素不删除数据和事件的情况下，使用.detach()来代替。。
+	当需要移走一个元素，不久又将该元素插入DOM时用.detach()
+	四、遍历、.eq()/.siblings()
+	五、事件、
+	        .end连续 . 操作
+	六、效果 .hide()/.toggle()
+
+
+
+38\svn和git的区别:
+	1、Git是分布式的，SVN是集中式的，好处是跟其他同事不会有太多的冲突，自己写的代码放在自己电脑上，一段时间后再提交、合并，可离线提交，
+	SVN在Commit前，我们都建议是先Update一下，跟本地的代码编译没问题，并确保开发的功能正常后再提交。Git可能这种情况会少些
+
+38.1\git命令
+		git help <command> # 显示command的help
+		git show # 显示某次提交的内容 git show $id
+		git co -- <file> # 抛弃工作区修改
+		git co . # 抛弃工作区修改
+		git add <file> # 将工作文件修改提交到本地暂存区
+		git add . # 将所有修改过的工作文件提交暂存区
+		git rm <file> # 从版本库中删除文件
+		git rm <file> --cached # 从版本库中删除文件，但不删除文件
+		git reset <file> # 从暂存区恢复到工作文件
+		git reset -- . # 从暂存区恢复到工作文件
+		git reset --hard # 恢复最近一次提交过的状态，即放弃上次提交后的所有本次修改
+		git ci --amend # 修改最后一次提交记录
+		git revert <$id> # 恢复某次提交的状态，恢复动作本身也创建次提交对象
+		git revert HEAD # 恢复最后一次提交的状态
+
+
+
+
+
+39\图片预加载
+	for(){
+		var img=new Image();
+		
+		img.onload=function（）{
+			计数 
+			loadSuccess（）
+		}
+	}
+		img.src=ghjg//注意顺序问题（ie6下不好使）
+		图片排序
+
+40\懒加载
+	先把img的src指向一个小图片，图片真实的地址存储在img一个自定义的属性里,<img src="lazy-load.png" data-src="xxx" />,等到此图片出现在视野范围内了，获取img元素，把data-src里的值赋给src。
+
+
+
+41\defer async区别
+	都能实现异步加载、延迟加载js
+	defer下载完之后等着  等dom结构渲染完（页面解析完毕） 都加载完再执行 理论上可以保证文件加载顺序
+	async下载完之后立即执行 不能保证文件加载顺序
+
+
+42\setTimeout (fn,0)
+	setInterval和setTimeout并不是多线程，这两个函数根本上其实是事件触发函数
+	在同一线程不可能同时有两个元素获得焦点,打开另外一个事件的队列,0虽然立即执行但不是在一个线程中。
+返回值是一个number类型的数字
+43\setTimeOut中改变this指向问题解决办法
+		1\setTimeout(function() {
+				alert(this.name);
+			}.bind(this), 1000); 
+		2\setTimeout(function() {
+				var that=this;   //setTimeout 里面的this 指向window
+				alert(that.name);
+			}, 1000); 
+		3\setTimeout(()=>{   //使用箭头函数
+						alert(this.name);
+					}, 1000); // 张三
+
+44\想要往setTimeout里传参
+	var fn = function(name){
+	       alert(name);
+	}
+	setTimeout('fn("lisi")',2000)
+
+
+
+
+47\宽度
+	styleWidth：content/
+	clientWidth：content/padding
+	offsetWidth：content/padding/border
+	scrollWidth:实际内容(有滚动条情况下)
+	jq
+	.width()/内容
+	.innerHeight/innerWeight(包括padding不包括border) 
+    .outerHeight()outerHeight(true)(包括border,如果true的话加margin)
+
+48\offsetparent（不是W3c标准，但浏览器都支持）和parentNode区别：parentNode亲爹；offsetparent：最近已定位
+
+
+48\节点
+	nodeType——节点类型 1：元素节点；2：属性节点；3：文本节点；
+	nodeValue——节点值
+	元素节点（oDiv）：nodeType：1；nodeValue：空；nodeName：div
+	属性节点：nodeType：2；nodeValue：属性值；nodeName：属性名称
+	文本节点：nodeType：3；nodeValue：文本内容；nodeName：#text
+
+49\js数据类型:
+       基本数据类型:string number boolean null undefined
+           undefine：定义了没赋值，函数的参数没有传值，访问对象中没有的属性，访问超过数组长度的值
+           null：指代是对空对象的引用（对象的占位符）
+       引用数据类型:obj(是保存在堆内存中的对象)
+
+	   基本类型值指的是那些保存在栈内存中的简单数据段，即这种值完全保存在内存中的一个位置。
+
+	   而引用类型值则是指那些保存在堆内存中的对象，意思是变量中保存的实际上只是一个指针，这个指针指向内存中的另一个位置，该位置保存对象。
+
+
+
+58\JS中，可以将对象分为“内部对象”、“宿主对象”和“自定义对象”三种。
+		1.内部对象
+			js中的内部对象包括Array、Boolean、Date、Function、Global、Math、Number、Object、RegExp、String以及各种错误类对象，包括Error、EvalError、RangeError、ReferenceError、SyntaxError和TypeError。
+		其中Global和Math这两个对象又被称为“内置对象”，这两个对象在脚本程序初始化时被创建，不必实例化这两个对象。
+		2.宿主对象
+		  浏览器对象:如Window和Document等等。navigator对象表示浏览器的信息，最常用的属性包括：screen;location对象表示当前页面的URL信息。例如，一个完整的URL：
+		3.自定义对象
+
+
+
+59\js一个有三种方法创建对象，
+	1.对象直接量
+		var obj2 = {
+		  name: "ys",
+		  age: 12
+		};
+
+	2.new创建对象
+		1\系统内置对象var obj2 = new Array();
+		2\自定义对象var obj1 = new Object();
+
+	3.Object.create()创建
+		var obj1 = Object.create({
+		  name: "ys",
+		  age: 12
+		});
+
+
+
+53\js定义类的方法
+	主要有构造函数原型和对象创建两种方法。
+	1) 构造函数方法定义类
+	    function Person(){
+	        this.name = 'michaelqin';
+	    }
+	    Person.prototype.sayName = function(){
+	        alert(this.name);
+	    }
+	    var person = new Person();
+	    person.sayName();
+
+	2) 对象创建方法定义类
+	    var Person = {
+	        name: 'michaelqin',
+	        sayName: function(){ alert(this.name); }
+	    };
+	    var person = Object.create(Person);
+	    person.sayName();
+
+
+
+52\js继承机制
+	 
+	我知道一种基于原型的继承机制，举个例子来说：
+	假设有一个ClassA和ClassB，ClassB想继承ClassA
+	首先要在ClassA的构造函数里定义属性，在ClassA的原型里定义方法：
+	<!-- 
+	function ClassA() {
+	    this.color = sColor;
+	}
+	 
+	ClassA.prototype.sayColor = function () {
+	    alert(this.color);
+	};
+	-->
+	然后在ClassB的构造函数中使用ClassA.call(this)来继承ClassA中的属性：
+	<!-- 
+	function ClassB() {
+	    ClassA.call(this);
+	} 
+	-->
+	再用ClassB.prototype等于ClassA的一个实例对象来继承ClassA中的方法：
+	<!-- 
+	ClassB.prototype = new ClassA(); 
+	-->
+	这样赋值把classA的constructor也改了所以还得改回来
+	<!-- ClassB.prototype.constructor = ClassB; -->
+
+
+
+	2\构造继承
+	核心：使用父类的构造函数来增强子类实例，等于是复制父类的实例属性给子类
+
+	3\实例继承
+	为父类实例添加新特性，作为子类实例返回
+
+
+
+53\this的几种使用情况：
+	在普通的函数中this指向window
+	在定时器中指向window,(其实普通的函数和定时器都是window下的方法，所以都指向window)
+	在一个对象中的方法中this批向当前对象(new了)
+	绑事件是事件源(真正触发的)
+
+
+
+55\js里边的this指的是什么?
+	this指的是对象本身，而不是构造函数．
+
+  java中的this?
+	使用this 表示当前调用方法的对象的引用  
+	希望在方法的内部获得当前对象的引用,可以使用关键字this,this 关键字只能在方法内部使用 表示"调用方法的那个对象的引用"  
+
+56\call和apply区别
+	call和apply都可以用来改变函数里的this指向，区别是
+	call(obj,1,2,3,)从第二个参数开始有多个参数，用来代表函数的实参
+	apply(obj,[1,2,3])第二个参数是一个数组，数组中的每一个元素对应一个实参
+	bind(obj,1,2,3,)();
+	apply,call是直接执行函数调用，bind是绑定，执行需要再次调用．apply和call的区别是apply接受数组作为参数，而call是接受逗号分隔的无限多个参数列表，
+
+
+
+
+49.1\typeof（判断数据类型）
+	console.log（typeof undefine）;//undefined
+	console.log（typeof null）;    //object  (早期js的设计错误，被延续下来，null可以指代一个空对象)
+	console.log（typeof function(){}）; //function
+	console.log（typeof []）;//object
+
+	constructor（返回创建类的构造函数）
+	instanceof(是谁谁的实例)
+	isArray（是不是数组）(ES5,ie8不支持)
+	.toString（Object中默认调用的方法，用来返回该对像的字符串形式,找其原型链的toString方法）
+
+49.2\检测数据类型用什么？typeof
+	   有没有什么问题？测试数组测试不出来，测试对象只是object，不能测试出是哪个对象
+	   (Array,Date,Object等都返回object，只能检测是一个对象，但是不能具体到哪一个对象)
+	   怎么解决？constructor/instanceof
+	   还有吗？(图片)在object原型下的tostring方法call调用一下,可以返回"[object Array]"这个类型
+
+
+51\图片自适应
+	img标签
+	div设置background-image;padding-top:高/宽;让图片自适应
+
+
+56\ caller, callee和arguments分别是什么?
+		callee返回正在执行的函数本身的引用，它是arguments的一个属性;
+		caller返回一个函数的引用，这个函数调用了当前的函数;
+		arguments是函数的所有参数列表，它是一个类数组的变量．
+		代码演示
+	    function parent(param1, param2, param3) {
+	        child(param1, param2, param3);
+	    }
+
+	    function child() {
+	        console.log(arguments); // { '0': 'mqin1', '1': 'mqin2', '2': 'mqin3' }
+	        console.log(arguments.callee); // [Function: child]
+	        console.log(child.caller); // [Function: parent]
+	    }
+
+	    parent('mqin1', 'mqin2', 'mqin3');
+
+
+
+56\如何解决Chrome在应用transition时页面闪动的问题？ 
+-webkit-transform-style:preserve-3d;或-webkit-backfacevisibility:hidden; 
+
+
+55\前端安全:
+	1\资源枚举
+	别有用心的人会遍历你站点所有可访问的目录，然后把一些常见的备胎文件名（比如“sql.bak”、“index-副本.html”）一个个都枚举一下，如果运气好枚举到了就直接下载。
+
+	2\XSS（cross-site scripting跨域脚本攻击）基于反射的XSS攻击，主要依靠站点服务端返回脚本，在客户端触发执行从而发起WEB攻击。其重点是“跨域”和“客户端执行”。
+		解决:前端开发人员要注意在正确的地方使用正确的编码方式，有时为了防御XSS，在一个地方我们需要联合HTMLEncode、JavaScriptEncode进行编码，甚至是叠加，并不是固定一种方式编码（又是具体情况具体分析）。2、 不不要相信任何来⾃自⽤用户的输⼊入  进⾏行行输⼊入过滤
+	
+ 如何保证你的HTTP cookies安全不受XSS攻击
+	在set-cookieHTTP头部加上这几个信息：
+	HttpOnly-这个属性用来防止跨站脚本攻击，它不允许cookie被JavaScript代码获取。
+	secure-这个属性告诉浏览器只有在HTTPS连接时才发送cookie
+	像这样：Set-Cookit: sid=<cookit-value>; HttpOnly
+
+	CI下面有开关,xss???????
+
+	php:setcookie("abc", "test", NULL, NULL, NULL, NULL, TRUE);
+
+
+
+	3、CSRF攻击力：以你的名义发送邮件、发消息，盗取你的账号，甚至购买 商品，虚拟货币转账，个⼈人隐私泄露露以及财产安全
+
+55.1\解决盗链
+php中$_sever,记录一下,比对图片和当前访问的域名.
+
+
+56\linx命令:
+	ls:显示文件或目录
+	mkdir:创建目录
+	-p:创建目录，若无父目录，则创建p(parent)
+	cd:切换目录
+	touch:创建空文件
+	echo:创建带有内容的文件。
+	cat:查看文件内容
+	cp:拷贝
+	mv:移动或重命名
+	rm:删除文件
+	find : 在文件系统中搜索某文件
+	wc : 统计文本中行数、字数、字符数
+	grep : 在文本文件中查找某个字符串
+
+移动端
+  57\移动端,点透 tap事件
+	原因:zepto的tap事件是通过兼听绑定在document上的touch事件来完成tap事件的模拟的，并且tap事件是冒泡到document上触发的！！！而在冒泡到document之前，用户手的接触屏幕(touchstart)和离开屏幕(touchend)是会触发click事件的,因为click事件有延迟触发(这就是为什么移动端不用click而用tap的原因)(大概是300ms,为了实现safari的双击事件的设计)，<所以在执行完tap事件之后，弹出来的选择组件马上就隐藏了，此时click事件还在延迟的300ms之中，当300ms到来的时候，click到的其实不是完成而是隐藏之后的下方的元素，如果正下方的元素绑定的有click事件此时便会触发，>
+
+
+		1\ouchstart->touchend->click。亦即click的触发是有延迟的，这个时间大概在300ms左右。
+			.on('touchstart',function(){
+				e.preventDefault();
+			})
+
+		2\引入fastclick.js，因为fastclick源码不依赖其他库所以你可以在原生的js前直接加上
+
+		3\监听touchend事件来替代tap，或者touchstart，并阻止默认行为
+			$("#close").on("touchend",function(e){
+				$("#alertBox").hide();
+				e.preventDefault();
+
+			});
+		4\延迟一定的时间(300ms+)来处理事件
+		5\使用CSS3的pointer-events : true   和 pointer-events : none交替使用对下层元素设置，阻止触发click事件。
+		
+
+
+	58\rem\em
+		EM是相对于其父元素来设置字体大小的
+		Rem是相对于根元素<html>
+		px是固定单位，其实Px也不是绝对固定的，也算是相对的，比如在普通屏幕和视网膜屏上，1px就不一样
+
+	59\input右侧输入
+		<input style="text-align:right" />
+		<input type="text" dir="rtl" />
+
+	60\移动端框架
+		jquery mobile（依赖于jquery，太重了，不常用，后来模块化了，只需引入需要的模块）
+		zepto.js（轻量级框架，模块化，核心文件很小，流行，语法与jquery雷同,以$开头）
+
+	61\webview，我知道
+		我了解的是微信自己有一个webview，在这个webview有一些相应的jsapi接口，我们可以直接使用这些接口，但是这些接口并不需要考虑一些安全问题，因为如果你在微信以外访问，微信是不允许的，可它会提示必须要微信客户端访问
+
+	61.1\jquery mobile:用data-role="header/footer/page"
+			一个web app 中可以有多个page ，每个page又一个唯一的id标识，多个page之间通过 href 链接，
+			首页id值应为“index”，这样jQM会将其默认为首页
+			地址栏中： href＃页面id
+			data－role＝”navbar“ 导航栏
+			header，footer设置data-position="fixed"就固定定位了
+			data－icon＝”camera“ 添加图标
+			<ul data－role＝”listview“ data-inset="true"> 添加列表
+			左右内边距
+			表单
+			<form id＝“多个page中必须唯一”>
+				<label></label>
+				<input>
+			</form>
+
+			表格table：data-role="table" data-mode="reflow"
+			回流表格模式，屏幕宽时，就是普通表格布局，设置几个td就是几个td。屏幕窄时，可能变成一个td，多个td上下堆叠。
+
+			jQM中推荐使用：
+			$(document).on("pageinit","#page",function(){
+			});
+
+构建工具grunt
+	Grunt 依赖 Node.js 所以在安装之前确保你安装了 Node.js。然后开始安装 Grunt。
+	安装\grunt-cli	[npm install -g grunt-cli;]
+	在本地建立grunt文件夹
+	进到文件夹下	[npm init]初始化
+	写入一个name(不要写grunt)[test],生成配置文件package.json
+	建立Gruntfile.js文件,在里面配置任务,
+
+
+55\实现模块化的三种规范 
+	1、commonjs它使得js不在只是运用在浏览器客户端 他定义了一些规范和应用程序编程接口api 使得js也可以像其他编程语言一样实现在服务器端、 图形界面、命令行工具 由于要使得js运行在服务器端运行，就必须给出模块化的解 决防范，一定要有模块，与操作系统和其他应用程序互动，否则 根本没法编程
+
+
+
+57\js垃圾回收:
+	目前JS的垃圾回收机制无非就是两种：1.标记清除（make-and-sweep） 2.引用计数（reference counting）
+	1.标记清除：标记清除简单的来说就是给各个变量名打上 YES or NO的标签以供JS引擎进行处理（当然打什么标签自己理解即可）。在和执行上下文类似的的环境中当变量名称进入环境的时候，那么变量会被打上 YES。一般来说是绝对不会释放被打上 YES 标签的变量内存的，一旦变量在出了该环境时，变会被打上 NO 标签（和作用域貌似有点像），JS引擎会在一定时间间隔或者设置的时间来进行扫描，对NO标签的进行剔除以释放其内存。
+	2.引用计数（查了很多资料，还是无法找到其真正的计算方式）
+	一般来说，引用计数的含义是跟踪记录每个值被引用的次数。当声明一个变量并将一个引用类型值赋给该变量时，则这个值的引用次数便是1，如果同一个值又被赋给另一个变量，则该值的引用次数加1，相反，如果包含对这个值引用的变量又取得了另一个值，则这个值的引用次数减1。当这个值的引用次数为0时，说明没有办法访问到它了，因而可以将其占用的内存空间回收。
+
+
+10\在浏览器地址栏里输入一个地址，按回车发生了什么？
+	1. 浏览器会发送一个get请求，该请求会被转发到DNS服务器，由DNS服务器解析域名，然后再转发到相应的IP地址对应的服务器。
+	2. 在服务器端由Apache这样的Web Server来接收请求，并进行相应的处理，然后响应结果给客户端浏览器。
+	3. 浏览器接收响应的结果，并进行相应的语法检查，如果有错误，可能会提示错误，如果没有错误，就进行渲染。
+	4. 渲染的时候先生成DOM树，然后根据CSS和JS规则生成渲染树（渲染树中的结构往往比DOM树要少，因为有些DOM树中有些元素如果隐藏的话，不会出现在渲染树中），最后再渲染出来
+
+
+
+
+
+11\如果div设置宽度,不设置高度,padding-top=50%.有没有高度?
+	有高度:相对于父级元素的宽
+	
+
+
+
+
+	sticky:吸顶
+	position:sticky;
+
+
+
+56\设计模式:(单例，工厂，代理，装饰，观察者模式等)
+
+	单例模式：单例模式的定义是产生一个类的唯一实例
+	判断这个对象是否存在，typeOf(),如果存在，就使用之前创建的。不存在就创建新的。
+
+	工厂：
+		简单工厂模式是由一个方法来决定到底要创建哪个类的实例, 而这些实例经常都拥有相同的接口. 
+		- 把实现同一件事情的相同的代码放到一个函数中，以后如果在想实现这个功能，不需要从新的编写这些代码来了，只需要执行当前的函数即可
+		- "函数的封装" -->**"高内聚低耦合":减少页面中的冗余代码,提高代码的重复利用率；**（工厂模式的优点就是函数模式的特点）
+
+
+	观察者模式：
+	　　观察者模式( 又叫发布者-订阅者模式 )应该是最常用的模式之一
+
+
+
+3\'use strict'严格模式?????
+
+
+51\js多线程
+	webworkers （html5中提出,ie不支持） 实现多线程  异步的执行JS 避免阻塞IO 
+	浏览器中的JS是单线程的。
+	解决客户端JavaScript无法多线程的问题，<其定义的worker是指代码的并行线程，不过webworker处于一个自包含的环境中，无法访问主线程的window对象和document对象，和主线程通信只能通过异步消息传递机制>
+
+具体操作
+	<我们需要把希望单独执行的javascript代码放到一个单独的js文件中，然后在页面中调用Worker构造函数来创建一个线程>，参数是该文件路径，参数存放如果是相对地址，那么要以包含调用Worker构造函数语句所在脚本为参照，如果是绝对路径，需要保证同源（协议+主机+端口）
+
+
+	我们可以看到worker对象只有两个属性，其实是两个回调函数句柄
+	onerror:当worker运行出现错误，并且没有在worker中ing捕获，会在此捕获
+	onmessage:当worker向主线程发送消息是调用
+
+	在其prototype内有两个重要方法
+	postMessage:很熟悉的赶脚，之前我们介绍过window对象的postMessage()方法，woker的postMessage方法和window的比较类似，但参数略有不同，只需要传递消息内容就可以，而且支持所有JavaScript原生数据类型，当然不放心的话同样也可以序列化为字符串传递
+	terminate:终止worker执行，有些worker执行比较慢，主线程可以主动终止其执行
+
+
+
+
+13\Websocket：基于TCP/IP协议的，双向的、全双工的数据连接
+           双向的：客户端、服务器端
+           全双工：数据的发送与接收，两者同步进行
+
+	<首先Websocket是ws协议,但是是基于HTTP协议的，借用了HTTP的协议来完成一部分握手。这段类似HTTP协议的握手请求中，多了几个东西。
+	这个就是Websocket的核心了，告诉 Apache 、 Nginx 等服务器：注意啦，我发起的是Websocket协议，快点帮我找到对应的助理处理~不是那个老土的HTTP。
+
+	至此，HTTP已经完成它所有工作了，接下来就是完全按照Websocket协议进行了。
+
+	但是Websocket只需要一次HTTP握手，所以说整个通讯过程是建立在一次连接/状态中，也就避免了HTTP的非状态性，服务端会一直知道你的信息，直到你关闭请求，这样就解决了接线员要反复解析HTTP协议，还要查看identity info的信息。
+
+	服务端就可以主动推送信息给客户端啦!>
+
+	在传统的方式上，要不断的建立，关闭HTTP协议，由于HTTP是非状态性的，每次都要重新传输 identity info （鉴别信息），来告诉服务端你是谁。
+
+
+	long poll：
+	 客户端发起连接后，如果没消息，就一直不返回Response给客户端。直到有消息才返回，返回完之后，客户端再次建立连接，周而复始。
+
+	其实原理跟 ajax轮询 差不多，都是采用轮询的方式，不过采取的是阻塞模型（一直打电话，没收到就不挂电话）
+	ajax轮询 需要服务器有很快的处理速度和资源。(速度）long poll 需要有很高的并发
+
+	哦对了，忘记说了HTTP还是一个状态协议。
+	通俗的说就是，服务器因为每天要接待太多客户了，是个健忘鬼，你一挂电话，他就把你的东西全忘光了，把你的东西全丢掉了。你第二次还得再告诉服务器一遍。
+
+
+36\ES6有哪些新特性？
+	类的支持，模块化，箭头操作符，let/const块作用域，字符串模板，解构，参数默认值/不定参数/拓展参数,for-of遍历,generato r器, Map/Set, Promise,``
+
+
+36\let，不会有覆盖原来i值的问题
+	const，不能改值，对象可以
+
+36.1\箭头函数
+	用它来写function比原来的写法要简洁清晰很多:
+
+	(i) => i + 1 //ES6
+	(x, y) => {x++; y--; return x+y}//复杂
+	函数体内的this对象，就是定义时所在的对象，而不是使用时所在的对象。并不是因为箭头函数内部有绑定this的机制，实际原因是箭头函数根本没有自己的this，它的this是继承外面的，因此内部的this就是外层代码块的this。
+
+
+36.2\对象解构(从数组和对象中提取值，对变量进行赋值，)
+	let cat = 'ken'
+	let dog = 'lili'
+	let zoo = {cat, dog}
+	console.log(zoo)  //Object {cat: "ken", dog: "lili"}
+
+	let dog = {type: 'animal', many: 2}
+	let { type, many} = dog
+	console.log(type, many)   //animal 2
+
+36.3\类Classes
+	class Animal {
+	    constructor(){
+	        this.type = 'animal'
+	    }
+	    says(say){
+	        console.log(this.type + ' says ' + say)
+	    }
+	}
+
+	let animal = new Animal()
+	animal.says('hello') //animal says hello
+
+	class Cat extends Animal {
+	    constructor(){
+	        super()
+	        this.type = 'cat'
+	    }
+	}
+
+	let cat = new Cat()
+	cat.says('hello') //cat says hello
+	上面代码首先用class定义了一个“类”，可以看到里面有一个constructor方法，这就是构造方法，而this关键字则代表实例对象。简单地说，constructor内定义的方法和属性是实例对象自己的，而constructor外定义的方法和属性则是所有实力对象可以共享的。
+
+	Class之间可以通过extends关键字实现继承.
+	super关键字，它指代父类的实例（即父类的this对象）。子类必须在constructor方法中调用super方法，否则新建实例时会报错。这是因为子类没有自己的this对象，而是继承父类的this对象，然后对其进行加工。如果不调用super方法，子类就得不到this对象。
+
+	ES6的继承机制，实质是先创造父类的实例对象this（所以必须先调用super方法），然后再用子类的构造函数修改this。
+
+
+
+
+37\promise
+		它不是新的语法功能，而是一种新的写法,解决回调函数,看上去不直观的问题,它允许你以一种同步的方式编写异步代码。
+		实际上因为回调函数不可控,用监听的方式解决回调函数深渊。
+		
+		new一个promise
+		用,then监听,回调函数处理
+		promise 有三种状态：**未完成** (unfulfilled)，**完成** (fulfilled) 和**失败** (failed)。
+
+		你需要创建一个代表数据将会在未来由 Web 服务返回的 Promise 对象。唯一的问题是目前数据还不可用。当请求完成并从服务器返回时数据将变为可用数据。在此期间，Promise 对象将扮演一个真实数据的代理角色。接下来，你可以在 Promise对象上绑定一个回调函数，一旦真实数据变得可用这个回调函数将会被调用。
+		
+new Promise((resolve, reject) => {
+  throw new Error('error')
+}).then(console.log).catch(console.error)
+
+如果你正在调试一个大型项目，你不知道哪个Promise可能会有问题，可以使用unhandledRejection。它会打印出所有未经处理的Promise异常		
+
+
+37\Generator.
+		1、Generator 函数是协程在 ES6 的实现，最大特点就是可以交出函数的执行权（即暂停执行）。
+
+		function* gen(x){
+		  var y = yield x + 2;
+		  return y;
+		}
+		上面代码就是一个 Generator 函数。它不同于普通函数，是可以暂停执行的，所以函数名之前要加星号，以示区别。
+		整个 Generator 函数就是一个封装的异步任务，或者说是异步任务的容器。异步操作需要暂停的地方，都用 yield 语句注明。Generator 函数的执行方法如下。
+
+		var g = gen(1);
+		g.next() // { value: 3, done: false }
+		g.next() // { value: undefined, done: true }
+
+		上面代码中，调用 Generator 函数，会返回一个内部指针（即遍历器 ）g。
+
+		2、这是 Generator 函数不同于普通函数的另一个地方，即执行它不会返回结果，返回的是指针对象。调用指针 g 的 next 方法，会移动内部指针（即执行异步任务的第一段），指向第一个遇到的 yield 语句，上例是执行到 x + 2 为止。
+		换言之，next 方法的作用是分阶段执行 Generator 函数。每次调用 next 方法，会返回一个对象，表示当前阶段的信息（ value 属性和 done 属性）。value 属性是 yield 语句后面表达式的值，表示当前阶段的值；done 属性是一个布尔值，表示 Generator 函数是否执行完毕，即是否还有下一个阶段。
+
+
+
+
+37\ 你对ES6的个人看法？
+	各大主流浏览器现在已经支持大部分新特性了，后端的Node.js更是可以直接使用ES6的绝大多数语法。
+
+
+37\ es7新特性是async，它允许以同步的方式编写异步代码，而不需要回调或Promise的复杂语法
+
+
+
+58\link标签和import标签区别：
+　　区别1：link是XHTML标签，除了加载CSS外，还可以定义RSS等其他事务；@import属于CSS范畴，只能加载CSS。
+　　区别2：link引用CSS时，在页面载入时同时加载；@import需要页面网页完全载入以后加载。
+　　区别3：link是XHTML标签，无兼容问题；@import是在CSS2.1提出的，低版本的浏览器不支持。
+　　区别4：link支持使用Javascript控制DOM去改变样式；而@import不支持。
+
+
+
+59\渐进增强：针对低版本浏览器进行构建页面，保证最基本的功能，然后再针对高级浏览器进行效果、交互等改进和追加功能达到更好的用户体验。
+   优雅降级（平稳退化）：一开始就构建完整的功能，然后再针对低版本浏览器进行兼容。
+
+60\超出内容省略号
+	overflow:hidden
+	text-overflow:ellipsis省略号;clip裁切
+	white-space:nowrap;换行
+
+
+
+61\自定义事件
+	1.对象直接量封装js自定义事件
+		var eventTarget = {
+		  addEvent: function(){
+		    //添加事件/将处理事件push到事件处理数组里面
+		  },
+		  fireEvent: function(){
+		    //触发事件
+		  },
+		  removeEvent: function(){
+		    //移除事件
+		  }
+		};
+	2、对象原型封装js自定义事件
+		function EventTarget(){
+		  this.handlers = {}; //事件处理程序数组集合
+		}
+		EventTarget.prototype = {
+		  constructor: EventTarget,
+		  addEvent: function(type, handler){
+		    if(typeof this.handlers[type] == 'undefined'){//判断事件处理数组是否有该类型事件
+		      this.handlers[type] = [];
+		    }
+		    this.handlers[type].push(handler);//将处理事件push到事件处理数组里面
+		  },
+		  //触发一个事件
+		   fireEvent: function(){
+			    //触发事件
+			  },
+			  removeEvent: function(){
+			    //移除事件
+			  }
+
+
+
+css预处理,sass？？？？
+
+
+62\柯里化（Currying）
+	给定一个函数的部分参数，生成一个接受其他参数的新函数
+	有一个神奇的 _.partial 函数，它就是柯里化的实现
+	// 获取目标文件对基础路径的相对路径 // 一般写法 const BASE = '/path/to/base'; const relativePath = path.relative(BASE, '/some/path'); // _.parical 改写 const BASE = '/path/to/base'; const relativeFromBase = _.partial(path.relative, BASE); const relativePath = relativeFromBase('/some/path');通过 _.partial ，我们得到了新的函数 relativeFromBase ，这个函数在调用时就相当于调用 path.relative ，并默认将第一个参数传入 BASE ，后续传入的参数顺序后置。
+	本例中，我们真正想完成的操作是每次获得相对于 BASE 的路径，而非相对于任何路径。柯里化可以使我们只关心函数的部分参数，使函数的用途更加清晰，调用更加简单。
+
+
+
+
+63\什么叫前后端分离
+	前端只负责展现样式,后端只负责数据;
+	实现前后端分离有两种方式:
+	1\框架
+	2\node.js写中间层;让控制器层也让前端写,降低冲突
+
+	node是如何做中间层的;(事件驱动,事件队列)
+		写控制器,express解决
+		处理json(远程调用/UDP服务器)
+
+
+
+
+
+
+
+
+http缓存:
+	GET请求可以被缓存，POST不能被缓存，所以要想在客户端做HTTP的缓存一定要注意使用GET请求！
+
+	If-Modified-Since/Last-Modified
+		If-Modified-Since这个是在Request里面的Cache中的信息用来表示本地缓存最后一次被修改的时间，他被发送到服务器并且和Response的Entity中Last-Modified作比较，如果两者的日期一致，那就说明在此期间页面没有任何改动浏览器可以使用本地缓存。（所提到的头域都可以在上面图中找到，大家结合图来看比较清晰）
+
+	If-None-Match/Etag
+		If-None-Match是在Request中请求头的第一行，他存储一个字符串（资源在服务器的唯一确定标志）。Etag是Response中Entity中的一个字符串。
+
+	两个也是做比较，相同说明可以使用缓存。
+
+	http协商缓存中：Etag/lastModified完整过程（可以配合上面的HTTP流程理解）：1.客户端请求一个页面（A）。2.服务器返回页面A，并在给A加上一个Last-Modified/ETag。3.客户端展现该页面，并将页面连同Last-Modified/ETag一起缓存。4.客户再次请求页面A，并将上次请求时服务器返回的Last-Modified/ETag一起传递给服务器。5.服务器检查该Last-Modified或ETag，并判断出该页面自上次客户端请求之后还未被修改，直接返回响应304和一个空的响应体。
+
+	那么问题来了为什么要使用两种缓存方式呢？而且从我的截图中可以看到仅有第二种Etag方式
+	原因如下：1.如果一些资源定期生成，这种情况下内容没有变化但是服务器的 Last-Modified改变了，导致文件使用不了缓存。2.Last-Modified的日期只能精确到秒从上面截图可以看到，如果在1s内做了修改，那么就会出现误判3.由于If-Modified-Since/Last-Modified这种方式使用时间判断一定要保证服务器和本地的时间的一致。
+
+	Etag是资源在服务器的唯一标识符，能够更加准确的控制缓存。Last-Modified 与 ETag 是可以一起使用的，但是服务器会优先验证 ETag，在一致之后才会判断Last-Modified，判断是否返回304.使用Ctrl+F5 强制刷新页面，可以忽略以上讲的两种缓存策略
+
+
+1.同步与异步同步和异步关注的是消息通信机制 ;
+	所谓同步:就是在发出一个*调用*时，在没有得到结果之前，该*调用*就不返回。但是一旦调用返回，就得到返回值了。换句话说，就是由*调用者*主动等待这个*调用*的结果。
+
+	而异步则是相反:*调用*在发出之后，这个调用就直接返回了，所以没有返回结果。换句话说，当一个异步过程调用发出后，调用者不会立刻得到结果。而是在*调用*发出后，*被调用者*通过状态、通知来通知调用者，或通过回调函数处理这个调用。
+
+	(典型的异步编程模型比如Node.js举个通俗的例子：你打电话问书店老板有没有《分布式系统》这本书，如果是同步通信机制，书店老板会说，你稍等，”我查一下"，然后开始查啊查，等查好了（可能是5秒，也可能是一天）告诉你结果（返回结果）。而异步通信机制，书店老板直接告诉你我查一下啊，查好了打电话给你，然后直接挂电话了（不返回结果）。然后查好了，他会主动打电话给你。在这里老板通过“回电”这种方式来回调。)
+2. 阻塞与非阻塞阻塞和非阻塞关注的是程序在等待调用结果（消息，返回值）时的状态.
+	阻塞调用是指:调用结果返回之前，当前线程会被挂起。调用线程只有在得到结果之后才会返回。
+
+	非阻塞调用指:在不能立刻得到结果之前，该调用不会阻塞当前线程。
+	还是上面的例子，你打电话问书店老板有没有《分布式系统》这本书，你如果是阻塞式调用，你会一直把自己“挂起”，直到得到这本书有没有的结果，如果是非阻塞式调用，你不管老板有没有告诉你，你自己先一边去玩了， 当然你也要偶尔过几分钟check一下老板有没有返回结果。
+
+	在这里阻塞与非阻塞与是否同步异步无关。跟老板通过什么方式回答你结果无关。
+
+
+
+
+> 继承:子类继承父类中的属性和方法
+> 多态:当前方法的多种形态->后台语言中:多态包含重载和重写
+> “JS中不存在重载”,方法名一样的话,后面的会把前面的覆盖掉,最后只保留一个
+> "JS中有一个操作类似重载但是不是重载":我们可以根据传递参数的不一样的,实现不同的功能，属于函数的多态性；
+
+
+
+你是如何避免回调地狱的?
+模块化 把回调函数分割成独立的函数
+使用控制流的库，比如async
+generators结合Promise
+async/await
+

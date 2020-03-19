@@ -1,0 +1,123 @@
+
+原型,原型链
+
+  Function.prototype = {
+        constructor : Function,
+        __proto__ : parent prototype,
+        some prototype properties: ...
+    };
+
+  
+  
+    在js里面并没有类(class)的概念，我们通常都是通过构造函数来创建对象,然后通过new这个关键字来实例化一个对象,
+
+    构造函数有个prototype属性，他指向一个原型对象，(原型对象有个constructor属性,他指向构造函数)这个原型对象下的属性和方法可以被(该构造函数的)实例对象所共享，
+
+    但是Prototype作为对象的内部属性，是不能被直接访问的。所以为了方便查看一个对象的原型，Firefox和Chrome中提供了”__proto__”这个非标准（不是所有浏览器都支持）的访问器（ECMA引入了标准对象原型访问器”Object.getPrototype(object)”）。
+     Function.prototype = {
+        constructor : Function,
+        __proto__ : parent prototype,
+        some prototype properties: ...
+    };
+    它指向了构造函数的原型对象 也就是该构造函数的prototype属性(p1.__proto__=Person.prototype;)
+    这样,我们就可以在实例对象上使用prototype定义的属性和方法了.
+
+
+通过new实例化一个对象的具体过程
+  <1> var p={}; 也就是说，初始化一个对象p。创建空对象{}
+  <2> p.__proto__=Person.prototype;(设置新对象的__proto__属性指向构造函数的prototype对象)
+  <3> Person.call(p);也就是说构造p，也可以称之为初始化p。(函数中的this被指向新实例对象)
+  <4>将初始化完毕的新对象地址，保存到等号左边的变量中
+
+
+原型链：
+    当从一个对象那里调取属性或方法时，如果该对象自身不存在这样的属性或方法，就会去自己关联的prototype对象那里寻找，如果prototype没有，就会去prototype关联的前辈prototype那里寻找，如果再没有则继续查找Prototype.Prototype引用的对象，依次类推，直到Prototype.….Prototype为undefined（Object的Prototype就是undefined）从而形成了所谓的“原型链”。
+
+为什么方法要写在prototype里?
+      每次实例化时，都会执行这个函数,里面的方法每次都会被定义, 比较浪费内存。
+   ( 就像一个父亲,他自己有好多属性和方法,生了好多个孩子,孩子会继承他的一些,但是并不需要他的全部.)
+    所以js里就用prototype来解决这个问题,把方法写在原型下.
+
+
+__proto__属性和prototype
+    函数的原型对象constructor默认指向函数本身，原型对象除了有原型属性外，为了实现继承，还有一个原型链指针proto，该指针指向上一层的原型对象，而上一层的原型对象的结构依然类似，这样利用proto一直指向Object的原型对象上，而Object的原型对象用Object.proto = null表示原型链的最顶端，如此变形成了javascript的原型链继承，同时也解释了为什么所有的javascript对象都具有Object的基本方法
+
+
+__proto__属性
+  __proto__属性（IE浏览器不支持）是实例指向原型对象的一个指针，它的作用就是指向构造函数的原型属性constructor，通过这两个属性，就可以访问原型里的属性和方法了。
+
+  __proto__属性和prototype属性的区别
+   prototype是function对象中专有的属性。
+  __proto__是普通对象的隐式属性，在new的时候，会指向prototype所指的对象；
+  __ptoto__实际上是某个实体对象的属性，而prototype则是属于构造函数的属性。__ptoto__只能在学习或调试的环境下使用。
+
+  
+
+ 构造函数用于定义实例属性,而原型模型用于定义方法和共享的属性
+  引用类型!!!!不要写在原型下!!!!!!!!!!
+    function Person(){
+    }
+    Person.prototype={
+        name:'yu',//存在栈中
+        friends:['lisi','zhangsan']//存在堆中
+    }
+    var p1 = new Person();
+    var p2 = new Person();
+    p1.friends.push('zhao');
+    alert(p1.friends);//'lisi','zhangsan','zhao'
+    alert(p2.friends);//'lisi','zhangsan','zhao'
+
+    p1.name = 'zu';
+    alert(p1.name);//zu来自实例
+    alert(p2.name);//yu来自原型
+
+
+    也就是说,更改了一个实例中引用类型,其他也会被改变.因为更改了 Person.prototype中得属性,所以也会改掉p2
+
+    但是对于包含基本值的属性,因为通过在实例上添加一个同名属性,可以覆盖隐藏原型中的对应属性.
+      (当为一个对象添加一个属性时,这个属性就会屏蔽原型对象中保存的同名属性)
+
+
+alert(Person.prototype.isPrototypeOf(p1));//true//检测p1是否是Person的实例
+alert(Object.getPrototypeOf(p1) == Person.prototype);//true
+alert(Object.getPrototypeOf(p1).name);//yu
+
+alert(p1.hasOwnPrototype('name'));//用于检测一个属性是否存在于原型中(true),还是存在于实例中(false).
+for in 实例原型中的属性.都可以访问.
+
+
+
+
+
+
+
+
+
+
+52\js继承机制
+
+  我知道一种基于原型的继承机制，举个例子来说：
+  假设有一个ClassA和ClassB，ClassB想继承ClassA
+  首先要在ClassA的构造函数里定义属性，在ClassA的原型里定义方法：
+  <!-- 
+  function ClassA() {
+      this.color = sColor;
+  }
+   
+  ClassA.prototype.sayColor = function () {
+      alert(this.color);
+  };
+  -->
+  然后在ClassB的构造函数中使用ClassA.call(this)来继承ClassA中的属性：
+  <!-- 
+  function ClassB() {
+      ClassA.call(this);
+  } 
+  -->
+  再用ClassB.prototype等于ClassA的一个实例对象来继承ClassA中的方法：//prototype里面继承了classA的所有属性和方法,但是一旦有引用类型,就会有问题,所以要用call的方式,会先查找构造函数里面的属性,所以不会有冲突
+  <!-- 
+  ClassB.prototype = new ClassA(); 
+  -->
+  这样赋值把classA的constructor也改了所以还得改回来
+  <!-- ClassB.prototype.constructor = ClassB; -->
+

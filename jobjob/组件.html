@@ -1,0 +1,278 @@
+
+1\react:(提示友好)(推崇的是函数式编程和单向数据流)
+
+ 组件的生命周期分成三个状态：
+		Mounting：已插入真实 DOM(第一次)
+		Updating：正在被重新渲染(当state被改变触发)
+		Unmounting：已移出真实 DOM(组件销毁)
+
+	React 为每个状态都提供了两种处理函数，will 函数在进入状态之前调用，did 函数在进入状态之后调用，三种状态共计五种处理函数。
+
+	实例化(渲染第一次加载)
+		getDefaultProps(设置默认值)
+		getInitialState (初始值)
+		componentWillMount(想组件渲染前,进行什么操作)
+		render(渲染)
+		componentDidMount(想组件渲染后,进行什么操作)
+
+	存在期(有改变之后)
+		componentWillReceiveProps(在接受参数前,已加载组件收到新的参数时调用)
+		shouldComponentUpdate (return true的时候组件是可以更新的,false不可以)
+		componentWillUpdate(更新之前)
+		render
+		componentDidUpdate(更新之后)
+
+	销毁期
+		componentWillUnmount()
+		
+	ReactDOM.unmountComponentAtNode(document.getElementById('app'));
+
+	component:只管给我数据，界面的事情完全不用你操心，我保证会把界面变成你想要的样子
+
+
+
+1\react定义组件用什么方法
+	var Messagebox = React.createClass(<!-- 组件名称首字母必须大写 !-->
+2\什么是jsx
+	在js里面写html代码(要用browser的包去解析,script中type写type/babel)
+
+	好处:可以提高代码可读性,语义清晰,对react元素进行抽喜爱那个
+	在js中写html语法
+
+3\reactjs angular有什么区别
+	angular,是完整的MVVM框架
+	react就是veiw;
+
+4\state和props有什么区别?
+	state的值会改变,改变的话就会重新触发渲染,刷render
+	props不会被改变的,是父子组件传值的
+
+4.1\state
+		将组件看成是一个状态机,一开始有一个初始状态,然后跟用户互动,导致状态变化.从而触发重新渲染
+	getInitialState初始值;
+
+5\组件之间如何传值?
+	父给子(props)
+	子给父(,父组件把方法传过去,事件回调 )
+	兄弟之间传值(引入插件,消息订阅)pusub
+
+6\ref:取到真实dom
+
+
+7\双向绑定
+	引入react-with-addons.js实现数据双项数据绑定,在最前面引入
+	mixins:[],
+
+8\组件并不是真正的dom节点,而是存在于内存文档中的一种数据结构,叫做虚拟dom,取到真实值要用虚拟dom
+
+this.setState自动刷新,
+this.forceUpdate();强制刷新
+
+input需要闭合标签
+	只能暴露一个标签,div包起来
+
+
+
+
+ReactDOM.render(//两个参数1\什么内容2\什么位置//React.render(老版本)
+	React.creatElement('标签',{属性},内容),
+	React.creatElement('标签',{className:'aa'},内容	 //设置class是className
+		嵌套React		//子元素
+
+	),
+	document.getElementById('app')
+);
+
+jsx:语法糖,便于写法创建了一些语法
+
+
+ReactDOM.render(
+			<h1>Hello World!
+				<div>aaa
+					<p>ppp</p、
+					、
+				</div>
+			</h1>,
+			document.getElementById('app')
+		);
+
+
+照片墙思路
+	1、观察结构，把图片跟li分成两个组件ImgFigure， Controller-》photoWall，再render到html里
+	2、数据的js文件 ，用webstorm写没问题，协议不一样 ，有跨域的问题，用firefox，
+		注：class要写className，-
+	3、调整样式，box-sizing：border-box；
+	4、先做图片，把每个图片放在固定区域随机的位置上，给图片位置范围，定义随机函数。分析位置，
+	5、位置放在state里，数组={pos：{x：0，y：0，}}，在循环里给剩下的图片数初始化。
+	6、生命周期渲染完之后compontentdidmount中取到舞台，和图片宽高（ref：this.refs.stage；ReactDOM.findDOMNode(this.refs.imgFigure0)）
+	7、确定左边最大值，右边值，给每个图片设置随机位置，（旋转和位置都是随机数，封装函数）
+	8、点谁让谁居中，父给子传方法过去(center/inverse)(center={this.center(index)),子组件调用了center方法(this.props.center();)
+			使用闭包保存变量
+			center : function(centerIndex){
+			  center : function(centerIdx){
+		        return function(idx){
+		            this.rearrage(idx);
+		        }.bind(this, centerIdx);
+		    },
+			},
+	9、是否反转，设置标识位。
+	10、背面，backface
+
+*闭包(解决作用域的问题)(闭包的实质是一个函数，是一个用于返回局部变量值的函数)
+	内部函数引用了外部函数的局部变量(包括外部函数的形参)，这使得外部函数调完毕后，该局部变量将不会被释放 所以，在本质上，闭包就是将函数内部和函数外部连接起来的一座桥梁。 
+
+	闭包可以用在许多地方。它的最大的处有两个，1\可以读取函数内部的变量，另一个就是让这些变量的值始终保 持在内存中。 
+	作用： 1.希望一个变量长期驻扎在内存中 2.避免全局变量的污染 3.私有成员的存在
+
+  	(ul里面有很多li,点击li显示自己索引),循环会马上执行完.不能保存变量,
+  	for(var i = 0;i<5;i++){
+		(function(idx){
+			XX.onclick = function(){
+				alter(idx);
+			}
+		})(i);>
+  	}
+  	原因就在于f1是f2的父函数，而f2被赋给了一个全局变量，这导致f2始终在内存中，而f2的存在依赖于f1，因此f1也始终在内存中不会在调用结束后，被垃圾回收机制
+
+
+
+什么叫做虚拟dom:
+	用JS对象表示DOM结构,当数据发生改变时.跟原来的dom树进行对比.通过在这个虚拟DOM上实现了一个diff算法找出最小变更，再把这些变更写入实际的DOM中。
+
+虚拟dom具体如何实现?
+	1>如何比较两个两棵DOM树
+		我们很少跨级别的修改DOM节点，通常是修改节点的属性、调整子节点的顺序、添加子节点等。因此，我们只需要对同级别节点进行比较，避免了diff算法的复杂性。
+
+		对同级别节点进行比较的常用方法是深度优先遍历//
+
+			深度优先遍历:也就深入的遍历，沿着每一个分支直到走到最后，然后才返回来遍历剩余的节点
+		function diff(oldTree, newTree) {
+		    //节点的遍历顺序
+		    var index = 0; 
+		    //在遍历过程中记录节点的差异
+		    var patches = {}; 
+		    //深度优先遍历两棵树
+		    dfsWalk(oldTree, newTree, index, patches); 
+		    return patches; 
+		}
+
+	2>如何记录节点之间的差异
+		由于我们对DOM树采取的是同级比较，因此节点之间的差异可以归结为4种类型：
+			修改节点属性, 用PROPS表示
+			修改节点文本内容, 用TEXT表示
+			替换原有节点, 用REPLACE表示
+			调整子节点，包括移动、删除等，用REORDER表示
+		而当旧节点的属性被修改时：{type:PROPS,props: newProps}
+
+		在深度优先遍历的过程中，每个节点都有一个编号，如果对应的节点有变化，只需要把相应变化的类别记录下来即可。
+
+		比如对上文图中的两颗虚拟DOM树，可以用如下数据结构记录它们之间的变化：
+
+		var patches = {
+		        1:{type:REPLACE,node:newNode}, //h1节点变成h5
+		        5:{type:REORDER,moves:changObj} //ul新增了子节点li
+		    }
+
+
+	3>对真实DOM进行最小化修改
+		通过虚拟DOM计算出两颗真实DOM树之间的差异后，我们就可以修改真实的DOM结构了。上文深度优先遍历过程产生了用于记录两棵树之间差异的数据结构patches, 通过使用patches我们可以方便对真实DOM做最小化的修改。
+
+
+
+
+
+
+1\Vue.js 特点
+	简洁： HTML 模板 + JSON 数据，再创建一个 Vue 实例，就这么简单。
+	数据驱动： 自动追踪依赖的模板表达式和计算属性。
+	组件化： 用解耦、可复用的组件来构造界面。
+	轻量： ~24kb min+gzip，无依赖。
+	快速： 精确有效的异步批量 DOM 更新。
+	模块友好： 通过 NPM 或 Bower 安装，无缝融入你的工作流。
+	<mytag parent-msg="hello" :parent-msg2="myMsg" v-on:receive="receiveMsg"></mytag>
+        Vue.component('mytag', {
+            template: '<div>{{parentMsg2}}<button @click="childClick">child click</button></div>',
+            props: ['parentMsg', 'parentMsg2'],
+            methods: {
+                childClick: function () {
+                    this.$emit('receive', 'hello world2222');//触发
+                }
+            }
+        });
+        new Vue({
+            el: '#div1',
+            data: {
+              msg: 'hehehe',
+            },
+            methods: {
+                receiveMsg: function (childMsg) {
+                    this.myMsg = childMsg;
+                }
+            },
+            mounted: function () {
+                this.$nextTick(function () {
+                    axios.get('cart.json').then(function (res) {
+                        _this.productList = res.data.result.productList;
+                    });
+                });
+
+            }
+        });
+如何让css只在当前组件中起作用
+	<style scoped></style>
+
+
+
+
+
+
+2\angular.js是一个前端MVC的框架，它有几大特性：
+	1. 前端MVC(Model View Controller，有人也称之为MVVM，模型视图视图模型，其实就是双向数据绑定)
+	2. 双向数据绑定
+	3. 模块化：使用angular.module('模块名', [依赖的其它模块,,,])来定义
+	4. 指令系统：使用
+			myApp.directive('hello', function(){
+				return {
+					restrict: 'ACME',
+					template: '<div>hello</div>',
+					link: function(scope, element, attrs){
+					}
+				};
+			});
+
+
+	当AngularJS 加载后，它会在文档中搜索ng-app 特性。这个标签通常被设置给项目的主要模块。一旦发现，Angular 就会对文档进行操作。
+
+
+
+
+表现与数据分离:
+	1、界面与数据的分离，必须体现在代码上，界面的代码归界面的代码，数据的代码归数据的代码，两者必须泾渭分明。
+
+	2、当界面需求发生改变，只需要改写界面的代码，并且所改写的代码不能影响到数据访问的代码。
+
+
+前后端
+•	前端：负责View和Controller层。
+•	后端：只负责Model层，业务处理/数据等。
+
+
+
+数据双向绑定原理:
+
+	AngularJS 采用“脏值检测”的方式????????，数据发生变更后，对于所有的数据和视图的绑定关系进行一次检测，识别是否有数据发生了改变，有变化进行处理，可能进一步引发其他数据的改变，所以这个过程可能会循环几次，一直到不再有数据变化发生后，将变更的数据发送到视图，更新页面展现。如果是手动对 ViewModel 的数据进行变更，为确保变更同步到视图，需要手动触发一次“脏值检测”。
+
+	VueJS 则使用 ES5 提供的 Object.defineProperty() 方法，监控对数据的操作，从而可以自动触发数据同步。并且，由于是在不同的数据上触发同步，可以精确的将变更发送给绑定的视图，而不是对所有的数据都执行一次检测。
+
+
+react单向数据流.V
+anglar数据双向绑定
+
+MVVM MVC MVP区别
+	MVVM:将“数据模型数据双向绑定”的思想作为核心，因此在View和Model之间没有联系，通过ViewModel进行交互，而且Model和ViewModel之间的交互是双向的，因此视图的数据的变化会同时修改数据源，而数据源数据的变化也会立即反应到View上。
+
+	MVC是比较直观的架构模式，用户操作->View（负责接收用户的输入操作）->Controller（业务逻辑处理）->Model（数据持久化）->View（将结果反馈给View）。
+
+	MVP:MVP是把MVC中的Controller换成了Presenter（呈现），目的就是为了完全切断View跟Model之间的联系，由Presenter充当桥梁，做到View-Model之间通信的完全隔离。
+
+
