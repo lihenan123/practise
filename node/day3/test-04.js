@@ -24,4 +24,3 @@ process.nextTick(function(){
 console.log("正常执行");
 
 
-同步 

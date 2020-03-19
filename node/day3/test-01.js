@@ -5,13 +5,13 @@
 //privatekey  publickey ---证书  https  ssl/tls
 var crypto=require("crypto");
 
-/*
+
 var hash=crypto.createHash('sha256');   //md5  sha256
 hash.update("12345");
-console.log(hash.digest('hex'));*/   
+console.log(hash.digest('hex'));
 //md5(md5+salt);
 
-localStorge  setItem
+// localStorge  setItem
 //本地化存储  localStorage sessionStorage cookie IndexDB WebSQL
 
 
