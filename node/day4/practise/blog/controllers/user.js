@@ -7,9 +7,15 @@ exports.do_reg = function (req, res, next) {
     var nickname = req.body.name;
     var pass = req.body.pwd;
     User_model.insert_name_pass(account,pass,function(err,data){
-        console.log(data);
+        // console.log(data);
+        if(data.affectedRows==1){
+            res.redirect("/login");
+        }
     })
     
+}
+exports.login=function(req,res,next){
+    res.send("login success");
 }
 // exports.do_reg=function(req,res,next){
 //     var name = req.body.uname;
