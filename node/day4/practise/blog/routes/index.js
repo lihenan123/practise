@@ -12,7 +12,7 @@ router.get('/test',function(req,res,next){
 });
 
 router.get('/reg',User.reg);
-//router.post('/reg',User.do_reg);
+router.post('/reg',User.do_reg);
 // router.get("/xx",User.yy);
 // router.get("/zz/:xname",User.mm);
 module.exports = router;
