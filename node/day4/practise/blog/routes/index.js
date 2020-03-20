@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var user = require("../controllers/user.js");
+var User = require("../controllers/user.js");
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -11,6 +11,8 @@ router.get('/test',function(req,res,next){
   res.render('aaa',{good:arr});
 });
 
-router.get('/reg',user.reg);
-
+router.get('/reg',User.reg);
+router.post('/reg',User.do_reg);
+// router.get("/xx",User.yy);
+// router.get("/zz/:xname",User.mm);
 module.exports = router;
