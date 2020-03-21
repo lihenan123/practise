@@ -12,3 +12,6 @@ exports.index = function (req, res, next) {
         }
     })
 }
+exports.newblog = function(req,res,next){
+    res.render("newBlog");
+}
