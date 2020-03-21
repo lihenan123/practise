@@ -61,3 +61,11 @@ exports.do_catalog_modify= function(req,res,next){
         }
     });
 }
+exports.catalog_delete=function(req,res,next){
+    var cid = req.query.cid;
+    Blog_model.delete_catalog(cid,function(err,data){
+        if(data.affectedRows==1){
+            res.redirect('/catalog');
+        }
+    });
+}

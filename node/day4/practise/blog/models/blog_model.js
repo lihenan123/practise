@@ -21,3 +21,7 @@ exports.modify_catalog = function(name,cid,callback){
     var sql = "update t_blog_catalogs set CATALOG_NAME=? where CATALOG_ID=?";
     db.query(sql,[name,cid],callback);
 }
+exports.delete_catalog = function(cid,callback){
+    var sql="delete from t_blog_catalogs where CATALOG_ID=?";
+    db.query(sql,[cid],callback);
+}
