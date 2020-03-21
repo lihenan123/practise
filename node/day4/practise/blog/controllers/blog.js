@@ -13,5 +13,14 @@ exports.index = function (req, res, next) {
     })
 }
 exports.newblog = function(req,res,next){
-    res.render("newBlog");
+    var uid = req.session.id;
+    Blog_model.show_catalogs(uid,function(err,data){
+        res.render("newBlog",{
+            'sess':req.session,
+            'catablogs':data
+        });
+    });
+} 
+exports.catalog = function(req,res,next){
+    res.render("blogCatalogs");
 }

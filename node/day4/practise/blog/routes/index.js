@@ -30,6 +30,7 @@ router.get('/index',checklogin);
 router.get('/index',Blog.index);
 router.get('/unlogin',User.unlogin);
 router.get('/newblog',Blog.newblog);
+router.get('/catalog',Blog.catalog);
 // router.get("/xx",User.yy);
 // router.get("/zz/:xname",User.mm);
 module.exports = router;

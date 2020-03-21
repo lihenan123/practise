@@ -14,7 +14,7 @@
     body,table,input,textarea,select {font-family:Verdana,sans-serif,宋体;}	
   </style>
 </head>
-<body>
+<body> 
 <!--[if IE 8]>
 <style>ul.tabnav {padding: 3px 10px 3px 10px;}</style>
 <![endif]-->
@@ -33,7 +33,7 @@
 </div><!-- #EndLibraryItem --><div id="OSC_Topbar">
 <div id="VisitorInfo">
 		当前访客身份：
-				Johnny [ <a href="#">退出</a> ]
+				<%= sess.name%> [ <a href="/unlogin">退出</a> ]
 				<span id="OSC_Notification">
 			<a href="#" class="msgbox" title="进入我的留言箱">你有<em>0</em>新留言</a>
 																				</span>
@@ -85,14 +85,17 @@
     <input name="title" id="f_title" class="TEXT" style="width: 400px;" type="text">
 	存放于 
 	<select name="catalog">
-	)
-	  <option selected="selected" value="92334">工作日志</option>
-	)
+		
+		<% catablogs.forEach(function(catablog,index){%>
+			<option value="92335"><%= catablog.CATALOG_NAME%></option>
+		<%})%>
+	  <!-- <option selected="selected" value="92334">工作日志</option>
+	
 	  <option value="92335">日常记录</option>
-	)
-	  <option value="92336">转贴的文章</option>
+	
+	  <option value="92336">转贴的文章</option> -->
 		</select>
-	<a href="blogCatalogs.htm" onclick="return confirm('是否放弃当前编辑进入分类管理？');">分类管理»</a>
+	<a href="/catalog">分类管理»</a>
 	</td>
   </tr>
   <tr><td class='t'>内容（必填） 
