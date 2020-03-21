@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // function fn1(){
+        //     var a=20;
+        //     a++;
+        //     console.log(a);
+        // }
+        // fn1(); //21
+        // fn1(); //21
+
+        function fn1(val){
+            var a=20;
+            return function(){
+                a++;
+                console.log(val,a);
+            }
+        }
+        fn1("haha")();
+        fn1("haha")();
+
+        // var f = fn1("haha");
+        // f(); //21
+        // f(); //22
+
+        function fn1(){
+            var a=20;
+            function fn2(){
+                a++;
+                console.log(a);
+            }
+            fn2();
+        }
+
+        fn1();
+        fn1();
+
+    </script>
+</body>
+</html>
