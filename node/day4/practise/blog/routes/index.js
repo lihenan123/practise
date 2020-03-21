@@ -27,6 +27,7 @@ router.post('/login',User.do_login);
 router.post('/check',User.checkname);
 router.get('/index',checklogin);
 router.get('/index',User.index);
+router.get('/unlogin',User.unlogin);
 // router.get("/xx",User.yy);
 // router.get("/zz/:xname",User.mm);
 module.exports = router;

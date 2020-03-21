@@ -42,6 +42,10 @@ exports.index = function (req, res, next) {
     })
     
 }
+exports.unlogin=function(req,res,next){
+    req.session=null;
+    res.redirect("/index");
+}
 exports.checkname = function (req, res, next) {
     var account = req.body.email;
     User_model.check_name(account, function (err, data) {
