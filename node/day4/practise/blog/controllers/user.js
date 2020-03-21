@@ -15,7 +15,7 @@ exports.do_reg = function (req, res, next) {
     
 }
 exports.login=function(req,res,next){
-    res.send("login success");
+    res.render('login');
 }
 exports.checkname=function(req,res,next){
     var account = req.body.email;
