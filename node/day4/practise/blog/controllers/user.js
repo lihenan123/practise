@@ -6,7 +6,7 @@ exports.do_reg = function (req, res, next) {
     var account = req.body.email;
     var nickname = req.body.name;
     var pass = req.body.pwd;
-    User_model.insert_name_pass(account, pass, function (err, data) {
+    User_model.insert_name_pass(account, pass,nickname, function (err, data) {
         // console.log(data);
         if (data.affectedRows == 1) {
             res.redirect("/login");
@@ -24,24 +24,20 @@ exports.do_login = function (req, res, next) {
     User_model.check_login(account, pass, function (err, data) {
         if (data.length > 0) {
             // res.send("login success");
-            req.session.name = data[0].user;
+            req.session.id = data[0].USER_ID;
+            req.session.name = data[0].ACCOUNT;
             // res.render("index",{
             //     'title':'loginnn',
             //     'sess':req.session
             // })
             res.redirect("/index");
-        }
+        } 
         else {
             res.send("login error");
         }
     })
 }
-exports.index = function (req, res, next) {
-    res.render("index_logined", {
-        'sess': req.session
-    })
-    
-}
+
 exports.unlogin=function(req,res,next){
     req.session=null;
     res.redirect("/index");
