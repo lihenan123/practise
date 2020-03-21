@@ -42,11 +42,22 @@ exports.addcatalog = function(req,res,next){
     });
 }
 exports.catalog_modify=function(req,res,next){
-    var uid = req.session.id;
-    Blog_model.show_catalogs(uid,function(err,data){
-        res.render("editCatalog",{
-            'sess':req.session,
-            'catablogs':data
-        });
+    var cid = req.query.cid;
+    Blog_model.search_catalog(cid,function(err,data){
+        if(data.length>0){
+            res.render("editCatalog",{
+                'sess':req.session,
+                'cata':data[0]
+            });
+        }
+    });
+}
+exports.do_catalog_modify= function(req,res,next){
+    var name = req.body.name;
+    var cid = req.body.hcid;
+    Blog_model.modify_catalog(name,cid,function(err,data){
+        if(data.affectedRows==1){
+            res.redirect('/catalog');
+        }
     });
 }

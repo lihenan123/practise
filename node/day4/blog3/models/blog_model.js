@@ -39,7 +39,7 @@ exports.sel_catadata=function(cid,callback){
 }
 
 exports.update_cataname=function(cid,cname,callback){
-	var sql="update t_blog_catalogs set NAME=? where CATALOG_ID=?";
+	var sql="update t_blog_catalogs set NAME=? where CATALOG_ID=?"; 
 	db.query(sql,[cname,cid],callback);
 }
 

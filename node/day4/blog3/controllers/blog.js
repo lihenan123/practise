@@ -226,7 +226,7 @@ exports.addBlogCatalog=function(req,res,next){
 
 
 exports.editCatalog=function(req,res,next){
-	var cid=req.query.cid;
+	var cid=req.query.cid; 
 	//var uid=req.session.id;
 	Blog_model.sel_catadata(cid,function(err,data){
 		if(data.length>0){
