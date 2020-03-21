@@ -14,6 +14,7 @@ router.get('/test',function(req,res,next){
 router.get('/reg',User.reg);
 router.post('/reg',User.do_reg);
 router.get('/login',User.login);
+router.post('/check',User.checkname);
 // router.get("/xx",User.yy);
 // router.get("/zz/:xname",User.mm);
 module.exports = router;

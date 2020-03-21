@@ -12,3 +12,7 @@ exports.insert_name_pass = function (email,pass,callback) {
     // });
 
 }
+exports.check_name = function(account,callback){
+    var sql = "select * from t_users where user=?";
+    db.query(sql,[account],callback);
+}

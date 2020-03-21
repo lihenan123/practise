@@ -17,6 +17,17 @@ exports.do_reg = function (req, res, next) {
 exports.login=function(req,res,next){
     res.send("login success");
 }
+exports.checkname=function(req,res,next){
+    var account = req.body.email;
+    User_model.check_name(account,function(err,data){
+        if(data.length>0){
+            res.send("success");
+        }
+        else{
+            res.send("error");
+        }
+    })
+}
 // exports.do_reg=function(req,res,next){
 //     var name = req.body.uname;
 //     var pass = req.body.pass;

@@ -32,6 +32,7 @@
 #OSChinaLoginTip ul li a {display:block;height:40px;}
 #OSChinaLoginTip ul li a {border:1px solid #fff;padding:2px;}
 #OSChinaLoginTip ul li a:hover {border:1px solid #40AA53;background:#cfc;}
+.s1{color:red};
 </style>
 
 <div class="MainForm" id="reg_page">
@@ -157,11 +158,11 @@
 	$("#f_email").blur(function(){
 		var name=$(this).val();
 		//console.log(name);
-		$.post("/check",{"account":name},function(data){
+		$.post("/check",{"email":name},function(data){
 			//console.log(data);
 			
 			if(data=='success'){
-				$('#f_email').after("<span id='s1'>用户名重名</span>");
+				$('#f_email').after("<span class='s1'>用户名重名</span>");
 			}
 		},'text');
 	})
