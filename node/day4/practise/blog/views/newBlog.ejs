@@ -2,7 +2,7 @@
 <html xml:lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN"><head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta http-equiv="Content-Language" content="zh-CN">
-  <title>发表博客 Johnny的博客 - SYSIT个人博客</title>
+  <title>发表博客 <%= sess.name%>的博客 - SYSIT个人博客</title>
       <link rel="stylesheet" href="stylesheets/space2011.css" type="text/css" media="screen">
   <link rel="stylesheet" type="text/css" href="stylesheets/jquery.css" media="screen">
   <script type="text/javascript" src="javascripts/jquery-1.js"></script>
@@ -23,7 +23,7 @@
 <![endif]-->
 <div id="OSC_Screen"><!-- #BeginLibraryItem "/Library/OSC_Banner.lbi" -->
 <div id="OSC_Banner">
-    <div id="OSC_Slogon">Johnny's Blog</div>
+    <div id="OSC_Slogon"><%= sess.name%>'s Blog</div>
     <div id="OSC_Channels">
         <ul>
         <li><a href="#" class="project">心情 here...</a></li>

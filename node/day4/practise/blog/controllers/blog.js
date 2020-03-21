@@ -22,5 +22,31 @@ exports.newblog = function(req,res,next){
     });
 } 
 exports.catalog = function(req,res,next){
-    res.render("blogCatalogs");
+    var uid = req.session.id;
+    Blog_model.show_catalogs(uid,function(err,data){
+        res.render("blogCatalogs",{
+            'sess':req.session,
+            'catablogs':data
+        });
+    });
+}
+exports.addcatalog = function(req,res,next){
+    var uid = req.session.id;
+    var name = req.body.name;
+    var order = req.body.sort_order;
+    Blog_model.add_blog_catalog(name,uid,function(err,data){
+        if (data.affectedRows == 1) {
+            res.redirect("/catalog");
+        }
+        
+    });
+}
+exports.catalog_modify=function(req,res,next){
+    var uid = req.session.id;
+    Blog_model.show_catalogs(uid,function(err,data){
+        res.render("editCatalog",{
+            'sess':req.session,
+            'catablogs':data
+        });
+    });
 }
