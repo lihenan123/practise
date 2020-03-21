@@ -6,24 +6,49 @@ exports.do_reg = function (req, res, next) {
     var account = req.body.email;
     var nickname = req.body.name;
     var pass = req.body.pwd;
-    User_model.insert_name_pass(account,pass,function(err,data){
+    User_model.insert_name_pass(account, pass, function (err, data) {
         // console.log(data);
-        if(data.affectedRows==1){
+        if (data.affectedRows == 1) {
             res.redirect("/login");
         }
     })
-    
+
 }
-exports.login=function(req,res,next){
+exports.login = function (req, res, next) {
     res.render('login');
 }
-exports.checkname=function(req,res,next){
+exports.do_login = function (req, res, next) {
+    // console.log(req.body);
     var account = req.body.email;
-    User_model.check_name(account,function(err,data){
-        if(data.length>0){
+    var pass = req.body.pwd;
+    User_model.check_login(account, pass, function (err, data) {
+        if (data.length > 0) {
+            // res.send("login success");
+            req.session.name = data[0].user;
+            // res.render("index",{
+            //     'title':'loginnn',
+            //     'sess':req.session
+            // })
+            res.redirect("/index");
+        }
+        else {
+            res.send("login error");
+        }
+    })
+}
+exports.index = function (req, res, next) {
+    res.render("index_logined", {
+        'sess': req.session
+    })
+    
+}
+exports.checkname = function (req, res, next) {
+    var account = req.body.email;
+    User_model.check_name(account, function (err, data) {
+        if (data.length > 0) {
             res.send("success");
         }
-        else{
+        else {
             res.send("error");
         }
     })

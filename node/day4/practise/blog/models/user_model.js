@@ -16,3 +16,7 @@ exports.check_name = function(account,callback){
     var sql = "select * from t_users where user=?";
     db.query(sql,[account],callback);
 }
+exports.check_login=function(account,pass,callback){
+    var sql = "select * from t_users where user=? and pass=?";
+    db.query(sql,[account,pass],callback);
+}
