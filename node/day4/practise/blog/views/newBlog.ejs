@@ -76,7 +76,7 @@
 </div>
     <div id="AdminContent">
 <div class="MainForm">
-<form id="BlogForm" action="/action/blog/save?user=${g_user.id}" method="POST">
+<form id="BlogForm" action="/newblog" method="POST">
 <input id="hdn_blog_id" name="draft" value="0" type="hidden">
   <table>
   <tbody><tr><td class="t">标题（必填）</td></tr>
@@ -85,16 +85,15 @@
     <input name="title" id="f_title" class="TEXT" style="width: 400px;" type="text">
 	存放于 
 	<select name="catalog">
-		
-		<% catablogs.forEach(function(catablog,index){%>
-			<option value="92335"><%= catablog.CATALOG_NAME%></option>
-		<%})%>
+	<% catablogs.forEach(function(catablog,index){%>
+	<option value="92335"><%= catablog.CATALOG_NAME%></option>
+	<%})%>
 	  <!-- <option selected="selected" value="92334">工作日志</option>
 	
 	  <option value="92335">日常记录</option>
 	
 	  <option value="92336">转贴的文章</option> -->
-		</select>
+	</select>
 	<a href="/catalog">分类管理»</a>
 	</td>
   </tr>
@@ -105,7 +104,7 @@
 
   <tr>
 
-    <td><textarea name="content" id="ta_blog_content" style="width:750px;height:300px;"></textarea></td>
+    <td><textarea  id="editor_id" name="newcontent" style="width:700px;height:300px;"></textarea></td>
   </tr>
   <tr class="option">
 	<td><strong>文章类型？</strong>

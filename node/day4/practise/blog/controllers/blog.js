@@ -21,6 +21,22 @@ exports.newblog = function(req,res,next){
         });
     });
 } 
+exports.addnewblog = function(req,res,next){
+    var cid = req.body.catalog;
+    var title = req.body.title;
+    var content = req.body.newcontent;
+    var uid = req.session.id;
+    console.log(cid);
+    Blog_model.add_new_blog(cid,uid,title,content,function(err,data){
+        if(data.affectedRows==1){
+            Blog_model.update_catas_by_cataid(cataid,function(err,data){
+				if(data.affectedRows==1){
+					res.redirect("/index");
+				}
+			})
+        }
+    });
+}
 exports.catalog = function(req,res,next){
     var uid = req.session.id;
     Blog_model.show_catalogs(uid,function(err,data){
@@ -33,7 +49,6 @@ exports.catalog = function(req,res,next){
 exports.addcatalog = function(req,res,next){
     var uid = req.session.id;
     var name = req.body.name;
-    var order = req.body.sort_order;
     Blog_model.add_blog_catalog(name,uid,function(err,data){
         if (data.affectedRows == 1) {
             res.redirect("/catalog");

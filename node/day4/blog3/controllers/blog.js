@@ -170,7 +170,7 @@ exports.do_add=function(req,res,next){
 	var cataid=req.body.catalog;
 	var con=req.body.newcontent;
 	var uid=req.session.id;
-
+ 
 	Blog_model.insert_data_by_name(cataid,title,con,uid,function(err,data){
 		if(data.affectedRows==1){
 			//console.log(123);

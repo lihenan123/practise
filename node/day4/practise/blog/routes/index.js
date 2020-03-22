@@ -26,14 +26,18 @@ router.post('/reg',User.do_reg);
 router.get('/login',User.login);
 router.post('/login',User.do_login);
 router.post('/check',User.checkname);
+
 router.get('/index',checklogin);
 router.get('/index',Blog.index);
 router.get('/unlogin',User.unlogin);
+
 router.get('/newblog',Blog.newblog); 
+router.post('/newblog',Blog.addnewblog);
+
 router.get('/catalog',Blog.catalog);
 router.post('/addBlogCatalog',Blog.addcatalog);
 router.get('/modify',Blog.catalog_modify);
-router.post("/do_modify",Blog.do_catalog_modify);
+router.post("/modify",Blog.do_catalog_modify);
 router.get('/delete',Blog.catalog_delete);
 // router.get("/xx",User.yy);
 // router.get("/zz/:xname",User.mm);

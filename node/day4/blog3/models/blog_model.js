@@ -42,11 +42,11 @@ exports.update_cataname=function(cid,cname,callback){
 	var sql="update t_blog_catalogs set NAME=? where CATALOG_ID=?"; 
 	db.query(sql,[cname,cid],callback);
 }
-
+ 
 exports.del_cataname=function(cid,callback){
 	var sql="delete from t_blog_catalogs where CATALOG_ID=?";
 	db.query(sql,[cid],callback);
-}
+} 
 
 exports.insert_data_by_name=function(cataid,title,con,uid,callback){
 	var dd=moment().format("YYYY-MM-DD hh:mm:ss");
