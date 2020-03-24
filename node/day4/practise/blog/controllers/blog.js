@@ -129,3 +129,8 @@ exports.catalog_delete = function (req, res, next) {
         }
     });
 }
+exports.blog = function(req,res,next){
+    var uid = req.session.id;
+    
+    res.render('blogs');
+}

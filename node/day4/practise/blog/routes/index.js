@@ -41,6 +41,8 @@ router.post('/addBlogCatalog',Blog.addcatalog);
 router.get('/modify',Blog.catalog_modify);
 router.post("/modify",Blog.do_catalog_modify);
 router.get('/delete',Blog.catalog_delete);
+
+router.get('/blog',Blog.blog);
 // router.get("/xx",User.yy);
 // router.get("/zz/:xname",User.mm);
 module.exports = router;
