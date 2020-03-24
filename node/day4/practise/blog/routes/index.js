@@ -30,7 +30,7 @@ router.post('/check',User.checkname);
 router.get('/index',checklogin);
 router.get('/index',Blog.index);
 router.get('/unlogin',User.unlogin);
-
+ 
 router.get('/newblog',Blog.newblog); 
 router.post('/newblog',Blog.addnewblog);
 
