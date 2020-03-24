@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #content{
+            width: 750px;
+            height: 291px;
+            margin: 100px auto;
+        }
+        
+        #img-box div{
+            width: 750px;
+            height: 291px;
+            display: none;
+        }
+        #img-box .selected{
+            display: block;
+        }
+        #list-box{
+            position: absolute;
+            left:860px;
+            top:330px;    
+        }
+        #list-box li{
+            list-style: none;
+            float: left;
+            height: 20px;
+            width: 20px;
+            background: #bbbbbb;
+            margin-right: 10px;
+            line-height: 20px;
+            text-align: center;
+            border-radius: 20%;
+            color: #ffffff;
+        }
+        #arrow-box{
+            position: absolute;
+            left:300px;
+            top:330px;    
+        }
+        #arrow-box li{
+            list-style: none;
+            float: left;
+            height: 20px;
+            width: 20px;
+            background: #bbbbbb;
+            margin-right: 10px;
+            line-height: 20px;
+            text-align: center;
+            border-radius: 20%;
+            color: #ffffff;
+        }
+        #content .active{
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <div id="img-box">
+            <div class="selected"><img src="../img/1.jpg"></div>
+            <div><img src="../img/2.jpg"></div>
+            <div><img src="../img/3.jpg"></div>
+            <div><img src="../img/4.jpg"></div>
+            <div><img src="../img/5.jpg"></div>
+        </div>
+        
+        <ul id="list-box">
+            <li class="active">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ul>
+        <ul id="arrow-box">
+            <li id="left"><</li>
+            <li id="right">></li>
+        </ul>
+    </div>
+    <script>
+        var oImg = document.getElementById('img-box');
+        var aImg = oImg.getElementsByTagName('div');
+        var oList = document.getElementById('list-box');
+        var aList = oList.getElementsByTagName('li');
+        var oLeft = document.getElementById('left');
+        var oRight = document.getElementById('right');
+        var idx=0;
+        for(var i=0;i<aList.length;i++){
+            aList[i].index=i;
+            aList[i].onclick=function(){
+                change(this.index);
+            }
+        }
+        oRight.onclick=function(){    
+            if(idx==4){
+                idx=-1;
+            }
+            idx++;
+            change(idx);
+        }
+        oLeft.onclick = function(){
+            idx--;
+            if(idx==-1){
+                idx=4;
+            }
+            change(idx);
+            
+            
+        }
+        function change(index){
+            for(var j=0;j<aList.length;j++){
+                aList[j].className="";
+                aImg[j].className="";
+            }
+            aList[index].className="active";
+            aImg[index].className="selected";
+        }
+        var timer=setInterval(function(){
+            oRight.onclick();
+        },1500);
+        oImg.onmouseover=function(){
+            clearInterval(timer);
+        }
+        oImg.onmouseout=function(){
+            timer=setInterval(function(){
+            oRight.onclick();
+        },1000);
+        }
+    </script>
+</body>
+</html>
