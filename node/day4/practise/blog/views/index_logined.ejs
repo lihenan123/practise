@@ -38,9 +38,10 @@
 																				</span>
 </div>
 		<div id="SearchBar">
-    		<form action="#">
-								<input name="user" value="154693" type="hidden">
-																								<input id="txt_q" name="q" class="SERACH" value="在此空间的博客中搜索" onblur="(this.value=='')?this.value='在此空间的博客中搜索':this.value" onfocus="if(this.value=='在此空间的博客中搜索'){this.value='';};this.select();" type="text">
+    		<form action="/search">
+				<!-- <input name="user" value="154693" type="hidden"> -->
+				<!-- <input id="txt_q" name="s-content" class="SERACH" Placeholder="在此空间的博客中搜索"  type="text"> -->
+				<input name="sc" type="text">;
 				<input class="SUBMIT" value="搜索" type="submit">
     		</form>
 		</div>
@@ -62,9 +63,9 @@
 		  <h2 class="BlogAccess_true BlogTop_0"><a href="viewPost_comment.htm"><%= blog.TITLE%></a></h2>
 		  <div class="outline">
 			<span class="time">发表于 <%= blog.ADD_TIME%></span>
-			<span class="catalog">分类: <a href="#">工作日志</a></span>
+			<span class="catalog">分类: <a href="#"><%= blog.CATALOG_NAME%></a></span>
 			<span class="stat">统计: 1评/<%= blog.CLICK_RATE%>阅</span>
-				  <span class="blog_admin">( <a href="newBlog.htm">修改</a> | <a href="javascript:delete_blog(24027)">删除</a> )</span>	  
+				  <span class="blog_admin">( <a href="/newblog">修改</a> | <a href="javascript:delete_blog(24027)">删除</a> )</span>	  
 				</div>
 			  <div class="TextContent" id="blog_content_24027">
 				  <%= blog.CONTENT%>

@@ -84,9 +84,9 @@
 	<td>
     <input name="title" id="f_title" class="TEXT" style="width: 400px;" type="text">
 	存放于 
-	<select name="catalog">
+	<select name="catalog" id="sel">
 	<% catablogs.forEach(function(catablog,index){%>
-	<option value="92335"><%= catablog.CATALOG_NAME%></option>
+	<option selected="selected" value="<%= catablog.CATALOG_ID %>"><%= catablog.CATALOG_NAME%></option>
 	<%})%>
 	  <!-- <option selected="selected" value="92334">工作日志</option>
 	
