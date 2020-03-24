@@ -89,9 +89,9 @@
 <div class="catalogs SpaceModule">
   <strong>博客分类</strong>
   <ul class="LinkLine">
-    	<li><a href="#">工作日志(3)</a></li>
-		<li><a href="#">日常记录(0)</a></li>
-		<li><a href="#">转贴的文章(0)</a></li>
+	  <% catas.forEach(function(cata,index){ %>
+    	<li><a href="/showcata/?cid=<%= cata.CATALOG_ID%>"><%= cata.CATALOG_NAME%>(<%= cata.BLOG_COUNT%>)</a></li>
+	  <%})%>
 	  </ul>
 </div>
 <div class="comments SpaceModule">

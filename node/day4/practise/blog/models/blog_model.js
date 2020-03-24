@@ -7,8 +7,8 @@ exports.show_articles_by_name = function(uid,callback){
 }
 exports.search_blog = function(uid,content,callback){
     var con = "%"+content+"%";
-    var sql="select * from t_blogs where WRITER=? and CONTENT like ?";
-    db.query(sql,[uid,con],callback);
+    var sql="select * from t_blogs where WRITER=? and (CONTENT like ? OR TITLE like ?)";
+    db.query(sql,[uid,con,con],callback);
 }
 exports.show_catalogs=function(uid,callback){
     var sql = "select * from t_users,t_blog_catalogs where t_users.USER_ID=t_blog_catalogs.USER_ID and t_blog_catalogs.USER_ID=?";
@@ -26,6 +26,14 @@ exports.update_catas_by_cataid=function(cataid,callback){
 exports.add_blog_catalog= function(name,uid,callback){
     var sql="insert into t_blog_catalogs(CATALOG_NAME,USER_ID) values(?,?)";
     db.query(sql,[name,uid],callback);
+}
+exports.search_blog_by_catalog = function(cid,callback){
+    var sql="select * from t_blogs where CATALOG_ID=?";
+    db.query(sql,[cid],callback);
+}
+exports.search_catalog_by_users = function(uid,callback){
+    var sql="select * from t_blog_catalogs where USER_ID=?";
+    db.query(sql,[uid],callback);
 }
 exports.search_catalog = function(cid,callback){
     var sql = "select * from t_blog_catalogs where CATALOG_ID=?";
